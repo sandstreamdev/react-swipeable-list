@@ -1,0 +1,69 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+h5 {
+  margin: 0;
+}
+
+.example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list-container {
+  width: 300px;
+  padding: 8px;
+}
+
+.list-container .list-item {
+  height: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.list-container .swipeable-list-item {
+  border-top: 1px solid;
+}
+
+.list-container .swipeable-list-item:last-of-type {
+  border-bottom: 1px solid;
+}
+
+.background-left {
+  background-color: red;
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.background-right {
+  background-color: green;
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4px;
+}
+
+.action-info {
+  padding: 16px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.complex-list-container {
+  width: 300px;
+  padding: 8px;
+}
