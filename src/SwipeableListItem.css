@@ -1,0 +1,42 @@
+.swipeable-list-item {
+  position: relative;
+  transition: max-height 0.5s ease;
+  max-height: 1000px;
+  transform-origin: top;
+  overflow: hidden;
+  width: 100%;
+  z-index: 0;
+}
+
+.swipeable-list-item > .background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+.swipeable-list-item > .background.right {
+  justify-content: flex-end;
+}
+
+.swipeable-list-item > .background.return {
+  transition: opacity 0.5s ease-out;
+}
+
+.swipeable-list-item > .content {
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #fff;
+  height: 100%;
+  display: flex;
+}
+
+.swipeable-list-item > .content.return {
+  transition: transform 0.5s ease-out;
+}
