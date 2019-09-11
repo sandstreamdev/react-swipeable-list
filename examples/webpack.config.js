@@ -45,7 +45,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'react-swipeable-list': path.join(__dirname, '..', '..', 'src')
+      'react-swipeable-list': path.join(__dirname, '..', 'src')
     },
     extensions: ['.js']
   }
