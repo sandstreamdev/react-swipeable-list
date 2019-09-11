@@ -188,26 +188,28 @@ class SwipeableListItem extends PureComponent {
     }
   };
 
+  bindBackgroundLeft = ref => (this.backgroundLeft = ref);
+  bindBackgroundRight = ref => (this.backgroundRight = ref);
+  bindListElement = ref => (this.listElement = ref);
+  bindWrapper = ref => (this.wrapper = ref);
+
   render() {
     const { children, swipeLeft, swipeRight } = this.props;
 
     return (
-      <div className="swipeable-list-item" ref={div => (this.wrapper = div)}>
+      <div className="swipeable-list-item" ref={this.bindWrapper}>
         {swipeLeft && (
-          <div ref={div => (this.backgroundLeft = div)} className="background">
+          <div ref={this.bindBackgroundLeft} className="background">
             {swipeLeft.background}
           </div>
         )}
         {swipeRight && (
-          <div
-            ref={div => (this.backgroundRight = div)}
-            className="background right"
-          >
+          <div ref={this.bindBackgroundRight} className="background right">
             {swipeRight.background}
           </div>
         )}
         <div
-          ref={div => (this.listElement = div)}
+          ref={this.bindListElement}
           onMouseDown={this.onDragStartMouse}
           onTouchStart={this.onDragStartTouch}
           className="content"
