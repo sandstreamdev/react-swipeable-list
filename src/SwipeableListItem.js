@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 import './SwipeableListItem.css';
 
+const SwipeActionPropType = PropTypes.shape({
+  action: PropTypes.func.isRequired,
+  background: PropTypes.node.isRequired
+});
+
 class SwipeableListItem extends PureComponent {
   constructor(props) {
     super(props);
@@ -21,24 +26,24 @@ class SwipeableListItem extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('mouseup', this.onDragEndMouse);
-    window.addEventListener('touchend', this.onDragEndTouch);
+    this.wrapper.addEventListener('mouseup', this.onDragEndMouse);
+    this.wrapper.addEventListener('touchend', this.onDragEndTouch);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('mouseup', this.onDragEndMouse);
-    window.removeEventListener('touchend', this.onDragEndTouch);
+    this.wrapper.removeEventListener('mouseup', this.onDragEndMouse);
+    this.wrapper.removeEventListener('touchend', this.onDragEndTouch);
   }
 
-  onDragStartMouse = evt => {
-    this.onDragStart(evt);
-    window.addEventListener('mousemove', this.onMouseMove);
+  onDragStartMouse = event => {
+    this.onDragStart(event);
+    this.wrapper.addEventListener('mousemove', this.onMouseMove);
   };
 
-  onDragStartTouch = evt => {
-    const touch = evt.targetTouches[0];
+  onDragStartTouch = event => {
+    const touch = event.targetTouches[0];
     this.onDragStart(touch);
-    window.addEventListener('touchmove', this.onTouchMove);
+    this.wrapper.addEventListener('touchmove', this.onTouchMove);
   };
 
   onDragStart = ({ clientX }) => {
@@ -56,12 +61,12 @@ class SwipeableListItem extends PureComponent {
   };
 
   onDragEndMouse = () => {
-    window.removeEventListener('mousemove', this.onMouseMove);
+    this.wrapper.removeEventListener('mousemove', this.onMouseMove);
     this.onDragEnd();
   };
 
   onDragEndTouch = () => {
-    window.removeEventListener('touchmove', this.onTouchMove);
+    this.wrapper.removeEventListener('touchmove', this.onTouchMove);
     this.onDragEnd();
   };
 
@@ -117,8 +122,8 @@ class SwipeableListItem extends PureComponent {
     }
   };
 
-  onTouchMove = evt => {
-    const touch = evt.targetTouches[0];
+  onTouchMove = event => {
+    const touch = event.targetTouches[0];
     const delta = touch.clientX - this.dragStartX;
 
     if (this.shouldMoveItem(delta)) {
@@ -224,14 +229,8 @@ class SwipeableListItem extends PureComponent {
 SwipeableListItem.propTypes = {
   blockSwipe: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  swipeLeft: PropTypes.shape({
-    action: PropTypes.func.isRequired,
-    background: PropTypes.node.isRequired
-  }),
-  swipeRight: PropTypes.shape({
-    action: PropTypes.func.isRequired,
-    background: PropTypes.node.isRequired
-  }),
+  swipeLeft: SwipeActionPropType,
+  swipeRight: SwipeActionPropType,
   threshold: PropTypes.number
 };
 
