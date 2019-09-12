@@ -1,77 +1,54 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './SwipeableList.css';
 
-class SwipeableList extends PureComponent {
-  constructor(props) {
-    super(props);
+const SwipeableList = ({ children }) => {
+  const [blockSwipe, setBlockSwipe] = useState(false);
+  const [dragging, setDragging] = useState(false);
 
-    this.dragging = false;
+  useEffect(() => {
+    window.addEventListener('mouseup', onDragEnd);
+    window.addEventListener('touchend', onDragEnd);
 
-    // on list scrolling we block items swipe functionality
-    this.state = { blockSwipe: false };
-  }
+    return () => {
+      window.removeEventListener('mouseup', onDragEnd);
+      window.removeEventListener('touchend', onDragEnd);
+    };
+  }, []);
 
-  componentDidMount() {
-    window.addEventListener('mouseup', this.onDragEndMouse);
-    window.addEventListener('touchend', this.onDragEndTouch);
-  }
+  const onDragStart = () => {
+    setBlockSwipe(false);
+    setDragging(true);
+  };
 
-  componentWillUnmount() {
-    window.removeEventListener('mouseup', this.onDragEndMouse);
-    window.removeEventListener('touchend', this.onDragEndTouch);
-  }
+  const onDragEnd = () => {
+    setBlockSwipe(false);
+    setDragging(false);
+  };
 
-  onDragStartMouse = () => this.onDragStart();
-
-  onDragStartTouch = () => this.onDragStart();
-
-  onDragEndMouse = () => this.onDragEnd();
-
-  onDragEndTouch = () => this.onDragEnd();
-
-  onScroll = () => {
-    const { blockSwipe } = this.state;
-
-    if (this.dragging && !blockSwipe) {
-      this.setState({ blockSwipe: true });
+  const onScroll = () => {
+    if (dragging && !blockSwipe) {
+      setBlockSwipe(true);
     }
   };
 
-  onDragStart = () => {
-    this.dragging = true;
-    this.setState({ blockSwipe: false });
-  };
-
-  onDragEnd = () => {
-    this.dragging = false;
-    this.setState({ blockSwipe: false });
-  };
-
-  render() {
-    const { children } = this.props;
-    const { blockSwipe } = this.state;
-
-    const childrenWithProps = React.Children.map(children, child =>
-      React.cloneElement(child, { blockSwipe })
-    );
-
-    return (
-      <div
-        className="swipeable-list"
-        onMouseDown={this.onDragStartMouse}
-        onTouchStart={this.onDragStartTouch}
-        onScroll={this.onScroll}
-      >
-        {childrenWithProps}
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      className="swipeable-list"
+      onMouseDown={onDragStart}
+      onTouchStart={onDragStart}
+      onScroll={onScroll}
+    >
+      {React.Children.map(children, child =>
+        React.cloneElement(child, { blockSwipe })
+      )}
+    </div>
+  );
+};
 
 SwipeableList.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 };
 
 export default SwipeableList;

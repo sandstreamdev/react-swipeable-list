@@ -20,8 +20,13 @@ export default [
       }),
       commonjs({
         namedExports: {
-          'node_modules/react/index.js': ['Component', 'PureComponent', 'Fragment', 'Children', 'createElement'],
-          'node_modules/react-dom/index.js': ['render'],
+          'node_modules/react/index.js': [
+            'PureComponent',
+            'Children',
+            'createElement',
+            'useEffect',
+            'useState'
+          ]
         }
       }),
       postcss({
@@ -31,7 +36,7 @@ export default [
   },
   {
     input: 'src/index.js',
-    external: ['react'],
+    external: ['react', 'prop-types'],
     output: [
       { file: pkg.main, format: 'cjs' },
       { file: pkg.module, format: 'es' }

@@ -3,14 +3,20 @@
     "browser": true,
     "node": true
   },
-  "extends": ["plugin:prettier/recommended", "plugin:react/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended"
+  ],
   "parser": "babel-eslint",
+  "plugins": ["react-hooks"],
   "settings": {
     "react": {
-      "version": "detect"
+      "version": "16.8"
     }
   },
   "rules": {
-    "no-undef": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
