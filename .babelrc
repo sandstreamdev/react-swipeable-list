@@ -4,7 +4,13 @@
       "@babel/preset-env",
       {
         "targets": {
-          "browsers": [">0.25%", "not ie 11", "not op_mini all", "safari >= 7"]
+          "browsers": [
+            ">0.25%",
+            "not ie 11",
+            "not op_mini all",
+            "safari >= 11",
+            "not safari 5.1"
+          ]
         },
         "modules": false
       }
