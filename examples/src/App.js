@@ -1,122 +1,103 @@
 import React, { useState } from 'react';
 import { SwipeableList, SwipeableListItem } from 'react-swipeable-list';
 
-import ListItem from './ListItem';
-import ComplexItemBackground from './ComplexItemBackground';
-import { ReactComponent as MailIcon } from '../images/mail.svg';
-import { ReactComponent as ReplyIcon } from '../images/reply.svg';
-import { ReactComponent as DeleteIcon } from '../images/delete.svg';
-import './app.css';
+import ListItem from './ComplexListItem';
+import ComplexItemContent from './ComplexItemContent';
+import MailIcon from '../images/mail.svg';
+import ReplyIcon from '../images/reply.svg';
+import DeleteIcon from '../images/delete.svg';
+import styles from './app.css';
 
 function App() {
   const [triggeredSimpleItemAction, triggerSimpleItemAction] = useState('');
   const [triggeredComplexItemAction, triggerComplexItemAction] = useState('');
 
+  const swipeRightDataSimple = name => ({
+    content: (
+      <div className={styles.contentLeft}>
+        <span>Left content</span>
+      </div>
+    ),
+    action: () => triggerSimpleItemAction(`Swipe right action on "${name}"`)
+  });
+
+  const swipeLeftDataSimple = name => ({
+    content: (
+      <div className={styles.contentRight}>
+        <span>Right content</span>
+      </div>
+    ),
+    action: () => triggerSimpleItemAction(`Swipe left action on "${name}"`)
+  });
+
+  const itemContentSimple = name => (
+    <div className={styles.listItem}>
+      <span>{name}</span>
+    </div>
+  );
+
+  const swipeRightDataComplex = name => ({
+    content: (
+      <ComplexItemContent
+        icon={<DeleteIcon />}
+        label="Delete"
+        side="right"
+        color="red"
+      />
+    ),
+    action: () =>
+      triggerComplexItemAction(`Delete action triggered on "${name}" item`)
+  });
+
+  const swipeLeftDataComplex = name => ({
+    content: (
+      <ComplexItemContent
+        icon={<ReplyIcon />}
+        label="Reply"
+        color="green"
+        side="left"
+      />
+    ),
+    action: () =>
+      triggerComplexItemAction(`Reply action triggered on "${name}" item`)
+  });
+
   return (
-    <div className="example">
+    <div className={styles.example}>
       <h3>react-swipeable-list example</h3>
       <h5>(switch on dev tools to mobile view)</h5>
       <h3>Simple example</h3>
-      <div className="list-container">
+      <span className={styles.actionInfo}>{triggeredSimpleItemAction}</span>
+      <div className={styles.listContainer}>
         <SwipeableList>
           <SwipeableListItem
-            swipeRight={{
-              background: (
-                <div className="background-left">
-                  <span>Left background</span>
-                </div>
-              ),
-              action: () =>
-                triggerSimpleItemAction(
-                  'Swipe right action on "Item with swipe right"'
-                )
-            }}
+            swipeRight={swipeRightDataSimple('Item with swipe right')}
           >
-            <div className="list-item">
-              <span>Item with &apos;swipe right&apos;</span>
-            </div>
+            {itemContentSimple('Item with swipe right')}
           </SwipeableListItem>
           <SwipeableListItem
-            swipeLeft={{
-              background: (
-                <div className="background-right">
-                  <span>Right background</span>
-                </div>
-              ),
-              action: () =>
-                triggerSimpleItemAction(
-                  'Swipe left action on "Item with swipe left"'
-                )
-            }}
+            swipeLeft={swipeLeftDataSimple('Item with swipe left')}
           >
-            <div className="list-item">
-              <span>Item with &apos;swipe left&apos;</span>
-            </div>
+            {itemContentSimple('Item with swipe left')}
           </SwipeableListItem>
           <SwipeableListItem
-            swipeRight={{
-              background: (
-                <div className="background-left">
-                  <span>Left background</span>
-                </div>
-              ),
-              action: () =>
-                triggerSimpleItemAction(
-                  'Swipe right on "Item with both swipes"'
-                )
-            }}
-            swipeLeft={{
-              background: (
-                <div className="background-right">
-                  <span>Right background</span>
-                </div>
-              ),
-              action: () =>
-                triggerSimpleItemAction('Swipe left on "Item with both swipes"')
-            }}
+            swipeRight={swipeRightDataSimple('Item with both swipes')}
+            swipeLeft={swipeLeftDataSimple('Item with both swipes')}
           >
-            <div className="list-item">
-              <span>Item with both swipes</span>
-            </div>
+            {itemContentSimple('Item with both swipes')}
           </SwipeableListItem>
           <SwipeableListItem>
-            <div className="list-item">
-              <span>Item without swipe actions</span>
-            </div>
+            {itemContentSimple('Item without swipe actions')}
           </SwipeableListItem>
         </SwipeableList>
       </div>
-      <span className="action-info">{triggeredSimpleItemAction}</span>
-      <h3>More complex items</h3>
-      <div className="complex-list-container">
+      <h3>More complex items and scroll</h3>
+      <span className={styles.actionInfo}>{triggeredComplexItemAction}</span>
+      <div className={styles.complexListContainer}>
         <SwipeableList>
           <SwipeableListItem
-            swipeLeft={{
-              background: (
-                <ComplexItemBackground
-                  icon={<ReplyIcon />}
-                  label="Reply"
-                  color="green"
-                  side="left"
-                />
-              ),
-              action: () =>
-                triggerComplexItemAction('Reply action triggered on first item')
-            }}
-            swipeRight={{
-              background: (
-                <ComplexItemBackground
-                  icon={<DeleteIcon />}
-                  label="Delete"
-                  side="right"
-                  color="red"
-                />
-              ),
-              action: () =>
-                triggerComplexItemAction(
-                  'Delete action triggered on first item'
-                )
-            }}
+            swipeLeft={swipeLeftDataComplex('First')}
+            swipeRight={swipeRightDataComplex('First')}
           >
             <ListItem
               icon={<MailIcon />}
@@ -125,32 +106,8 @@ function App() {
             />
           </SwipeableListItem>
           <SwipeableListItem
-            swipeLeft={{
-              background: (
-                <ComplexItemBackground
-                  label="Reply"
-                  side="left"
-                  color="green"
-                />
-              ),
-              action: () =>
-                triggerComplexItemAction(
-                  'Reply action triggered on second item'
-                )
-            }}
-            swipeRight={{
-              background: (
-                <ComplexItemBackground
-                  icon={<DeleteIcon />}
-                  side="right"
-                  color="red"
-                />
-              ),
-              action: () =>
-                triggerComplexItemAction(
-                  'Delete action triggered on second item'
-                )
-            }}
+            swipeLeft={swipeLeftDataComplex('Second')}
+            swipeRight={swipeRightDataComplex('Second')}
           >
             <ListItem
               icon={<MailIcon />}
@@ -158,9 +115,28 @@ function App() {
               description="second description"
             />
           </SwipeableListItem>
+          <SwipeableListItem
+            swipeLeft={swipeLeftDataComplex('Second')}
+            swipeRight={swipeRightDataComplex('Second')}
+          >
+            <ListItem
+              icon={<MailIcon />}
+              name="third"
+              description="third description"
+            />
+          </SwipeableListItem>
+          <SwipeableListItem
+            swipeLeft={swipeLeftDataComplex('Second')}
+            swipeRight={swipeRightDataComplex('Second')}
+          >
+            <ListItem
+              icon={<MailIcon />}
+              name="fourth"
+              description="fourth description"
+            />
+          </SwipeableListItem>
         </SwipeableList>
       </div>
-      <span className="action-info">{triggeredComplexItemAction}</span>
     </div>
   );
 }

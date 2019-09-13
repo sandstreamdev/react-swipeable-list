@@ -1,4 +1,4 @@
-.complex-list-item-background {
+.complexItemContent {
   color: white;
   flex: 1;
   height: 100%;
@@ -7,19 +7,11 @@
   justify-content: center;
 }
 
-.complex-list-item-background.red {
-  background: #ca1c1c;
-}
-
-.complex-list-item-background.green {
-  background: #409000;
-}
-
-.complex-list-item-background.left {
+.backgroundLeft {
   align-items: flex-end;
 }
 
-.complex-list-item-background .content {
+.content {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -31,7 +23,7 @@
   padding: 4px;
 }
 
-.complex-list-item-background svg {
+svg {
   fill: white;
   width: 32px;
   height: 32px;

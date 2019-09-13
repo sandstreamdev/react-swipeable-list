@@ -29,11 +29,28 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]_[local]__[hash:base64:5]_'
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack', 'url-loader']
+        use: [
+          {
+            loader: 'babel-loader'
+          },
+          {
+            loader: 'react-svg-loader'
+          }
+        ]
       }
     ]
   },
@@ -45,7 +62,13 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'react-swipeable-list': path.join(__dirname, '..', 'src')
+      // to import module sources
+      'react-swipeable-list': path.join(__dirname, '..', 'src'),
+      // to make the module use same react as example
+      // (otherwise even if same version is in module sources used
+      // we get error about duplicated react and cannot use hooks)
+      react: path.resolve(__dirname, 'node_modules', 'react'),
+      'prop-types': path.resolve(__dirname, 'node_modules', 'prop-types')
     },
     extensions: ['.js']
   }
