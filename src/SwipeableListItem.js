@@ -1,19 +1,19 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import './SwipeableListItem.css';
+import styles from './SwipeableListItem.css';
 
 const SwipeActionPropType = PropTypes.shape({
   action: PropTypes.func.isRequired,
-  background: PropTypes.node.isRequired
+  content: PropTypes.node.isRequired
 });
 
 class SwipeableListItem extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.backgroundLeft = null;
-    this.backgroundRight = null;
+    this.contentLeft = null;
+    this.contentRight = null;
     this.listElement = null;
     this.wrapper = null;
 
@@ -49,12 +49,12 @@ class SwipeableListItem extends PureComponent {
   onDragStart = ({ clientX }) => {
     this.dragged = true;
     this.dragStartX = clientX;
-    this.listElement.className = 'content';
-    if (this.backgroundLeft) {
-      this.backgroundLeft.className = 'background';
+    this.listElement.className = styles.content;
+    if (this.contentLeft) {
+      this.contentLeft.className = styles.contentLeft;
     }
-    if (this.backgroundRight) {
-      this.backgroundRight.className = 'background right';
+    if (this.contentRight) {
+      this.contentRight.className = styles.contentRight;
     }
     this.startTime = Date.now();
     requestAnimationFrame(this.updatePosition);
@@ -83,26 +83,26 @@ class SwipeableListItem extends PureComponent {
       }
 
       this.left = 0;
-      this.listElement.className = 'content return';
+      this.listElement.className = styles.contentReturn;
       this.listElement.style.transform = `translateX(${this.left}px)`;
 
       // hide backgrounds
-      if (this.backgroundLeft) {
-        this.backgroundLeft.style.opacity = 0;
-        this.backgroundLeft.className = `${this.backgroundLeft.className} return`;
+      if (this.contentLeft) {
+        this.contentLeft.style.opacity = 0;
+        this.contentLeft.className = styles.contentLeftReturn;
       }
 
-      if (this.backgroundRight) {
-        this.backgroundRight.style.opacity = 0;
-        this.backgroundRight.className = `${this.backgroundRight.className} return`;
+      if (this.contentRight) {
+        this.contentRight.style.opacity = 0;
+        this.contentRight.className = styles.contentRightReturn;
       }
     }
   };
 
   shouldMoveItem = delta => {
     const {
-      swipeLeft: { background: backgroundLeft } = {},
-      swipeRight: { background: backgroundRight } = {},
+      swipeLeft: { content: contentLeft } = {},
+      swipeRight: { content: contentRight } = {},
       blockSwipe
     } = this.props;
     const swipingLeft = delta < 0;
@@ -110,7 +110,7 @@ class SwipeableListItem extends PureComponent {
 
     return (
       !blockSwipe &&
-      ((swipingLeft && backgroundLeft) || (swipingRight && backgroundRight))
+      ((swipingLeft && contentLeft) || (swipingRight && contentRight))
     );
   };
 
@@ -145,12 +145,10 @@ class SwipeableListItem extends PureComponent {
     const elapsed = now - this.startTime;
 
     if (this.dragged && elapsed > this.fpsInterval) {
-      let backgroundToShow =
-        this.left < 0 ? this.backgroundLeft : this.backgroundRight;
-      let backgroundToHide =
-        this.left < 0 ? this.backgroundRight : this.backgroundLeft;
+      let contentToShow = this.left < 0 ? this.contentLeft : this.contentRight;
+      let contentToHide = this.left < 0 ? this.contentRight : this.contentLeft;
 
-      if (!backgroundToShow) {
+      if (!contentToShow) {
         return;
       }
 
@@ -158,19 +156,16 @@ class SwipeableListItem extends PureComponent {
 
       this.listElement.style.transform = `translateX(${this.left}px)`;
 
-      if (
-        opacity < 1 &&
-        opacity.toString() !== backgroundToShow.style.opacity
-      ) {
-        backgroundToShow.style.opacity = opacity.toString();
+      if (opacity < 1 && opacity.toString() !== contentToShow.style.opacity) {
+        contentToShow.style.opacity = opacity.toString();
 
-        if (backgroundToHide) {
-          backgroundToHide.style.opacity = '0';
+        if (contentToHide) {
+          contentToHide.style.opacity = '0';
         }
       }
 
       if (opacity >= 1) {
-        backgroundToShow.style.opacity = '1';
+        contentToShow.style.opacity = '1';
       }
 
       this.startTime = Date.now();
@@ -193,8 +188,8 @@ class SwipeableListItem extends PureComponent {
     }
   };
 
-  bindBackgroundLeft = ref => (this.backgroundLeft = ref);
-  bindBackgroundRight = ref => (this.backgroundRight = ref);
+  bindContentLeft = ref => (this.contentLeft = ref);
+  bindContentRight = ref => (this.contentRight = ref);
   bindListElement = ref => (this.listElement = ref);
   bindWrapper = ref => (this.wrapper = ref);
 
@@ -202,22 +197,22 @@ class SwipeableListItem extends PureComponent {
     const { children, swipeLeft, swipeRight } = this.props;
 
     return (
-      <div className="swipeable-list-item" ref={this.bindWrapper}>
+      <div className={styles.swipeableListItem} ref={this.bindWrapper}>
         {swipeLeft && (
-          <div ref={this.bindBackgroundLeft} className="background">
-            {swipeLeft.background}
+          <div ref={this.bindContentLeft} className={styles.contentLeft}>
+            {swipeLeft.content}
           </div>
         )}
         {swipeRight && (
-          <div ref={this.bindBackgroundRight} className="background right">
-            {swipeRight.background}
+          <div ref={this.bindContentRight} className={styles.contentRight}>
+            {swipeRight.content}
           </div>
         )}
         <div
           ref={this.bindListElement}
           onMouseDown={this.onDragStartMouse}
           onTouchStart={this.onDragStartTouch}
-          className="content"
+          className={styles.content}
         >
           {children}
         </div>

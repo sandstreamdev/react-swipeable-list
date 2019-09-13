@@ -30,7 +30,8 @@ export default [
         }
       }),
       postcss({
-        extract: true
+        extract: true,
+        modules: true
       })
     ]
   },
@@ -46,7 +47,8 @@ export default [
         exclude: ['node_modules/**']
       }),
       postcss({
-        extract: true
+        extract: true,
+        modules: true
       })
     ]
   }

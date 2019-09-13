@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import './SwipeableList.css';
+import styles from './SwipeableList.css';
 
 const SwipeableList = ({ children }) => {
   const [blockSwipe, setBlockSwipe] = useState(false);
@@ -35,7 +35,7 @@ const SwipeableList = ({ children }) => {
 
   return (
     <div
-      className="swipeable-list"
+      className={styles.swipeableList}
       onMouseDown={onDragStart}
       onTouchStart={onDragStart}
       onScroll={onScroll}

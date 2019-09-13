@@ -3,9 +3,9 @@
 ## Installation
 
 ```bash
-npm install @sandstreamdev/react-swipeable-list
+npm install sandstreamdev/react-swipeable-list
 # or via yarn
-yarn add @sandstreamdev/react-swipeable-list
+yarn add sandstreamdev/react-swipeable-list
 ```
 
 ## Usage
