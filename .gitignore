@@ -1,3 +1,4 @@
 .DS_Store
+.stylelintcache
 node_modules/
 dist
