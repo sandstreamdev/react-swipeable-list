@@ -4,6 +4,8 @@
   border-bottom: 1px solid #c4c4c4;
   flex: 1;
   min-width: 0;
+  user-select: none;
+  cursor: pointer;
 }
 
 .label {

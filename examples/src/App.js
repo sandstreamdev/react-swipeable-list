@@ -65,7 +65,7 @@ function App() {
   return (
     <div className={styles.example}>
       <h3>react-swipeable-list example</h3>
-      <h5>(switch on dev tools to mobile view)</h5>
+      <h5>(try also mobile view in dev tools for touch events)</h5>
       <h3>Simple example</h3>
       <span className={styles.actionInfo}>{triggeredSimpleItemAction}</span>
       <div className={styles.listContainer}>
