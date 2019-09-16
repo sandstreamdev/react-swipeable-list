@@ -13,8 +13,12 @@ yarn add sandstreamdev/react-swipeable-list
 ```javascript jsx
 <SwipeableList>
   <SwipeableListItem
+    swipeLeft={{
+      content: <div>Revealed content during swipe</div>,
+      action: () => console.info('swipe action triggered')
+    }}
     swipeRight={{
-      background: <div>Left background</div>,
+      content: <div>Revealed content during swipe</div>,
       action: () => console.info('swipe action triggered')
     }}
   >
