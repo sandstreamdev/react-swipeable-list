@@ -32,6 +32,7 @@
 .contentLeftReturn {
   composes: contentLeft return;
 }
+
 .contentRightReturn {
   composes: contentRight return;
 }
