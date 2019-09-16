@@ -1,5 +1,15 @@
 # react-swipeable-list
 
+<h3 align="center">
+  Swipeable list component for React.
+</h3>
+
+<p align="center">
+  <strong>
+    <a href="https://sandstreamdev.github.io/react-swipeable-list/">Demo</a>
+  </strong>
+</p>
+
 ## Installation
 
 ```bash
