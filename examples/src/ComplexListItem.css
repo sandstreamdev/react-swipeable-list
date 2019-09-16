@@ -1,0 +1,46 @@
+.listItemComponent {
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid #c4c4c4;
+  flex: 1;
+  min-width: 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.label > svg {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  max-height: 24px;
+  fill: #083749;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 27px;
+  color: #083749;
+  margin-left: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.description {
+  margin-left: 2px;
+  margin-top: 4px;
+  color: #959595;
+  font-size: 14px;
+  line-height: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

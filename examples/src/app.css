@@ -1,0 +1,108 @@
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+h5 {
+  margin: 0;
+}
+
+.example {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listContainer {
+  width: 360px;
+}
+
+.listItem {
+  border-bottom: 1px solid #c4c4c4;
+  height: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.contentLeft {
+  background-color: red;
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.contentRight {
+  composes: contentLeft;
+  background-color: green;
+  justify-content: flex-end;
+}
+
+.actionInfo {
+  padding: 16px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.complexListContainer {
+  width: 360px;
+  height: 180px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+/* The device with borders */
+.smartphone {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  margin: auto;
+  border: 16px black solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+}
+
+/* The horizontal line on the top of the device */
+.smartphone::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 5px;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 10px;
+}
+
+/* The circle on the bottom of the device */
+.smartphone::after {
+  content: '';
+  display: block;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 50%;
+  bottom: -65px;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 50%;
+}
+
+/* The screen (or content) of the device */
+.smartphone .content {
+  width: 360px;
+  height: 640px;
+  background: white;
+}

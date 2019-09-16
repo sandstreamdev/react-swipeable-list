@@ -1,0 +1,31 @@
+.complexItemContent {
+  color: white;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.backgroundLeft {
+  align-items: flex-end;
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  font-weight: 300;
+  font-size: 14px;
+  width: 64px;
+  max-width: 64px;
+  text-align: center;
+  padding: 4px;
+}
+
+svg {
+  fill: white;
+  width: 32px;
+  height: 32px;
+  margin-top: -4px;
+}
