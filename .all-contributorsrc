@@ -15,6 +15,15 @@
         "doc",
         "test"
       ]
+    },
+    {
+      "login": "jakubbogacz",
+      "name": "jakubbogacz",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/26272028?v=4",
+      "profile": "https://github.com/jakubbogacz",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
