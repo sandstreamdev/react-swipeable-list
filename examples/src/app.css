@@ -11,10 +11,17 @@ h5 {
   margin: 0;
 }
 
+.testApp {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .example {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 }
 
 .listContainer {

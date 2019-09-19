@@ -26,38 +26,37 @@ class SwipeableListItem extends PureComponent {
   }
 
   componentDidMount() {
-    window.addEventListener('mouseup', this.handleDragEndMouse);
-    window.addEventListener('touchend', this.handleDragEndTouch);
-    window.addEventListener('mousemove', this.handleMouseMove);
-
     this.wrapper.addEventListener('mousedown', this.handleDragStartMouse);
     this.wrapper.addEventListener('touchstart', this.handleDragStartTouch);
-    this.wrapper.addEventListener('mouseup', this.handleDragEndMouse);
-    this.wrapper.addEventListener('touchend', this.handleDragEndTouch);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('mouseup', this.handleDragEndMouse);
-    window.removeEventListener('touchend', this.handleDragEndTouch);
-    window.removeEventListener('mousemove', this.handleMouseMove);
-
     this.wrapper.removeEventListener('mousedown', this.handleDragStartMouse);
     this.wrapper.removeEventListener('touchstart', this.handleDragStartTouch);
-    this.wrapper.removeEventListener('mouseup', this.handleDragEndMouse);
-    this.wrapper.removeEventListener('touchend', this.handleDragEndTouch);
   }
 
   handleDragStartMouse = event => {
     event.stopPropagation();
-    this.handleDragStart(event);
+
+    window.addEventListener('mouseup', this.handleDragEndMouse);
+    window.addEventListener('mousemove', this.handleMouseMove);
+
+    this.wrapper.addEventListener('mouseup', this.handleDragEndMouse);
     this.wrapper.addEventListener('mousemove', this.handleMouseMove);
+
+    this.handleDragStart(event);
   };
 
   handleDragStartTouch = event => {
     // do not stop propagation here as it can be handled by parent to start scrolling
+
+    window.addEventListener('touchend', this.handleDragEndTouch);
+
+    this.wrapper.addEventListener('touchend', this.handleDragEndTouch);
+    this.wrapper.addEventListener('touchmove', this.handleTouchMove);
+
     const touch = event.targetTouches[0];
     this.handleDragStart(touch);
-    this.wrapper.addEventListener('touchmove', this.handleTouchMove);
   };
 
   handleDragStart = ({ clientX }) => {
@@ -75,12 +74,21 @@ class SwipeableListItem extends PureComponent {
   };
 
   handleDragEndMouse = () => {
+    window.removeEventListener('mouseup', this.handleDragEndMouse);
+    window.removeEventListener('mousemove', this.handleMouseMove);
+
+    this.wrapper.removeEventListener('mouseup', this.handleDragEndMouse);
     this.wrapper.removeEventListener('mousemove', this.handleMouseMove);
+
     this.handleDragEnd();
   };
 
   handleDragEndTouch = () => {
+    window.removeEventListener('touchend', this.handleDragEndTouch);
+
+    this.wrapper.removeEventListener('touchend', this.handleDragEndTouch);
     this.wrapper.removeEventListener('touchmove', this.handleTouchMove);
+
     this.handleDragEnd();
   };
 
