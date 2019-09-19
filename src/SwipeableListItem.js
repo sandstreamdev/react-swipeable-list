@@ -26,27 +26,41 @@ class SwipeableListItem extends PureComponent {
   }
 
   componentDidMount() {
-    this.wrapper.addEventListener('mouseup', this.onDragEndMouse);
-    this.wrapper.addEventListener('touchend', this.onDragEndTouch);
+    window.addEventListener('mouseup', this.handleDragEndMouse);
+    window.addEventListener('touchend', this.handleDragEndTouch);
+    window.addEventListener('mousemove', this.handleMouseMove);
+
+    this.wrapper.addEventListener('mousedown', this.handleDragStartMouse);
+    this.wrapper.addEventListener('touchstart', this.handleDragStartTouch);
+    this.wrapper.addEventListener('mouseup', this.handleDragEndMouse);
+    this.wrapper.addEventListener('touchend', this.handleDragEndTouch);
   }
 
   componentWillUnmount() {
-    this.wrapper.removeEventListener('mouseup', this.onDragEndMouse);
-    this.wrapper.removeEventListener('touchend', this.onDragEndTouch);
+    window.removeEventListener('mouseup', this.handleDragEndMouse);
+    window.removeEventListener('touchend', this.handleDragEndTouch);
+    window.removeEventListener('mousemove', this.handleMouseMove);
+
+    this.wrapper.removeEventListener('mousedown', this.handleDragStartMouse);
+    this.wrapper.removeEventListener('touchstart', this.handleDragStartTouch);
+    this.wrapper.removeEventListener('mouseup', this.handleDragEndMouse);
+    this.wrapper.removeEventListener('touchend', this.handleDragEndTouch);
   }
 
-  onDragStartMouse = event => {
-    this.onDragStart(event);
-    this.wrapper.addEventListener('mousemove', this.onMouseMove);
+  handleDragStartMouse = event => {
+    event.stopPropagation();
+    this.handleDragStart(event);
+    this.wrapper.addEventListener('mousemove', this.handleMouseMove);
   };
 
-  onDragStartTouch = event => {
+  handleDragStartTouch = event => {
+    // do not stop propagation here as it can be handled by parent to start scrolling
     const touch = event.targetTouches[0];
-    this.onDragStart(touch);
-    this.wrapper.addEventListener('touchmove', this.onTouchMove);
+    this.handleDragStart(touch);
+    this.wrapper.addEventListener('touchmove', this.handleTouchMove);
   };
 
-  onDragStart = ({ clientX }) => {
+  handleDragStart = ({ clientX }) => {
     this.dragged = true;
     this.dragStartX = clientX;
     this.listElement.className = styles.content;
@@ -60,43 +74,43 @@ class SwipeableListItem extends PureComponent {
     requestAnimationFrame(this.updatePosition);
   };
 
-  onDragEndMouse = () => {
-    this.wrapper.removeEventListener('mousemove', this.onMouseMove);
-    this.onDragEnd();
+  handleDragEndMouse = () => {
+    this.wrapper.removeEventListener('mousemove', this.handleMouseMove);
+    this.handleDragEnd();
   };
 
-  onDragEndTouch = () => {
-    this.wrapper.removeEventListener('touchmove', this.onTouchMove);
-    this.onDragEnd();
+  handleDragEndTouch = () => {
+    this.wrapper.removeEventListener('touchmove', this.handleTouchMove);
+    this.handleDragEnd();
   };
 
-  onDragEnd = () => {
+  handleDragEnd = () => {
     if (this.dragged && this.left !== 0) {
-      this.dragged = false;
-
       const threshold = this.props.threshold || 0.5;
 
       if (this.left < this.listElement.offsetWidth * threshold * -1) {
-        this.onSwipedLeft();
+        this.handleSwipedLeft();
       } else if (this.left > this.listElement.offsetWidth * threshold) {
-        this.onSwipedRight();
-      }
-
-      this.left = 0;
-      this.listElement.className = styles.contentReturn;
-      this.listElement.style.transform = `translateX(${this.left}px)`;
-
-      // hide backgrounds
-      if (this.contentLeft) {
-        this.contentLeft.style.opacity = 0;
-        this.contentLeft.className = styles.contentLeftReturn;
-      }
-
-      if (this.contentRight) {
-        this.contentRight.style.opacity = 0;
-        this.contentRight.className = styles.contentRightReturn;
+        this.handleSwipedRight();
       }
     }
+
+    this.left = 0;
+    this.listElement.className = styles.contentReturn;
+    this.listElement.style.transform = `translateX(${this.left}px)`;
+
+    // hide backgrounds
+    if (this.contentLeft) {
+      this.contentLeft.style.opacity = 0;
+      this.contentLeft.className = styles.contentLeftReturn;
+    }
+
+    if (this.contentRight) {
+      this.contentRight.style.opacity = 0;
+      this.contentRight.className = styles.contentRightReturn;
+    }
+
+    this.dragged = false;
   };
 
   shouldMoveItem = delta => {
@@ -114,20 +128,26 @@ class SwipeableListItem extends PureComponent {
     );
   };
 
-  onMouseMove = ({ clientX }) => {
-    const delta = clientX - this.dragStartX;
+  handleMouseMove = event => {
+    if (this.dragged) {
+      event.stopPropagation();
+      const delta = event.clientX - this.dragStartX;
 
-    if (this.shouldMoveItem(delta)) {
-      this.left = delta;
+      if (this.shouldMoveItem(delta)) {
+        this.left = delta;
+      }
     }
   };
 
-  onTouchMove = event => {
-    const touch = event.targetTouches[0];
-    const delta = touch.clientX - this.dragStartX;
+  handleTouchMove = event => {
+    if (this.dragged) {
+      event.stopPropagation();
+      const touch = event.targetTouches[0];
+      const delta = touch.clientX - this.dragStartX;
 
-    if (this.shouldMoveItem(delta)) {
-      this.left = delta;
+      if (this.shouldMoveItem(delta)) {
+        this.left = delta;
+      }
     }
   };
 
@@ -172,7 +192,7 @@ class SwipeableListItem extends PureComponent {
     }
   };
 
-  onSwipedLeft = () => {
+  handleSwipedLeft = () => {
     const { swipeLeft: { action } = {} } = this.props;
 
     if (action) {
@@ -180,7 +200,7 @@ class SwipeableListItem extends PureComponent {
     }
   };
 
-  onSwipedRight = () => {
+  handleSwipedRight = () => {
     const { swipeRight: { action } = {} } = this.props;
 
     if (action) {
@@ -199,20 +219,27 @@ class SwipeableListItem extends PureComponent {
     return (
       <div className={styles.swipeableListItem} ref={this.bindWrapper}>
         {swipeLeft && (
-          <div ref={this.bindContentLeft} className={styles.contentLeft}>
+          <div
+            ref={this.bindContentLeft}
+            className={styles.contentLeft}
+            data-testid="swipe-left-content"
+          >
             {swipeLeft.content}
           </div>
         )}
         {swipeRight && (
-          <div ref={this.bindContentRight} className={styles.contentRight}>
+          <div
+            ref={this.bindContentRight}
+            className={styles.contentRight}
+            data-testid="swipe-right-content"
+          >
             {swipeRight.content}
           </div>
         )}
         <div
           ref={this.bindListElement}
-          onMouseDown={this.onDragStartMouse}
-          onTouchStart={this.onDragStartTouch}
           className={styles.content}
+          data-testid="content"
         >
           {children}
         </div>
