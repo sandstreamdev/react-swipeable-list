@@ -3,52 +3,43 @@ import PropTypes from 'prop-types';
 
 import styles from './SwipeableList.css';
 
-const SwipeableList = ({ children }) => {
+const SwipeableList = ({ children, threshold }) => {
   const [blockSwipe, setBlockSwipe] = useState(false);
-  const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
-    window.addEventListener('mouseup', onDragEnd);
-    window.addEventListener('touchend', onDragEnd);
+    window.addEventListener('mouseup', handleDragEnd);
+    window.addEventListener('touchend', handleDragEnd);
 
     return () => {
-      window.removeEventListener('mouseup', onDragEnd);
-      window.removeEventListener('touchend', onDragEnd);
+      window.removeEventListener('mouseup', handleDragEnd);
+      window.removeEventListener('touchend', handleDragEnd);
     };
   }, []);
 
-  const onDragStart = () => {
-    setBlockSwipe(false);
-    setDragging(true);
-  };
+  const handleDragStart = () => setBlockSwipe(false);
 
-  const onDragEnd = () => {
-    setBlockSwipe(false);
-    setDragging(false);
-  };
+  const handleDragEnd = () => setBlockSwipe(false);
 
-  const onScroll = () => {
-    if (dragging && !blockSwipe) {
-      setBlockSwipe(true);
-    }
-  };
+  const handleScroll = () => setBlockSwipe(true);
 
   return (
     <div
       className={styles.swipeableList}
-      onMouseDown={onDragStart}
-      onTouchStart={onDragStart}
-      onScroll={onScroll}
+      onMouseDown={handleDragStart}
+      onTouchStart={handleDragStart}
+      onScroll={handleScroll}
+      data-testid="list-wrapper"
     >
       {React.Children.map(children, child =>
-        React.cloneElement(child, { blockSwipe })
+        React.cloneElement(child, { blockSwipe, threshold })
       )}
     </div>
   );
 };
 
 SwipeableList.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  threshold: PropTypes.number
 };
 
 export default SwipeableList;

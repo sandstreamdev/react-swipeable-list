@@ -2,3 +2,4 @@
 .stylelintcache
 node_modules/
 dist
+coverage
