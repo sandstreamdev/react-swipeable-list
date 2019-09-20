@@ -1,5 +1,5 @@
 <h1 align="center">react-swipeable-list</h1>
-<h4 align="center" >Swipeable list component for React.</h4>
+<h4 align="center">Swipeable list component for React.</h4>
 <div align="center">
   <img src="docs/example.gif"></img>
 </div>
@@ -14,7 +14,7 @@
 
 <hr />
 
-![](https://github.com/sandstreamdev/react-swipeable-list/workflows/Node%20CI/badge.svg)
+[![Actions Status](https://github.com/sandstreamdev/react-swipeable-list/workflows/Node%20CI/badge.svg)](https://github.com/sandstreamdev/react-swipeable-list/actions)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
 ## React Swipeable List component
