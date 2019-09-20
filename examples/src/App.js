@@ -66,7 +66,7 @@ function App() {
     <div className={styles.example}>
       <h3>react-swipeable-list example</h3>
       <h5>(try also mobile view in dev tools for touch events)</h5>
-      <h3>Simple example</h3>
+      <h3>Simple example (with default 0.5 action trigger threshold)</h3>
       <span className={styles.actionInfo}>{triggeredSimpleItemAction}</span>
       <div className={styles.listContainer}>
         <SwipeableList>
@@ -91,10 +91,12 @@ function App() {
           </SwipeableListItem>
         </SwipeableList>
       </div>
-      <h3>More complex items and scroll</h3>
+      <h3>
+        More complex items and scroll (with 0.25 action trigger threshold)
+      </h3>
       <span className={styles.actionInfo}>{triggeredComplexItemAction}</span>
       <div className={styles.complexListContainer}>
-        <SwipeableList>
+        <SwipeableList threshold={0.25}>
           <SwipeableListItem
             swipeLeft={swipeLeftDataComplex('First')}
             swipeRight={swipeRightDataComplex('First')}
