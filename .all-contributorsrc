@@ -6,6 +6,17 @@
   "commit": false,
   "contributors": [
     {
+      "login": "sandstreamdevelopment",
+      "name": "sandstreamdevelopment",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/44231396?v=4",
+      "profile": "https://github.com/sandstreamdevelopment",
+      "contributions": [
+        "business",
+        "financial",
+        "ideas"
+      ]
+    },
+    {
       "login": "marekrozmus",
       "name": "marekrozmus",
       "avatar_url": "https://avatars3.githubusercontent.com/u/26272040?v=4",
@@ -23,17 +34,6 @@
       "profile": "https://github.com/jakubbogacz",
       "contributions": [
         "review",
-        "ideas"
-      ]
-    },
-    {
-      "login": "sandstreamdevelopment",
-      "name": "sandstreamdevelopment",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/44231396?v=4",
-      "profile": "https://github.com/sandstreamdevelopment",
-      "contributions": [
-        "business",
-        "financial",
         "ideas"
       ]
     }
