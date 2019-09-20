@@ -14,6 +14,7 @@
 
 <hr />
 
+![](https://github.com/sandstreamdev/react-swipeable-list/workflows/Node%20CI/badge.svg)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
 ## React Swipeable List component
@@ -80,9 +81,9 @@ Data for defining left swipe action and rendering content after item is swiped. 
 
 ### swipeRight
 
-Same as `swipeLeft` but to right. :wink:
-
 Type: `Object`
+
+Same as `swipeLeft` but to right. :wink:
 
 ### threshold
 
