@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './SwipeableList.css';
 
-const SwipeableList = ({ children }) => {
+const SwipeableList = ({ children, threshold }) => {
   const [blockSwipe, setBlockSwipe] = useState(false);
 
   useEffect(() => {
@@ -31,14 +31,15 @@ const SwipeableList = ({ children }) => {
       data-testid="list-wrapper"
     >
       {React.Children.map(children, child =>
-        React.cloneElement(child, { blockSwipe })
+        React.cloneElement(child, { blockSwipe, threshold })
       )}
     </div>
   );
 };
 
 SwipeableList.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  threshold: PropTypes.number
 };
 
 export default SwipeableList;
