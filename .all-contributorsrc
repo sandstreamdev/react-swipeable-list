@@ -13,7 +13,9 @@
       "contributions": [
         "code",
         "doc",
-        "test"
+        "test",
+        "ideas",
+        "example"
       ]
     }
   ],
