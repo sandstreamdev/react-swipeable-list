@@ -32,6 +32,9 @@ yarn add @sandstreamdev/react-swipeable-list
 ## Usage
 
 ```jsx
+import { SwipeableList } from '@sandstreamdev/react-swipeable-list';
+import '@sandstreamdev/react-swipeable-list/dist/react-swipeable-list.cjs.css';
+
 <SwipeableList>
   <SwipeableListItem
     swipeLeft={{
@@ -45,7 +48,7 @@ yarn add @sandstreamdev/react-swipeable-list
   >
     <div>Item name</div>
   </SwipeableListItem>
-</SwipeableList>
+</SwipeableList>;
 ```
 
 NOTE: `SwipeableListItem` can be used without `SwipeableList` but swipe blocking on scroll needs to be handled.
