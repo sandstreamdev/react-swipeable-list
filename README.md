@@ -48,7 +48,7 @@ import '@sandstreamdev/react-swipeable-list/dist/react-swipeable-list.cjs.css';
   >
     <div>Item name</div>
   </SwipeableListItem>
-</SwipeableList>;
+</SwipeableList>
 ```
 
 NOTE: `SwipeableListItem` can be used without `SwipeableList` but swipe blocking on scroll needs to be handled.
