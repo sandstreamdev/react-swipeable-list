@@ -1,8 +1,8 @@
 <h1 align="center">react-swipeable-list</h1>
 <h4 align="center">Swipeable list component for React.</h4>
-<div align="center">
+<p align="center">
   <img src="docs/example.gif"></img>
-</div>
+</p>
 
 <p align="center">
   <a href="https://sandstreamdev.github.io/react-swipeable-list/">Demo</a> •
@@ -24,9 +24,9 @@ A control to render list with swipeable items. Items can have action on left and
 ## Installation
 
 ```bash
-npm install sandstreamdev/react-swipeable-list
+npm install @sandstreamdev/react-swipeable-list
 # or via yarn
-yarn add sandstreamdev/react-swipeable-list
+yarn add @sandstreamdev/react-swipeable-list
 ```
 
 ## Usage
