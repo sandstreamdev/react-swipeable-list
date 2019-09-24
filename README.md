@@ -32,8 +32,8 @@ yarn add @sandstreamdev/react-swipeable-list
 ## Usage
 
 ```jsx
-import { SwipeableList } from '@sandstreamdev/react-swipeable-list';
-import '@sandstreamdev/react-swipeable-list/dist/react-swipeable-list.cjs.css';
+import { SwipeableList, SwipeableListItem } from '@sandstreamdev/react-swipeable-list';
+import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 
 <SwipeableList>
   <SwipeableListItem

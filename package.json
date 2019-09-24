@@ -20,6 +20,7 @@
   ],
   "main": "dist/react-swipeable-list.cjs.js",
   "module": "dist/react-swipeable-list.esm.js",
+  "browser": "dist/react-swipeable-list.umd.js",
   "peerDependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.0",
@@ -33,6 +34,7 @@
     "@babel/preset-react": "^7.0.0",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
+    "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
@@ -49,6 +51,10 @@
     "react-dom": "^16.8.0",
     "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-local-resolve": "^1.0.7",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^2.0.3",
     "stylelint": "^11.0.0",
     "stylelint-config-standard": "^19.0.0"
