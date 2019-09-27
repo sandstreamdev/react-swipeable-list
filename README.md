@@ -15,7 +15,9 @@
 <hr />
 
 [![Actions Status](https://github.com/sandstreamdev/react-swipeable-list/workflows/Node%20CI/badge.svg)](https://github.com/sandstreamdev/react-swipeable-list/actions)
+![GitHub Release Date](https://img.shields.io/github/release-date/sandstreamdev/react-swipeable-list)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+![GitHub](https://img.shields.io/github/license/sandstreamdev/react-swipeable-list)
 
 ## React Swipeable List component
 
