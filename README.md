@@ -15,7 +15,7 @@
 <hr />
 
 [![Actions Status](https://github.com/sandstreamdev/react-swipeable-list/workflows/Node%20CI/badge.svg)](https://github.com/sandstreamdev/react-swipeable-list/actions)
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
 
 ## React Swipeable List component
 
@@ -107,6 +107,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/jakubbogacz"><img src="https://avatars3.githubusercontent.com/u/26272028?v=4" width="100px;" alt="jakubbogacz"/><br /><sub><b>jakubbogacz</b></sub></a><br /><a href="#review-jakubbogacz" title="Reviewed Pull Requests">👀</a> <a href="#ideas-jakubbogacz" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=jakubbogacz" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/LukasMarx"><img src="https://avatars0.githubusercontent.com/u/8080408?v=4" width="100px;" alt="Lukas Marx"/><br /><sub><b>Lukas Marx</b></sub></a><br /><a href="#ideas-LukasMarx" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/luis-filipe42/"><img src="https://avatars1.githubusercontent.com/u/29440533?v=4" width="100px;" alt="Luis Filipe Pedroso"/><br /><sub><b>Luis Filipe Pedroso</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3ALuisFilipePedroso" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/przemyslawzalewski"><img src="https://avatars0.githubusercontent.com/u/30114244?v=4" width="100px;" alt="Przemysław Zalewski"/><br /><sub><b>Przemysław Zalewski</b></sub></a><br /><a href="#maintenance-przemyslawzalewski" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 
