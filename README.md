@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://sandstreamdev.github.io/react-swipeable-list/">Demo</a> •
+  <a href="#demo">Demo</a> •
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
   <a href="#contributors-">Contributors</a> •
@@ -22,6 +22,12 @@
 ## React Swipeable List component
 
 A control to render list with swipeable items. Items can have action on left and right swipe. Swipe action triggering can be configured.
+
+## Demo
+
+Check [working example page](https://sandstreamdev.github.io/react-swipeable-list/) or experiment on:
+
+[![Edit react-swipeable-list](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-swipeable-list-uses0?fontsize=14)
 
 ## Installation
 
