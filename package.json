@@ -62,6 +62,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "prepare": "npm run build",
     "stylelint": "stylelint src/**/*.css examples/**/*.css --cache",
     "prettier": "prettier src/**/*.js examples/**/*.js --check",
     "test": "jest --no-cache"
