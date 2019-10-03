@@ -16,6 +16,7 @@
 
 [![Actions Status](https://github.com/sandstreamdev/react-swipeable-list/workflows/Node%20CI/badge.svg)](https://github.com/sandstreamdev/react-swipeable-list/actions)
 [![codecov](https://codecov.io/gh/sandstreamdev/react-swipeable-list/branch/master/graph/badge.svg)](https://codecov.io/gh/sandstreamdev/react-swipeable-list)
+[![Greenkeeper badge](https://badges.greenkeeper.io/sandstreamdev/react-swipeable-list.svg)](https://greenkeeper.io/)
 ![GitHub Release Date](https://img.shields.io/github/release-date/sandstreamdev/react-swipeable-list)
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
 ![License: MIT](https://img.shields.io/github/license/sandstreamdev/react-swipeable-list)
@@ -28,7 +29,7 @@ A control to render list with swipeable items. Items can have action on left and
 
 Check [working example page](https://sandstreamdev.github.io/react-swipeable-list/) or experiment on:
 
-[![Edit react-swipeable-list](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-swipeable-list-uses0) [![Greenkeeper badge](https://badges.greenkeeper.io/sandstreamdev/react-swipeable-list.svg)](https://greenkeeper.io/)
+[![Edit react-swipeable-list](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-swipeable-list-uses0)
 
 ## Installation
 
