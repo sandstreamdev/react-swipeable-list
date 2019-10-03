@@ -28,7 +28,7 @@ A control to render list with swipeable items. Items can have action on left and
 
 Check [working example page](https://sandstreamdev.github.io/react-swipeable-list/) or experiment on:
 
-[![Edit react-swipeable-list](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-swipeable-list-uses0)
+[![Edit react-swipeable-list](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-swipeable-list-uses0) [![Greenkeeper badge](https://badges.greenkeeper.io/sandstreamdev/react-swipeable-list.svg)](https://greenkeeper.io/)
 
 ## Installation
 
