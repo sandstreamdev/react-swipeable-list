@@ -7,9 +7,7 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 
 import ListItem from './ComplexListItem';
 import ComplexItemContent from './ComplexItemContent';
-import MailIcon from '../images/mail.svg';
-import ReplyIcon from '../images/reply.svg';
-import DeleteIcon from '../images/delete.svg';
+import { MailIcon, ReplyIcon, DeleteIcon } from '../images/icons';
 import styles from './app.css';
 
 function App() {
