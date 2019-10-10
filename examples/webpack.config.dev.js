@@ -1,6 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var path = require('path');
-var CssLoaderUtils = require('css-loader/dist/utils');
 
 const babelLoaderOptions = {
   presets: ['@babel/env', '@babel/react'],
@@ -35,25 +34,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              modules: {
-                localIdentName: '[name]_[local]__[hash:base64:5]_',
-                getLocalIdent: (
-                  loaderContext,
-                  localIdentName,
-                  localName,
-                  options
-                ) => {
-                  if (loaderContext.resourcePath.includes('node_modules')) {
-                    return localName;
-                  }
-                  return CssLoaderUtils.getLocalIdent(
-                    loaderContext,
-                    localIdentName,
-                    localName,
-                    options
-                  );
-                }
-              }
+              modules: true
             }
           }
         ]
@@ -72,7 +53,7 @@ module.exports = {
       '@sandstreamdev/react-swipeable-list/dist/styles.css': path.join(
         __dirname,
         'src',
-        'app.css'
+        'app.module.css'
       ),
       // to import module sources
       '@sandstreamdev/react-swipeable-list': path.join(__dirname, '..', 'src'),

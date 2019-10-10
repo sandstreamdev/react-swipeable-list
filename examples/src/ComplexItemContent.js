@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './ComplexItemContent.css';
+import styles from './ComplexItemContent.module.css';
 
 const ComplexItemConent = ({ icon, color, side, label }) => (
   <div

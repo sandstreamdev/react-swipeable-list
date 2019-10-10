@@ -8,7 +8,7 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import ListItem from './ComplexListItem';
 import ComplexItemContent from './ComplexItemContent';
 import { MailIcon, ReplyIcon, DeleteIcon } from '../images/icons';
-import styles from './app.css';
+import styles from './app.module.css';
 
 function App() {
   const [triggeredSimpleItemAction, triggerSimpleItemAction] = useState('');
