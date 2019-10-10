@@ -24,6 +24,7 @@
   "scripts": {
     "predeploy": "webpack --mode production",
     "start": "webpack-dev-server",
+    "dev": "webpack-dev-server --config webpack.config.dev.js",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
@@ -53,6 +54,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "@sandstreamdev/react-swipeable-list": "^0.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   }

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { SwipeableList, SwipeableListItem } from 'react-swipeable-list';
+import {
+  SwipeableList,
+  SwipeableListItem
+} from '@sandstreamdev/react-swipeable-list';
+import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 
 import ListItem from './ComplexListItem';
 import ComplexItemContent from './ComplexItemContent';
