@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { SwipeableList, SwipeableListItem } from 'react-swipeable-list';
+import {
+  SwipeableList,
+  SwipeableListItem
+} from '@sandstreamdev/react-swipeable-list';
+import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 
 import ListItem from './ComplexListItem';
 import ComplexItemContent from './ComplexItemContent';
-import MailIcon from '../images/mail.svg';
-import ReplyIcon from '../images/reply.svg';
-import DeleteIcon from '../images/delete.svg';
-import styles from './app.css';
+import { MailIcon, ReplyIcon, DeleteIcon } from '../images/icons';
+import styles from './app.module.css';
 
 function App() {
   const [triggeredSimpleItemAction, triggerSimpleItemAction] = useState('');

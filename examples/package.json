@@ -24,6 +24,7 @@
   "scripts": {
     "predeploy": "webpack --mode production",
     "start": "webpack-dev-server",
+    "dev": "webpack-dev-server --config webpack.config.dev.js",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
@@ -33,7 +34,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "classnames": "^2.2.6",
     "css-loader": "^3.2.0",
     "eslint": "^6.3.0",
     "eslint-config-prettier": "^6.2.0",
@@ -43,7 +43,6 @@
     "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.18.2",
-    "react-svg-loader": "^3.0.3",
     "style-loader": "^1.0.0",
     "stylelint": "^11.0.0",
     "stylelint-config-standard": "^19.0.0",
@@ -53,6 +52,8 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "@sandstreamdev/react-swipeable-list": "^0.2.1",
+    "@sandstreamdev/std": "^0.1.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   }

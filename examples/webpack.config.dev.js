@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 const babelLoaderOptions = {
   presets: ['@babel/env', '@babel/react'],
@@ -27,8 +28,7 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
+        test: /\.css$/i,
         use: [
           { loader: 'style-loader' },
           {
@@ -38,11 +38,6 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
       }
     ]
   },
@@ -51,5 +46,25 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html'
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      // replace with any css - cannot ignore this import
+      '@sandstreamdev/react-swipeable-list/dist/styles.css': path.join(
+        __dirname,
+        'src',
+        'app.module.css'
+      ),
+
+      // to import module sources
+      '@sandstreamdev/react-swipeable-list': path.join(__dirname, '..', 'src'),
+
+      // to make the module use same react as example
+      // (otherwise even if same version is in module sources used
+      // we get error about duplicated react and cannot use hooks)
+      react: path.resolve(__dirname, 'node_modules', 'react'),
+      'prop-types': path.resolve(__dirname, 'node_modules', 'prop-types')
+    },
+    extensions: ['.js']
+  }
 };
