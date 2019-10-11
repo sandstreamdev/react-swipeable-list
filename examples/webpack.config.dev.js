@@ -1,5 +1,5 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 const babelLoaderOptions = {
   presets: ['@babel/env', '@babel/react'],
@@ -55,8 +55,10 @@ module.exports = {
         'src',
         'app.module.css'
       ),
+
       // to import module sources
       '@sandstreamdev/react-swipeable-list': path.join(__dirname, '..', 'src'),
+
       // to make the module use same react as example
       // (otherwise even if same version is in module sources used
       // we get error about duplicated react and cannot use hooks)

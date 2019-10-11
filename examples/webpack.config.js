@@ -1,5 +1,4 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CssLoaderUtils = require('css-loader/dist/utils');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const babelLoaderOptions = {
   presets: ['@babel/env', '@babel/react'],
@@ -28,33 +27,22 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
+        exclude: /node_modules/,
         use: [
           { loader: 'style-loader' },
           {
             loader: 'css-loader',
             options: {
-              modules: {
-                getLocalIdent: (
-                  loaderContext,
-                  localIdentName,
-                  localName,
-                  options
-                ) => {
-                  if (loaderContext.resourcePath.includes('node_modules')) {
-                    return localName;
-                  }
-                  return CssLoaderUtils.getLocalIdent(
-                    loaderContext,
-                    localIdentName,
-                    localName,
-                    options
-                  );
-                }
-              }
+              modules: true
             }
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
       }
     ]
   },
