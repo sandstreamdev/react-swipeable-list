@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import { classNames } from '@sandstreamdev/std/web';
 
 import styles from './ComplexItemContent.module.css';
 
