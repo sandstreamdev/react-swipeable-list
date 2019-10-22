@@ -63,6 +63,12 @@ NOTE: `SwipeableListItem` can be used without `SwipeableList` but swipe blocking
 
 ## SwipeableList Props
 
+### scrollElement
+
+Type: `EventTarget`
+
+Required to block swipe during scrolling outside of list e.g. set to `window` to block swiping during body scroll.
+
 ### threshold
 
 Type: `number`

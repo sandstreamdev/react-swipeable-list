@@ -51,7 +51,10 @@ const SwipeableList = ({ children, scrollElement, threshold }) => {
 
 SwipeableList.propTypes = {
   children: PropTypes.node,
-  scrollElement: PropTypes.instanceOf(EventTarget),
+  scrollElement:
+    typeof EventTarget !== 'undefined'
+      ? PropTypes.instanceOf(EventTarget)
+      : PropTypes.any,
   threshold: PropTypes.number
 };
 
