@@ -67,6 +67,15 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "MarkTension",
+      "name": "MarkTension",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16321685?v=4",
+      "profile": "https://marktension.github.io/tension_design/",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

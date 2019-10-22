@@ -17,7 +17,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/sandstreamdev/react-swipeable-list.svg)](https://greenkeeper.io/)
 [![codecov](https://codecov.io/gh/sandstreamdev/react-swipeable-list/branch/master/graph/badge.svg)](https://codecov.io/gh/sandstreamdev/react-swipeable-list)
 ![GitHub Release Date](https://img.shields.io/github/release-date/sandstreamdev/react-swipeable-list)
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors)
 
 ## React Swipeable List component
 
@@ -122,6 +122,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/LukasMarx"><img src="https://avatars0.githubusercontent.com/u/8080408?v=4" width="100px;" alt="Lukas Marx"/><br /><sub><b>Lukas Marx</b></sub></a><br /><a href="#ideas-LukasMarx" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/luis-filipe42/"><img src="https://avatars1.githubusercontent.com/u/29440533?v=4" width="100px;" alt="Luis Filipe Pedroso"/><br /><sub><b>Luis Filipe Pedroso</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3ALuisFilipePedroso" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/przemyslawzalewski"><img src="https://avatars0.githubusercontent.com/u/30114244?v=4" width="100px;" alt="Przemysław Zalewski"/><br /><sub><b>Przemysław Zalewski</b></sub></a><br /><a href="#maintenance-przemyslawzalewski" title="Maintenance">🚧</a> <a href="#review-przemyslawzalewski" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://marktension.github.io/tension_design/"><img src="https://avatars0.githubusercontent.com/u/16321685?v=4" width="100px;" alt="MarkTension"/><br /><sub><b>MarkTension</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3AMarkTension" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
