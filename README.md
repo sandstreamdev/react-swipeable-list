@@ -67,7 +67,7 @@ NOTE: `SwipeableListItem` can be used without `SwipeableList` but swipe blocking
 
 Type: `EventTarget`
 
-Required to block swipe during scrolling outside of list e.g. set to `window` to block swiping during body scroll.
+Required to block swipe during scroll outside of the `SwipeableList` e.g. set to `window.document` to block swipes during body scroll.
 
 ### threshold
 
