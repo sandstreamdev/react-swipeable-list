@@ -52,7 +52,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
-    "@sandstreamdev/react-swipeable-list": "^0.2.1",
+    "@sandstreamdev/react-swipeable-list": "^0.2.2",
     "@sandstreamdev/std": "^0.2.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
