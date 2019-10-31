@@ -21,7 +21,6 @@ const presets = [
 const plugins = ['@babel/plugin-proposal-class-properties'];
 
 module.exports = function(api) {
-  api.cache.invalidate(() => process.env.NODE_ENV);
   const isTest = api.env('test');
 
   if (isTest) {
