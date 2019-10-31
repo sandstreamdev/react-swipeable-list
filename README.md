@@ -63,17 +63,29 @@ NOTE: `SwipeableListItem` can be used without `SwipeableList` but swipe blocking
 
 ## SwipeableList Props
 
-### scrollElement
+### scrollStartThreshold
 
-Type: `EventTarget`
+Type: `number` (default: `10`)
 
-Required to block swipe during scroll outside of the `SwipeableList` e.g. set to `window.document` to block swipes during body scroll.
+How far (in pixels) scroll needs to be done to enable block list item swiping. When scrolling is started swiping cannot be done.
+
+Can be set for whole list or for every item. See `scrollStartThreshold` for `SwipeableListItem`.
+
+### swipeStartThreshold
+
+Type: `number` (default: `10`)
+
+How far (in pixels) swipe needs to be done to enable start swiping on list item. When swiping is started scrolling cannot be done.
+
+Can be set for whole list or for every item. See `swipeStartThreshold` for `SwipeableListItem`.
 
 ### threshold
 
-Type: `number`
+Type: `number` (default: `0.5`)
 
 How far swipe needs to be done to trigger attached action. `0.5` means that item needs to be swiped to half of its width, `0.25` - one-quarter of width.
+
+Can be set for whole list or for every item. See `threshold` for `SwipeableListItem`.
 
 ## SwipeableListItem Props
 
@@ -102,6 +114,20 @@ Type: `Object`
 
 Same as `swipeLeft` but to right. :wink:
 
+### scrollStartThreshold
+
+Type: `number` (default: `10`)
+
+Can be set for whole list or for every item. See `scrollStartThreshold` for `SwipeableList`.
+
+### swipeStartThreshold
+
+Type: `number` (default: `10`)
+
+How far swipe needs to be done to enable start swiping on list item. When swiping is started scrolling cannot be done.
+
+Can be set for whole list or for every item. See `swipeStartThreshold` for `SwipeableList`.
+
 ### threshold
 
 Type: `number` (default: `0.5`)
@@ -117,7 +143,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/sandstreamdevelopment"><img src="https://avatars2.githubusercontent.com/u/44231396?v=4" width="100px;" alt="sandstreamdevelopment"/><br /><sub><b>sandstreamdevelopment</b></sub></a><br /><a href="#business-sandstreamdevelopment" title="Business development">💼</a> <a href="#financial-sandstreamdevelopment" title="Financial">💵</a> <a href="#ideas-sandstreamdevelopment" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/marekrozmus"><img src="https://avatars3.githubusercontent.com/u/26272040?v=4" width="100px;" alt="marekrozmus"/><br /><sub><b>marekrozmus</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Code">💻</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Documentation">📖</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Tests">⚠️</a> <a href="#example-marekrozmus" title="Examples">💡</a> <a href="#ideas-marekrozmus" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/marekrozmus"><img src="https://avatars3.githubusercontent.com/u/26272040?v=4" width="100px;" alt="Marek Rozmus"/><br /><sub><b>Marek Rozmus</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Code">💻</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Documentation">📖</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Tests">⚠️</a> <a href="#example-marekrozmus" title="Examples">💡</a> <a href="#ideas-marekrozmus" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/jakubbogacz"><img src="https://avatars3.githubusercontent.com/u/26272028?v=4" width="100px;" alt="jakubbogacz"/><br /><sub><b>jakubbogacz</b></sub></a><br /><a href="#review-jakubbogacz" title="Reviewed Pull Requests">👀</a> <a href="#ideas-jakubbogacz" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=jakubbogacz" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/LukasMarx"><img src="https://avatars0.githubusercontent.com/u/8080408?v=4" width="100px;" alt="Lukas Marx"/><br /><sub><b>Lukas Marx</b></sub></a><br /><a href="#ideas-LukasMarx" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/luis-filipe42/"><img src="https://avatars1.githubusercontent.com/u/29440533?v=4" width="100px;" alt="Luis Filipe Pedroso"/><br /><sub><b>Luis Filipe Pedroso</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3ALuisFilipePedroso" title="Bug reports">🐛</a></td>
