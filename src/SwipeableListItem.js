@@ -8,26 +8,6 @@ const SwipeActionPropType = PropTypes.shape({
   content: PropTypes.node.isRequired
 });
 
-const debugDragDirection = direction => {
-  switch (direction) {
-    case 1:
-      console.info('N, NE, NW - UP');
-      break;
-    case 2:
-      console.info('S, SE, SW - DOWN');
-      break;
-    case 3:
-      console.info('W - LEFT');
-      break;
-    case 4:
-      console.info('E - RIGHT');
-      break;
-    case 5:
-      console.info('NOT SET YET');
-      break;
-  }
-};
-
 const DragDirection = {
   UP: 1,
   DOWN: 2,
@@ -239,9 +219,6 @@ class SwipeableListItem extends PureComponent {
           }
           break;
       }
-
-      console.info('SET UP to ', this.dragDirection);
-      debugDragDirection(this.dragDirection);
     }
 
     return this.dragDirection;

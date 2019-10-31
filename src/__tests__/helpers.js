@@ -40,29 +40,37 @@ const movePoint = (point, direction) => {
 
 export const makeMouseGesture = (container, directions) => {
   let point = startPoint();
+
   fireEvent.mouseDown(container, point);
+
   for (let i = 0; i < directions.length; i++) {
     point = movePoint(point, directions[i]);
     fireEvent.mouseMove(container, point);
   }
+
   fireEvent.mouseUp(container, point);
+
   return point;
 };
 
 export const makeTouchGesture = (container, directions) => {
   let point = startPoint();
+
   fireEvent.touchStart(container, {
     targetTouches: [point]
   });
+
   for (let i = 0; i < directions.length; i++) {
     point = movePoint(point, directions[i]);
     fireEvent.touchMove(container, {
       targetTouches: [point]
     });
   }
+
   fireEvent.touchEnd(container, {
     targetTouches: [point]
   });
+
   return point;
 };
 
