@@ -43,12 +43,18 @@ class SwipeableListItem extends PureComponent {
 
   componentDidMount() {
     this.wrapper.addEventListener('mousedown', this.handleDragStartMouse);
+
     this.wrapper.addEventListener('touchstart', this.handleDragStartTouch);
+    this.wrapper.addEventListener('touchend', this.handleDragEndTouch);
+    this.wrapper.addEventListener('touchmove', this.handleTouchMove);
   }
 
   componentWillUnmount() {
     this.wrapper.removeEventListener('mousedown', this.handleDragStartMouse);
+
     this.wrapper.removeEventListener('touchstart', this.handleDragStartTouch);
+    this.wrapper.removeEventListener('touchend', this.handleDragEndTouch);
+    this.wrapper.removeEventListener('touchmove', this.handleTouchMove);
   }
 
   handleDragStartMouse = event => {
@@ -63,9 +69,6 @@ class SwipeableListItem extends PureComponent {
 
   handleDragStartTouch = event => {
     window.addEventListener('touchend', this.handleDragEndTouch);
-
-    this.wrapper.addEventListener('touchend', this.handleDragEndTouch);
-    this.wrapper.addEventListener('touchmove', this.handleTouchMove);
 
     const touch = event.targetTouches[0];
     this.handleDragStart(touch);
@@ -122,9 +125,6 @@ class SwipeableListItem extends PureComponent {
 
   handleDragEndTouch = () => {
     window.removeEventListener('touchend', this.handleDragEndTouch);
-
-    this.wrapper.removeEventListener('touchend', this.handleDragEndTouch);
-    this.wrapper.removeEventListener('touchmove', this.handleTouchMove);
 
     this.handleDragEnd();
   };
