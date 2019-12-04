@@ -139,19 +139,25 @@ It can be set for the whole list or for every item. See `threshold` for `Swipeab
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
     <td align="center"><a href="https://github.com/sandstreamdevelopment"><img src="https://avatars2.githubusercontent.com/u/44231396?v=4" width="100px;" alt="sandstreamdevelopment"/><br /><sub><b>sandstreamdevelopment</b></sub></a><br /><a href="#business-sandstreamdevelopment" title="Business development">💼</a> <a href="#financial-sandstreamdevelopment" title="Financial">💵</a> <a href="#ideas-sandstreamdevelopment" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/marekrozmus"><img src="https://avatars3.githubusercontent.com/u/26272040?v=4" width="100px;" alt="Marek Rozmus"/><br /><sub><b>Marek Rozmus</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Code">💻</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Documentation">📖</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=marekrozmus" title="Tests">⚠️</a> <a href="#example-marekrozmus" title="Examples">💡</a> <a href="#ideas-marekrozmus" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/jakubbogacz"><img src="https://avatars3.githubusercontent.com/u/26272028?v=4" width="100px;" alt="jakubbogacz"/><br /><sub><b>jakubbogacz</b></sub></a><br /><a href="#review-jakubbogacz" title="Reviewed Pull Requests">👀</a> <a href="#ideas-jakubbogacz" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=jakubbogacz" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/jakubbogacz"><img src="https://avatars3.githubusercontent.com/u/26272028?v=4" width="100px;" alt="jakubbogacz"/><br /><sub><b>jakubbogacz</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/pulls?q=is%3Apr+reviewed-by%3Ajakubbogacz" title="Reviewed Pull Requests">👀</a> <a href="#ideas-jakubbogacz" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/commits?author=jakubbogacz" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/LukasMarx"><img src="https://avatars0.githubusercontent.com/u/8080408?v=4" width="100px;" alt="Lukas Marx"/><br /><sub><b>Lukas Marx</b></sub></a><br /><a href="#ideas-LukasMarx" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/luis-filipe42/"><img src="https://avatars1.githubusercontent.com/u/29440533?v=4" width="100px;" alt="Luis Filipe Pedroso"/><br /><sub><b>Luis Filipe Pedroso</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3ALuisFilipePedroso" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/przemyslawzalewski"><img src="https://avatars0.githubusercontent.com/u/30114244?v=4" width="100px;" alt="Przemysław Zalewski"/><br /><sub><b>Przemysław Zalewski</b></sub></a><br /><a href="#maintenance-przemyslawzalewski" title="Maintenance">🚧</a> <a href="#review-przemyslawzalewski" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/przemyslawzalewski"><img src="https://avatars0.githubusercontent.com/u/30114244?v=4" width="100px;" alt="Przemysław Zalewski"/><br /><sub><b>Przemysław Zalewski</b></sub></a><br /><a href="#maintenance-przemyslawzalewski" title="Maintenance">🚧</a> <a href="https://github.com/sandstreamdev/react-swipeable-list/pulls?q=is%3Apr+reviewed-by%3Aprzemyslawzalewski" title="Reviewed Pull Requests">👀</a></td>
     <td align="center"><a href="https://marktension.github.io/tension_design/"><img src="https://avatars0.githubusercontent.com/u/16321685?v=4" width="100px;" alt="MarkTension"/><br /><sub><b>MarkTension</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3AMarkTension" title="Bug reports">🐛</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/wildeyes"><img src="https://avatars3.githubusercontent.com/u/1652108?v=4" width="100px;" alt="wildeyes"/><br /><sub><b>wildeyes</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3Awildeyes" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
