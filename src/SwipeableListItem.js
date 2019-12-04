@@ -51,7 +51,10 @@ class SwipeableListItem extends PureComponent {
 
     this.wrapper.addEventListener('touchstart', this.handleDragStartTouch);
     this.wrapper.addEventListener('touchend', this.handleDragEndTouch);
-    this.wrapper.addEventListener('touchmove', this.handleTouchMove);
+    this.wrapper.addEventListener('touchmove', this.handleTouchMove, {
+      capture: true,
+      passive: false
+    });
   }
 
   componentWillUnmount() {
@@ -59,7 +62,10 @@ class SwipeableListItem extends PureComponent {
 
     this.wrapper.removeEventListener('touchstart', this.handleDragStartTouch);
     this.wrapper.removeEventListener('touchend', this.handleDragEndTouch);
-    this.wrapper.removeEventListener('touchmove', this.handleTouchMove);
+    this.wrapper.removeEventListener('touchmove', this.handleTouchMove, {
+      capture: true,
+      passive: false
+    });
   }
 
   handleDragStartMouse = event => {
@@ -104,11 +110,13 @@ class SwipeableListItem extends PureComponent {
     if (this.dragStartedWithinItem()) {
       this.setDragDirection(clientX, clientY);
 
+      if (!event.cancelable) {
+        return;
+      }
+
       if (this.isSwiping()) {
         event.stopPropagation();
-        if (event.cancelable) {
-          event.preventDefault();
-        }
+        event.preventDefault();
 
         const delta = clientX - this.dragStartPoint.x;
         if (this.shouldMoveItem(delta)) {
@@ -192,7 +200,7 @@ class SwipeableListItem extends PureComponent {
         horizontalDistance <= this.dragHorizontalDirectionThreshold &&
         verticalDistance <= this.dragVerticalDirectionThreshold
       ) {
-        return DragDirection.UNKNOWN;
+        return;
       }
 
       const angle = Math.atan2(y - startY, x - startX);
