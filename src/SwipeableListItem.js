@@ -8,6 +8,16 @@ const SwipeActionPropType = PropTypes.shape({
   content: PropTypes.node.isRequired
 });
 
+const DragDirection = {
+  UP: 1,
+  DOWN: 2,
+  LEFT: 3,
+  RIGHT: 4,
+  UNKNOWN: 5
+};
+
+const FPS_INTERVAL = 1000 / 60;
+
 class SwipeableListItem extends PureComponent {
   constructor(props) {
     super(props);
@@ -17,27 +27,48 @@ class SwipeableListItem extends PureComponent {
     this.listElement = null;
     this.wrapper = null;
 
-    this.dragged = false;
-    this.dragStartX = 0;
-    this.left = 0;
-
-    this.fpsInterval = 1000 / 60;
     this.startTime = null;
+
+    this.resetState();
+  }
+
+  resetState = () => {
+    this.dragStartPoint = { x: -1, y: -1 };
+    this.dragDirection = DragDirection.UNKNOWN;
+    this.left = 0;
+  };
+
+  get dragHorizontalDirectionThreshold() {
+    return this.props.swipeStartThreshold || 10;
+  }
+
+  get dragVerticalDirectionThreshold() {
+    return this.props.scrollStartThreshold || 10;
   }
 
   componentDidMount() {
     this.wrapper.addEventListener('mousedown', this.handleDragStartMouse);
+
     this.wrapper.addEventListener('touchstart', this.handleDragStartTouch);
+    this.wrapper.addEventListener('touchend', this.handleDragEndTouch);
+    this.wrapper.addEventListener('touchmove', this.handleTouchMove, {
+      capture: true,
+      passive: false
+    });
   }
 
   componentWillUnmount() {
     this.wrapper.removeEventListener('mousedown', this.handleDragStartMouse);
+
     this.wrapper.removeEventListener('touchstart', this.handleDragStartTouch);
+    this.wrapper.removeEventListener('touchend', this.handleDragEndTouch);
+    this.wrapper.removeEventListener('touchmove', this.handleTouchMove, {
+      capture: true,
+      passive: false
+    });
   }
 
   handleDragStartMouse = event => {
-    event.stopPropagation();
-
     window.addEventListener('mouseup', this.handleDragEndMouse);
     window.addEventListener('mousemove', this.handleMouseMove);
 
@@ -48,29 +79,51 @@ class SwipeableListItem extends PureComponent {
   };
 
   handleDragStartTouch = event => {
-    // do not stop propagation here as it can be handled by parent to start scrolling
-
     window.addEventListener('touchend', this.handleDragEndTouch);
-
-    this.wrapper.addEventListener('touchend', this.handleDragEndTouch);
-    this.wrapper.addEventListener('touchmove', this.handleTouchMove);
 
     const touch = event.targetTouches[0];
     this.handleDragStart(touch);
   };
 
-  handleDragStart = ({ clientX }) => {
-    this.dragged = true;
-    this.dragStartX = clientX;
+  handleDragStart = ({ clientX, clientY }) => {
+    this.resetState();
+    this.dragStartPoint = { x: clientX, y: clientY };
+
     this.listElement.className = styles.content;
     if (this.contentLeft) {
       this.contentLeft.className = styles.contentLeft;
     }
+
     if (this.contentRight) {
       this.contentRight.className = styles.contentRight;
     }
+
     this.startTime = Date.now();
     requestAnimationFrame(this.updatePosition);
+  };
+
+  handleTouchMove = event => this.handleMove(event, event.targetTouches[0]);
+
+  handleMouseMove = event => this.handleMove(event, event);
+
+  handleMove = (event, { clientX, clientY }) => {
+    if (this.dragStartedWithinItem()) {
+      this.setDragDirection(clientX, clientY);
+
+      if (!event.cancelable) {
+        return;
+      }
+
+      if (this.isSwiping()) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const delta = clientX - this.dragStartPoint.x;
+        if (this.shouldMoveItem(delta)) {
+          this.left = delta;
+        }
+      }
+    }
   };
 
   handleDragEndMouse = () => {
@@ -86,14 +139,11 @@ class SwipeableListItem extends PureComponent {
   handleDragEndTouch = () => {
     window.removeEventListener('touchend', this.handleDragEndTouch);
 
-    this.wrapper.removeEventListener('touchend', this.handleDragEndTouch);
-    this.wrapper.removeEventListener('touchmove', this.handleTouchMove);
-
     this.handleDragEnd();
   };
 
   handleDragEnd = () => {
-    if (this.dragged && this.left !== 0) {
+    if (this.isSwiping()) {
       const threshold = this.props.threshold || 0.5;
 
       if (this.left < this.listElement.offsetWidth * threshold * -1) {
@@ -103,7 +153,7 @@ class SwipeableListItem extends PureComponent {
       }
     }
 
-    this.left = 0;
+    this.resetState();
     this.listElement.className = styles.contentReturn;
     this.listElement.style.transform = `translateX(${this.left}px)`;
 
@@ -117,8 +167,6 @@ class SwipeableListItem extends PureComponent {
       this.contentRight.style.opacity = 0;
       this.contentRight.className = styles.contentRightReturn;
     }
-
-    this.dragged = false;
   };
 
   shouldMoveItem = delta => {
@@ -136,56 +184,88 @@ class SwipeableListItem extends PureComponent {
     );
   };
 
-  handleMouseMove = event => {
-    if (this.dragged) {
-      event.stopPropagation();
-      const delta = event.clientX - this.dragStartX;
+  dragStartedWithinItem = () => {
+    const { x, y } = this.dragStartPoint;
 
-      if (this.shouldMoveItem(delta)) {
-        this.left = delta;
+    return x !== -1 && y !== -1;
+  };
+
+  setDragDirection = (x, y) => {
+    if (this.dragDirection === DragDirection.UNKNOWN) {
+      const { x: startX, y: startY } = this.dragStartPoint;
+      const horizontalDistance = Math.abs(x - startX);
+      const verticalDistance = Math.abs(y - startY);
+
+      if (
+        horizontalDistance <= this.dragHorizontalDirectionThreshold &&
+        verticalDistance <= this.dragVerticalDirectionThreshold
+      ) {
+        return;
+      }
+
+      const angle = Math.atan2(y - startY, x - startX);
+      const octant = Math.round((8 * angle) / (2 * Math.PI) + 8) % 8;
+
+      switch (octant) {
+        case 0:
+          if (horizontalDistance > this.dragHorizontalDirectionThreshold) {
+            this.dragDirection = DragDirection.RIGHT;
+          }
+          break;
+        case 1:
+        case 2:
+        case 3:
+          if (verticalDistance > this.dragVerticalDirectionThreshold) {
+            this.dragDirection = DragDirection.DOWN;
+          }
+          break;
+        case 4:
+          if (horizontalDistance > this.dragHorizontalDirectionThreshold) {
+            this.dragDirection = DragDirection.LEFT;
+          }
+          break;
+        case 5:
+        case 6:
+        case 7:
+          if (verticalDistance > this.dragVerticalDirectionThreshold) {
+            this.dragDirection = DragDirection.UP;
+          }
+          break;
       }
     }
   };
 
-  handleTouchMove = event => {
-    if (this.dragged) {
-      event.stopPropagation();
-      const touch = event.targetTouches[0];
-      const delta = touch.clientX - this.dragStartX;
-
-      if (this.shouldMoveItem(delta)) {
-        this.left = delta;
-      }
-    }
-  };
+  isSwiping = () =>
+    this.dragStartedWithinItem() &&
+    (this.dragDirection === DragDirection.LEFT ||
+      this.dragDirection === DragDirection.RIGHT);
 
   updatePosition = () => {
     const { blockSwipe } = this.props;
-    if (blockSwipe) {
-      this.dragged = false;
-    }
 
-    if (this.dragged) {
+    if (this.dragStartedWithinItem() && !blockSwipe) {
       requestAnimationFrame(this.updatePosition);
     }
 
     const now = Date.now();
     const elapsed = now - this.startTime;
 
-    if (this.dragged && elapsed > this.fpsInterval) {
+    if (elapsed > FPS_INTERVAL && this.isSwiping()) {
       let contentToShow = this.left < 0 ? this.contentLeft : this.contentRight;
-      let contentToHide = this.left < 0 ? this.contentRight : this.contentLeft;
 
       if (!contentToShow) {
         return;
       }
 
-      const opacity = (Math.abs(this.left) / 100).toFixed(2);
-
       this.listElement.style.transform = `translateX(${this.left}px)`;
+
+      const opacity = (Math.abs(this.left) / 100).toFixed(2);
 
       if (opacity < 1 && opacity.toString() !== contentToShow.style.opacity) {
         contentToShow.style.opacity = opacity.toString();
+
+        let contentToHide =
+          this.left < 0 ? this.contentRight : this.contentLeft;
 
         if (contentToHide) {
           contentToHide.style.opacity = '0';
@@ -261,6 +341,8 @@ SwipeableListItem.propTypes = {
   children: PropTypes.node.isRequired,
   swipeLeft: SwipeActionPropType,
   swipeRight: SwipeActionPropType,
+  scrollStartThreshold: PropTypes.number,
+  swipeStartThreshold: PropTypes.number,
   threshold: PropTypes.number
 };
 

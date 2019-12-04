@@ -96,6 +96,7 @@ function App() {
       <h3>
         More complex items and scroll (with 0.25 action trigger threshold)
       </h3>
+      <h3>List in smaller container</h3>
       <span className={styles.actionInfo}>{triggeredComplexItemAction}</span>
       <div className={styles.complexListContainer}>
         <SwipeableList threshold={0.25}>
@@ -141,6 +142,53 @@ function App() {
           </SwipeableListItem>
         </SwipeableList>
       </div>
+      <h3>List in size to content container</h3>
+      <span className={styles.actionInfo}>{triggeredComplexItemAction}</span>
+      <div className={styles.listContainer}>
+        <SwipeableList threshold={0.25}>
+          <SwipeableListItem
+            swipeLeft={swipeLeftDataComplex('First')}
+            swipeRight={swipeRightDataComplex('First')}
+          >
+            <ListItem
+              icon={<MailIcon />}
+              name="first"
+              description="first description"
+            />
+          </SwipeableListItem>
+          <SwipeableListItem
+            swipeLeft={swipeLeftDataComplex('Second')}
+            swipeRight={swipeRightDataComplex('Second')}
+          >
+            <ListItem
+              icon={<MailIcon />}
+              name="second"
+              description="second description"
+            />
+          </SwipeableListItem>
+          <SwipeableListItem
+            swipeLeft={swipeLeftDataComplex('Second')}
+            swipeRight={swipeRightDataComplex('Second')}
+          >
+            <ListItem
+              icon={<MailIcon />}
+              name="third"
+              description="third description"
+            />
+          </SwipeableListItem>
+          <SwipeableListItem
+            swipeLeft={swipeLeftDataComplex('Second')}
+            swipeRight={swipeRightDataComplex('Second')}
+          >
+            <ListItem
+              icon={<MailIcon />}
+              name="fourth"
+              description="fourth description"
+            />
+          </SwipeableListItem>
+        </SwipeableList>
+      </div>
+      <div>THE END</div>
     </div>
   );
 }
