@@ -22,9 +22,6 @@ class SwipeableListItem extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.dragHorizontalDirectionThreshold = props.swipeStartThreshold || 10;
-    this.dragVerticalDirectionThreshold = props.scrollStartThreshold || 10;
-
     this.contentLeft = null;
     this.contentRight = null;
     this.listElement = null;
@@ -40,6 +37,14 @@ class SwipeableListItem extends PureComponent {
     this.dragDirection = DragDirection.UNKNOWN;
     this.left = 0;
   };
+
+  get dragHorizontalDirectionThreshold() {
+    return this.props.swipeStartThreshold || 10;
+  }
+
+  get dragVerticalDirectionThreshold() {
+    return this.props.scrollStartThreshold || 10;
+  }
 
   componentDidMount() {
     this.wrapper.addEventListener('mousedown', this.handleDragStartMouse);
@@ -220,13 +225,12 @@ class SwipeableListItem extends PureComponent {
           break;
       }
     }
-
-    return this.dragDirection;
   };
 
   isSwiping = () =>
-    this.dragDirection === DragDirection.LEFT ||
-    this.dragDirection === DragDirection.RIGHT;
+    this.dragStartedWithinItem() &&
+    (this.dragDirection === DragDirection.LEFT ||
+      this.dragDirection === DragDirection.RIGHT);
 
   updatePosition = () => {
     const { blockSwipe } = this.props;
@@ -238,30 +242,30 @@ class SwipeableListItem extends PureComponent {
     const now = Date.now();
     const elapsed = now - this.startTime;
 
-    if (this.dragStartedWithinItem() && elapsed > FPS_INTERVAL) {
+    if (elapsed > FPS_INTERVAL && this.isSwiping()) {
       let contentToShow = this.left < 0 ? this.contentLeft : this.contentRight;
-      let contentToHide = this.left < 0 ? this.contentRight : this.contentLeft;
 
       if (!contentToShow) {
         return;
       }
 
+      this.listElement.style.transform = `translateX(${this.left}px)`;
+
       const opacity = (Math.abs(this.left) / 100).toFixed(2);
 
-      if (this.isSwiping()) {
-        this.listElement.style.transform = `translateX(${this.left}px)`;
+      if (opacity < 1 && opacity.toString() !== contentToShow.style.opacity) {
+        contentToShow.style.opacity = opacity.toString();
 
-        if (opacity < 1 && opacity.toString() !== contentToShow.style.opacity) {
-          contentToShow.style.opacity = opacity.toString();
+        let contentToHide =
+          this.left < 0 ? this.contentRight : this.contentLeft;
 
-          if (contentToHide) {
-            contentToHide.style.opacity = '0';
-          }
+        if (contentToHide) {
+          contentToHide.style.opacity = '0';
         }
+      }
 
-        if (opacity >= 1) {
-          contentToShow.style.opacity = '1';
-        }
+      if (opacity >= 1) {
+        contentToShow.style.opacity = '1';
       }
 
       this.startTime = Date.now();

@@ -67,17 +67,17 @@ NOTE: `SwipeableListItem` can be used without `SwipeableList` but swipe blocking
 
 Type: `number` (default: `10`)
 
-How far (in pixels) scroll needs to be done to enable block list item swiping. When scrolling is started swiping cannot be done.
+How far in pixels scroll needs to be done to block swiping. After scrolling is started and goes beyond the threshold, swiping is blocked.
 
-Can be set for whole list or for every item. See `scrollStartThreshold` for `SwipeableListItem`.
+It can be set for the whole list or for every item. See `scrollStartThreshold` for `SwipeableListItem`. Value from the `SwipeableListItem` takes precedence.
 
 ### swipeStartThreshold
 
 Type: `number` (default: `10`)
 
-How far (in pixels) swipe needs to be done to enable start swiping on list item. When swiping is started scrolling cannot be done.
+How far in pixels swipe needs to be done to start swiping on list item. After a swipe is started and goes beyond the threshold, scrolling is blocked.
 
-Can be set for whole list or for every item. See `swipeStartThreshold` for `SwipeableListItem`.
+It can be set for the whole list or for every item. See `swipeStartThreshold` for `SwipeableListItem`. Value from the `SwipeableListItem` takes precedence.
 
 ### threshold
 
@@ -85,7 +85,7 @@ Type: `number` (default: `0.5`)
 
 How far swipe needs to be done to trigger attached action. `0.5` means that item needs to be swiped to half of its width, `0.25` - one-quarter of width.
 
-Can be set for whole list or for every item. See `threshold` for `SwipeableListItem`.
+It can be set for the whole list or for every item. See `threshold` for `SwipeableListItem`. Value from the `SwipeableListItem` takes precedence.
 
 ## SwipeableListItem Props
 
@@ -93,7 +93,7 @@ Can be set for whole list or for every item. See `threshold` for `SwipeableListI
 
 Type: `boolean` (default: `false`)
 
-If set to `true` all defined swipe actions are blocked. This is done by `SwipeableList` during scroll to prevent mouse move events to cause accidental swiping acitions.
+If set to `true` all defined swipe actions are blocked.
 
 ### swipeLeft
 
@@ -118,21 +118,21 @@ Same as `swipeLeft` but to right. :wink:
 
 Type: `number` (default: `10`)
 
-Can be set for whole list or for every item. See `scrollStartThreshold` for `SwipeableList`.
+It can be set for the whole list or for every item. See `scrollStartThreshold` for `SwipeableList`. Value from the `SwipeableListItem` takes precedence.
 
 ### swipeStartThreshold
 
 Type: `number` (default: `10`)
 
-How far swipe needs to be done to enable start swiping on list item. When swiping is started scrolling cannot be done.
+How far in pixels swipe needs to be done to start swiping on list item. After a swipe is started and goes beyond the threshold, scrolling is blocked.
 
-Can be set for whole list or for every item. See `swipeStartThreshold` for `SwipeableList`.
+It can be set for the whole list or for every item. See `swipeStartThreshold` for `SwipeableList`. Value from the `SwipeableListItem` takes precedence.
 
 ### threshold
 
 Type: `number` (default: `0.5`)
 
-Can be set for whole list or for every item. See `threshold` for `SwipeableList`.
+It can be set for the whole list or for every item. See `threshold` for `SwipeableList`. Value from the `SwipeableListItem` takes precedence.
 
 ## Contributors ✨
 
