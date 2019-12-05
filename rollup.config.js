@@ -5,6 +5,7 @@ import autoprefixer from 'autoprefixer';
 import localResolve from 'rollup-plugin-local-resolve';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import copy from 'rollup-plugin-copy';
 
 import pkg from './package.json';
 
@@ -41,7 +42,10 @@ const config = {
     babel({ exclude: 'node_modules/**' }),
     localResolve(),
     resolve(),
-    commonjs()
+    commonjs(),
+    copy({
+      targets: [{ src: 'src/module.d.ts', dest: 'dist' }]
+    })
   ]
 };
 
