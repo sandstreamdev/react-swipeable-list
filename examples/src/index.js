@@ -11,6 +11,26 @@ ReactDOM.render(
         <App />
       </div>
     </div>
+    <footer>
+      <span>
+        {`Made with ❤️ by `}
+        <a href="https://sandstream.pl/">Sandstream Development</a>
+      </span>
+      <div>
+        <span>
+          <a href="https://github.com/sandstreamdev/react-swipeable-list">
+            GitHub
+          </a>
+        </span>
+        {` • `}
+        <span>
+          {`License: `}
+          <a href="https://github.com/sandstreamdev/react-swipeable-list/blob/master/LICENSE">
+            MIT
+          </a>
+        </span>
+      </div>
+    </footer>
   </div>,
   document.getElementById('root')
 );

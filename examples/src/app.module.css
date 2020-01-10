@@ -12,6 +12,42 @@ h5 {
   margin: 0;
 }
 
+body {
+  /* stylelint-disable */
+  font-family:
+    system,
+    -apple-system,
+    '.SFNSText-Regular',
+    'San Francisco',
+    'Roboto',
+    'Segoe UI',
+    'Helvetica Neue',
+    'Lucida Grande',
+    sans-serif;
+  /* stylelint-enable */
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+footer a,
+footer a:visited {
+  color: #0275d8;
+}
+
+footer a:hover {
+  color: #0275d8;
+  text-decoration: underline;
+}
+
 .testApp {
   display: flex;
   flex-direction: column;

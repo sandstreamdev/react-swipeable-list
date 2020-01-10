@@ -188,7 +188,6 @@ function App() {
           </SwipeableListItem>
         </SwipeableList>
       </div>
-      <div>THE END</div>
     </div>
   );
 }
