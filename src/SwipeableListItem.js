@@ -113,6 +113,7 @@ class SwipeableListItem extends PureComponent {
         event.preventDefault();
 
         const delta = clientX - this.dragStartPoint.x;
+
         if (this.shouldMoveItem(delta)) {
           this.left = delta;
         }
@@ -135,6 +136,7 @@ class SwipeableListItem extends PureComponent {
         event.preventDefault();
 
         const delta = clientX - this.dragStartPoint.x;
+
         if (this.shouldMoveItem(delta)) {
           this.left = delta;
         }
