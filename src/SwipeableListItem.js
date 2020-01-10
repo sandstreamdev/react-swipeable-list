@@ -102,12 +102,29 @@ class SwipeableListItem extends PureComponent {
     requestAnimationFrame(this.updatePosition);
   };
 
-  handleTouchMove = event => this.handleMove(event, event.targetTouches[0]);
-
-  handleMouseMove = event => this.handleMove(event, event);
-
-  handleMove = (event, { clientX, clientY }) => {
+  handleMouseMove = event => {
     if (this.dragStartedWithinItem()) {
+      const { clientX, clientY } = event;
+
+      this.setDragDirection(clientX, clientY);
+
+      if (this.isSwiping()) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        const delta = clientX - this.dragStartPoint.x;
+
+        if (this.shouldMoveItem(delta)) {
+          this.left = delta;
+        }
+      }
+    }
+  };
+
+  handleTouchMove = event => {
+    if (this.dragStartedWithinItem()) {
+      const { clientX, clientY } = event.targetTouches[0];
+
       this.setDragDirection(clientX, clientY);
 
       if (!event.cancelable) {
@@ -119,6 +136,7 @@ class SwipeableListItem extends PureComponent {
         event.preventDefault();
 
         const delta = clientX - this.dragStartPoint.x;
+
         if (this.shouldMoveItem(delta)) {
           this.left = delta;
         }

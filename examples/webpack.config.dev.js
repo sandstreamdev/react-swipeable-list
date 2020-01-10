@@ -36,6 +36,14 @@ module.exports = {
             options: {
               modules: true
             }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.join(__dirname, 'src', 'examples')
+              }
+            }
           }
         ]
       }
