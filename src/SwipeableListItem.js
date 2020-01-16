@@ -29,6 +29,8 @@ class SwipeableListItem extends PureComponent {
 
     this.startTime = null;
 
+    this.prevSwipeDistancePercent = 0;
+
     this.resetState();
   }
 
@@ -36,6 +38,7 @@ class SwipeableListItem extends PureComponent {
     this.dragStartPoint = { x: -1, y: -1 };
     this.dragDirection = DragDirection.UNKNOWN;
     this.left = 0;
+    this.prevSwipeDistancePercent = 0;
   };
 
   get dragHorizontalDirectionThreshold() {
@@ -169,6 +172,10 @@ class SwipeableListItem extends PureComponent {
       } else if (this.left > this.listElement.offsetWidth * threshold) {
         this.handleSwipedRight();
       }
+
+      if (this.props.onSwipeEnd) {
+        this.props.onSwipeEnd();
+      }
     }
 
     this.resetState();
@@ -250,6 +257,14 @@ class SwipeableListItem extends PureComponent {
           }
           break;
       }
+
+      if (
+        this.props.onSwipeStart &&
+        (this.dragDirection === DragDirection.LEFT ||
+          this.dragDirection === DragDirection.RIGHT)
+      ) {
+        this.props.onSwipeStart();
+      }
     }
   };
 
@@ -278,6 +293,24 @@ class SwipeableListItem extends PureComponent {
       this.listElement.style.transform = `translateX(${this.left}px)`;
 
       const opacity = (Math.abs(this.left) / 100).toFixed(2);
+
+      if (this.props.onSwipeStateChange) {
+        const swipeDistance = Math.max(
+          0,
+          this.listElement.offsetWidth - Math.abs(this.left)
+        );
+
+        const swipeDistancePercent =
+          100 -
+          Math.round((100 * swipeDistance) / this.listElement.offsetWidth);
+
+        if (this.prevSwipeDistancePercent !== swipeDistancePercent) {
+          this.props.onSwipeStateChange({
+            swipeDistancePercent
+          });
+          this.prevSwipeDistancePercent = swipeDistancePercent;
+        }
+      }
 
       if (opacity < 1 && opacity.toString() !== contentToShow.style.opacity) {
         contentToShow.style.opacity = opacity.toString();
@@ -361,7 +394,11 @@ SwipeableListItem.propTypes = {
   swipeRight: SwipeActionPropType,
   scrollStartThreshold: PropTypes.number,
   swipeStartThreshold: PropTypes.number,
-  threshold: PropTypes.number
+  threshold: PropTypes.number,
+
+  onSwipeStart: PropTypes.func,
+  onSwipeEnd: PropTypes.func,
+  onSwipeStateChange: PropTypes.func
 };
 
 export default SwipeableListItem;

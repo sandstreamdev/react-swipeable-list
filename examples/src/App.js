@@ -85,6 +85,9 @@ function App() {
           <SwipeableListItem
             swipeRight={swipeRightDataSimple('Item with both swipes')}
             swipeLeft={swipeLeftDataSimple('Item with both swipes')}
+            onSwipeStart={() => console.log('Swipe started')}
+            onSwipeEnd={() => console.log('Swipe ended')}
+            onSwipeStateChange={state => console.log(state)}
           >
             {itemContentSimple('Item with both swipes')}
           </SwipeableListItem>
