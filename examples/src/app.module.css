@@ -9,8 +9,17 @@ h5 {
 }
 
 body {
-  font-family: system, -apple-system, '.SFNSText-Regular', 'San Francisco',
-    'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande', sans-serif;
+  font-family:
+    system,
+    -apple-system,
+    '.SFNSText-Regular',
+    'San Francisco',
+    'Roboto',
+    'Segoe UI',
+    'Helvetica Neue',
+    'Lucida Grande',
+    sans-serif;
+  line-height: 1.7;
 }
 
 footer {
