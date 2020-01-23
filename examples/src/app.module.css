@@ -9,6 +9,7 @@ h5 {
 }
 
 body {
+  /* stylelint-disable */
   font-family:
     system,
     -apple-system,
@@ -19,6 +20,7 @@ body {
     'Helvetica Neue',
     'Lucida Grande',
     sans-serif;
+  /* stylelint-enable */
   line-height: 1.7;
 }
 
