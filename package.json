@@ -82,12 +82,10 @@
     "*.js": [
       "prettier --write",
       "eslint --fix",
-      "git add",
       "jest --bail --findRelatedTests"
     ],
     "*.css": [
-      "stylelint --fix",
-      "git add"
+      "stylelint --fix"
     ]
   }
 }
