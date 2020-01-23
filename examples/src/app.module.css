@@ -1,7 +1,3 @@
-html {
-  font-family: 'Roboto', sans-serif;
-}
-
 h3 {
   margin-bottom: 0;
   text-align: center;
@@ -13,18 +9,8 @@ h5 {
 }
 
 body {
-  /* stylelint-disable */
-  font-family:
-    system,
-    -apple-system,
-    '.SFNSText-Regular',
-    'San Francisco',
-    'Roboto',
-    'Segoe UI',
-    'Helvetica Neue',
-    'Lucida Grande',
-    sans-serif;
-  /* stylelint-enable */
+  font-family: system, -apple-system, '.SFNSText-Regular', 'San Francisco',
+    'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande', sans-serif;
 }
 
 footer {
