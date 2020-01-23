@@ -14,6 +14,27 @@ body {
   line-height: 1.7;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+h1 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  font-weight: bold;
+  margin-bottom: 0;
+  text-align: center;
+}
+
 footer {
   display: flex;
   flex-direction: column;
