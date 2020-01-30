@@ -282,12 +282,30 @@ class SwipeableListItem extends PureComponent {
     });
   };
 
+  get onlyLeftContent() {
+    return this.contentLeft !== null && this.contentRight === null;
+  }
+
+  get onlyRightContent() {
+    return this.contentLeft === null && this.contentRight !== null;
+  }
+
   updatePosition = () => {
     const now = Date.now();
     const elapsed = now - this.startTime;
 
     if (elapsed > FPS_INTERVAL && this.isSwiping()) {
       let contentToShow = this.left < 0 ? this.contentLeft : this.contentRight;
+
+      if (this.onlyLeftContent && this.left > 0) {
+        this.left = 0;
+        contentToShow = this.contentLeft;
+      }
+
+      if (this.onlyRightContent && this.left < 0) {
+        this.left = 0;
+        contentToShow = this.contentRight;
+      }
 
       if (!contentToShow) {
         return;
