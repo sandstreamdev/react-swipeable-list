@@ -25,9 +25,12 @@ class SwipeableListItem extends PureComponent {
     this.contentLeft = null;
     this.contentRight = null;
     this.listElement = null;
+    this.requestedAnimationFrame = null;
     this.wrapper = null;
 
     this.startTime = null;
+
+    this.previousSwipeDistancePercent = 0;
 
     this.resetState();
   }
@@ -36,6 +39,7 @@ class SwipeableListItem extends PureComponent {
     this.dragStartPoint = { x: -1, y: -1 };
     this.dragDirection = DragDirection.UNKNOWN;
     this.left = 0;
+    this.previousSwipeDistancePercent = 0;
   };
 
   get dragHorizontalDirectionThreshold() {
@@ -58,6 +62,12 @@ class SwipeableListItem extends PureComponent {
   }
 
   componentWillUnmount() {
+    if (this.requestedAnimationFrame) {
+      cancelAnimationFrame(this.requestedAnimationFrame);
+
+      this.requestedAnimationFrame = null;
+    }
+
     this.wrapper.removeEventListener('mousedown', this.handleDragStartMouse);
 
     this.wrapper.removeEventListener('touchstart', this.handleDragStartTouch);
@@ -90,16 +100,16 @@ class SwipeableListItem extends PureComponent {
     this.dragStartPoint = { x: clientX, y: clientY };
 
     this.listElement.className = styles.content;
-    if (this.contentLeft) {
+    if (this.contentLeft !== null) {
       this.contentLeft.className = styles.contentLeft;
     }
 
-    if (this.contentRight) {
+    if (this.contentRight !== null) {
       this.contentRight.className = styles.contentRight;
     }
 
     this.startTime = Date.now();
-    requestAnimationFrame(this.updatePosition);
+    this.scheduleUpdatePosition();
   };
 
   handleMouseMove = event => {
@@ -112,11 +122,8 @@ class SwipeableListItem extends PureComponent {
         event.stopPropagation();
         event.preventDefault();
 
-        const delta = clientX - this.dragStartPoint.x;
-
-        if (this.shouldMoveItem(delta)) {
-          this.left = delta;
-        }
+        this.left = clientX - this.dragStartPoint.x;
+        this.scheduleUpdatePosition();
       }
     }
   };
@@ -135,11 +142,8 @@ class SwipeableListItem extends PureComponent {
         event.stopPropagation();
         event.preventDefault();
 
-        const delta = clientX - this.dragStartPoint.x;
-
-        if (this.shouldMoveItem(delta)) {
-          this.left = delta;
-        }
+        this.left = clientX - this.dragStartPoint.x;
+        this.scheduleUpdatePosition();
       }
     }
   };
@@ -148,8 +152,10 @@ class SwipeableListItem extends PureComponent {
     window.removeEventListener('mouseup', this.handleDragEndMouse);
     window.removeEventListener('mousemove', this.handleMouseMove);
 
-    this.wrapper.removeEventListener('mouseup', this.handleDragEndMouse);
-    this.wrapper.removeEventListener('mousemove', this.handleMouseMove);
+    if (this.wrapper) {
+      this.wrapper.removeEventListener('mouseup', this.handleDragEndMouse);
+      this.wrapper.removeEventListener('mousemove', this.handleMouseMove);
+    }
 
     this.handleDragEnd();
   };
@@ -169,37 +175,29 @@ class SwipeableListItem extends PureComponent {
       } else if (this.left > this.listElement.offsetWidth * threshold) {
         this.handleSwipedRight();
       }
+
+      if (this.props.onSwipeEnd) {
+        this.props.onSwipeEnd();
+      }
     }
 
     this.resetState();
-    this.listElement.className = styles.contentReturn;
-    this.listElement.style.transform = `translateX(${this.left}px)`;
+
+    if (this.listElement) {
+      this.listElement.className = styles.contentReturn;
+      this.listElement.style.transform = `translateX(${this.left}px)`;
+    }
 
     // hide backgrounds
-    if (this.contentLeft) {
+    if (this.contentLeft !== null) {
       this.contentLeft.style.opacity = 0;
       this.contentLeft.className = styles.contentLeftReturn;
     }
 
-    if (this.contentRight) {
+    if (this.contentRight !== null) {
       this.contentRight.style.opacity = 0;
       this.contentRight.className = styles.contentRightReturn;
     }
-  };
-
-  shouldMoveItem = delta => {
-    const {
-      swipeLeft: { content: contentLeft } = {},
-      swipeRight: { content: contentRight } = {},
-      blockSwipe
-    } = this.props;
-    const swipingLeft = delta < 0;
-    const swipingRight = delta > 0;
-
-    return (
-      !blockSwipe &&
-      ((swipingLeft && contentLeft) || (swipingRight && contentRight))
-    );
   };
 
   dragStartedWithinItem = () => {
@@ -226,7 +224,10 @@ class SwipeableListItem extends PureComponent {
 
       switch (octant) {
         case 0:
-          if (horizontalDistance > this.dragHorizontalDirectionThreshold) {
+          if (
+            this.contentRight !== null &&
+            horizontalDistance > this.dragHorizontalDirectionThreshold
+          ) {
             this.dragDirection = DragDirection.RIGHT;
           }
           break;
@@ -238,7 +239,10 @@ class SwipeableListItem extends PureComponent {
           }
           break;
         case 4:
-          if (horizontalDistance > this.dragHorizontalDirectionThreshold) {
+          if (
+            this.contentLeft !== null &&
+            horizontalDistance > this.dragHorizontalDirectionThreshold
+          ) {
             this.dragDirection = DragDirection.LEFT;
           }
           break;
@@ -250,21 +254,35 @@ class SwipeableListItem extends PureComponent {
           }
           break;
       }
+
+      if (this.props.onSwipeStart && this.isSwiping()) {
+        this.props.onSwipeStart();
+      }
     }
   };
 
-  isSwiping = () =>
-    this.dragStartedWithinItem() &&
-    (this.dragDirection === DragDirection.LEFT ||
-      this.dragDirection === DragDirection.RIGHT);
-
-  updatePosition = () => {
+  isSwiping = () => {
     const { blockSwipe } = this.props;
+    const horizontalDrag =
+      this.dragDirection === DragDirection.LEFT ||
+      this.dragDirection === DragDirection.RIGHT;
 
-    if (this.dragStartedWithinItem() && !blockSwipe) {
-      requestAnimationFrame(this.updatePosition);
+    return !blockSwipe && this.dragStartedWithinItem() && horizontalDrag;
+  };
+
+  scheduleUpdatePosition = () => {
+    if (this.requestedAnimationFrame) {
+      return;
     }
 
+    this.requestedAnimationFrame = requestAnimationFrame(() => {
+      this.requestedAnimationFrame = null;
+
+      this.updatePosition();
+    });
+  };
+
+  updatePosition = () => {
     const now = Date.now();
     const elapsed = now - this.startTime;
 
@@ -278,6 +296,26 @@ class SwipeableListItem extends PureComponent {
       this.listElement.style.transform = `translateX(${this.left}px)`;
 
       const opacity = (Math.abs(this.left) / 100).toFixed(2);
+
+      if (this.props.onSwipeProgress && this.listElement !== null) {
+        const listElementWidth = this.listElement.offsetWidth;
+        let swipeDistancePercent = this.previousSwipeDistancePercent;
+
+        if (listElementWidth !== 0) {
+          const swipeDistance = Math.max(
+            0,
+            listElementWidth - Math.abs(this.left)
+          );
+
+          swipeDistancePercent =
+            100 - Math.round((100 * swipeDistance) / listElementWidth);
+        }
+
+        if (this.previousSwipeDistancePercent !== swipeDistancePercent) {
+          this.props.onSwipeProgress(swipeDistancePercent);
+          this.previousSwipeDistancePercent = swipeDistancePercent;
+        }
+      }
 
       if (opacity < 1 && opacity.toString() !== contentToShow.style.opacity) {
         contentToShow.style.opacity = opacity.toString();
@@ -361,7 +399,11 @@ SwipeableListItem.propTypes = {
   swipeRight: SwipeActionPropType,
   scrollStartThreshold: PropTypes.number,
   swipeStartThreshold: PropTypes.number,
-  threshold: PropTypes.number
+  threshold: PropTypes.number,
+
+  onSwipeEnd: PropTypes.func,
+  onSwipeProgress: PropTypes.func,
+  onSwipeStart: PropTypes.func
 };
 
 export default SwipeableListItem;

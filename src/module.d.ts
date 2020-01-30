@@ -20,6 +20,9 @@ interface ISwipeableListItemProps {
   scrollStartThreshold?: number;
   swipeStartThreshold?: number;
   threshold?: number;
+  onSwipeStart?: () => void;
+  onSwipeEnd?: () => void;
+  onSwipeProgress?: (progress: number) => void;
 }
 
 export class SwipeableListItem extends React.Component<

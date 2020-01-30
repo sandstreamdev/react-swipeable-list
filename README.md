@@ -53,6 +53,7 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
       content: <div>Revealed content during swipe</div>,
       action: () => console.info('swipe action triggered')
     }}
+    onSwipeProgress={progress => console.info(`Swipe progress: ${progress}%`)}
   >
     <div>Item name</div>
   </SwipeableListItem>
@@ -131,6 +132,24 @@ It can be set for the whole list or for every item. See `swipeStartThreshold` fo
 Type: `number` (default: `0.5`)
 
 It can be set for the whole list or for every item. See `threshold` for `SwipeableList`. Value from the `SwipeableListItem` takes precedence.
+
+### onSwipeStart
+
+Type: `() => void`
+
+Fired after swipe has started (after drag gesture passes the `swipeStartThreshold` distance in pixels).
+
+### onSwipeEnd
+
+Type: `() => void`
+
+Fired after swipe has ended.
+
+### onSwipeProgress
+
+Type: `(progress: number) => void`
+
+Fired every time swipe progress changes. The reported `progress` value is always an integer in range 0 to 100 inclusive.
 
 ## Contributors ✨
 

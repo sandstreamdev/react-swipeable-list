@@ -242,3 +242,88 @@ test('swipe actions triggering if block swipe prop is set', () => {
   expect(callbackLeft).toHaveBeenCalledTimes(0);
   expect(callbackRight).toHaveBeenCalledTimes(0);
 });
+
+test('start and end callbacks not triggered if swipe content not defined', () => {
+  const callbackSwipeStart = jest.fn();
+  const callbackSwipeEnd = jest.fn();
+
+  const { getByTestId } = render(
+    <SwipeableListItem
+      onSwipeStart={callbackSwipeStart}
+      onSwipeEnd={callbackSwipeEnd}
+    >
+      <span>Item content</span>
+    </SwipeableListItem>
+  );
+
+  const contentContainer = getByTestId('content');
+  swipeLeftMouse(contentContainer);
+  swipeLeftTouch(contentContainer);
+  swipeRightMouse(contentContainer);
+  swipeRightTouch(contentContainer);
+
+  expect(callbackSwipeStart).toHaveBeenCalledTimes(0);
+  expect(callbackSwipeEnd).toHaveBeenCalledTimes(0);
+});
+
+test('start and end callbacks not triggered if blockSwipe is set', () => {
+  const callbackSwipeStart = jest.fn();
+  const callbackSwipeEnd = jest.fn();
+  const callbackLeft = jest.fn();
+
+  const { getByTestId } = render(
+    <SwipeableListItem
+      blockSwipe
+      swipeLeft={{
+        content: <span>Left swipe content</span>,
+        action: callbackLeft
+      }}
+      onSwipeStart={callbackSwipeStart}
+      onSwipeEnd={callbackSwipeEnd}
+    >
+      <span>Item content</span>
+    </SwipeableListItem>
+  );
+
+  const contentContainer = getByTestId('content');
+  swipeLeftMouse(contentContainer);
+  swipeLeftTouch(contentContainer);
+  swipeRightMouse(contentContainer);
+  swipeRightTouch(contentContainer);
+
+  expect(callbackSwipeStart).toHaveBeenCalledTimes(0);
+  expect(callbackSwipeEnd).toHaveBeenCalledTimes(0);
+});
+
+test('start and end callbacks triggered if swipe content is defined', () => {
+  const callbackSwipeStart = jest.fn();
+  const callbackSwipeEnd = jest.fn();
+  const callbackLeft = jest.fn();
+  const callbackRight = jest.fn();
+
+  const { getByTestId } = render(
+    <SwipeableListItem
+      swipeLeft={{
+        content: <span>Left swipe content</span>,
+        action: callbackLeft
+      }}
+      swipeRight={{
+        content: <span>Right swipe content</span>,
+        action: callbackRight
+      }}
+      onSwipeStart={callbackSwipeStart}
+      onSwipeEnd={callbackSwipeEnd}
+    >
+      <span>Item content</span>
+    </SwipeableListItem>
+  );
+
+  const contentContainer = getByTestId('content');
+  swipeLeftMouse(contentContainer);
+  swipeLeftTouch(contentContainer);
+  swipeRightMouse(contentContainer);
+  swipeRightTouch(contentContainer);
+
+  expect(callbackSwipeStart).toHaveBeenCalledTimes(4);
+  expect(callbackSwipeEnd).toHaveBeenCalledTimes(4);
+});
