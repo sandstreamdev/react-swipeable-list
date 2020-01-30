@@ -3,7 +3,7 @@ html {
 }
 
 h3 {
-  margin-bottom: 0;
+  margin-bottom: 8px;
   text-align: center;
 }
 
@@ -95,8 +95,8 @@ footer a:hover {
 }
 
 .actionInfo {
-  padding: 16px;
-  font-weight: 600;
+  padding: 0 8px 4px 8px;
+  font-weight: 400;
   font-size: 14px;
 }
 

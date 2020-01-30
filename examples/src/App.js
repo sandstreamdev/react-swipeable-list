@@ -11,8 +11,10 @@ import { MailIcon, ReplyIcon, DeleteIcon } from '../images/icons';
 import styles from './app.module.css';
 
 function App() {
-  const [triggeredSimpleItemAction, triggerSimpleItemAction] = useState('');
+  const [triggeredSimpleItemAction, triggerSimpleItemAction] = useState('None');
   const [triggeredComplexItemAction, triggerComplexItemAction] = useState('');
+  const [swipeProgress, handleSwipeProgress] = useState('0');
+  const [swipeAction, handleSwipeAction] = useState('None');
 
   const swipeRightDataSimple = name => ({
     content: (
@@ -64,30 +66,53 @@ function App() {
       triggerComplexItemAction(`Reply action triggered on "${name}" item`)
   });
 
+  const handleSwipeStart = () => {
+    triggerSimpleItemAction('None');
+    handleSwipeAction('Swipe started');
+  };
+
+  const handleSwipeEnd = () => {
+    handleSwipeAction('Swipe ended');
+  };
+
   return (
     <div className={styles.example}>
       <h3>react-swipeable-list example</h3>
       <h5>(try also mobile view in dev tools for touch events)</h5>
       <h3>Simple example (with default 0.5 action trigger threshold)</h3>
-      <span className={styles.actionInfo}>{triggeredSimpleItemAction}</span>
+      <span className={styles.actionInfo}>
+        Triggered action: {triggeredSimpleItemAction}
+      </span>
+      <span className={styles.actionInfo}>
+        Callback swipe action: {swipeAction}
+      </span>
+      <span className={styles.actionInfo}>
+        Callback swipe progress: {swipeProgress}
+      </span>
       <div className={styles.listContainer}>
         <SwipeableList>
           <SwipeableListItem
             swipeRight={swipeRightDataSimple('Item with swipe right')}
+            onSwipeStart={handleSwipeStart}
+            onSwipeEnd={handleSwipeEnd}
+            onSwipeProgress={handleSwipeProgress}
           >
             {itemContentSimple('Item with swipe right')}
           </SwipeableListItem>
           <SwipeableListItem
             swipeLeft={swipeLeftDataSimple('Item with swipe left')}
+            onSwipeStart={handleSwipeStart}
+            onSwipeEnd={handleSwipeEnd}
+            onSwipeProgress={handleSwipeProgress}
           >
             {itemContentSimple('Item with swipe left')}
           </SwipeableListItem>
           <SwipeableListItem
             swipeRight={swipeRightDataSimple('Item with both swipes')}
             swipeLeft={swipeLeftDataSimple('Item with both swipes')}
-            onSwipeStart={() => console.log('Swipe started')}
-            onSwipeEnd={() => console.log('Swipe ended')}
-            onSwipeProgress={progress => console.log(progress)}
+            onSwipeStart={handleSwipeStart}
+            onSwipeEnd={handleSwipeEnd}
+            onSwipeProgress={handleSwipeProgress}
           >
             {itemContentSimple('Item with both swipes')}
           </SwipeableListItem>
