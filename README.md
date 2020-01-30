@@ -149,7 +149,7 @@ Fired after swipe has ended.
 
 Type: (progress: number) => void
 
-Fired every time swipe progress changes.
+Fired every time swipe progress changes. Progress value is in range 0..100.
 
 ## Contributors ✨
 

@@ -204,8 +204,8 @@ test('right swipe action triggering if no left swipe defined', () => {
 
   const contentContainer = getByTestId('content');
 
-  // swipeLeftMouse(contentContainer);
-  // swipeLeftTouch(contentContainer);
+  swipeLeftMouse(contentContainer);
+  swipeLeftTouch(contentContainer);
   swipeRightMouse(contentContainer);
   swipeRightTouch(contentContainer);
 
