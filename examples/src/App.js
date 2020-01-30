@@ -13,7 +13,7 @@ import styles from './app.module.css';
 function App() {
   const [triggeredSimpleItemAction, triggerSimpleItemAction] = useState('None');
   const [triggeredComplexItemAction, triggerComplexItemAction] = useState('');
-  const [swipeProgress, handleSwipeProgress] = useState('0');
+  const [swipeProgress, handleSwipeProgress] = useState();
   const [swipeAction, handleSwipeAction] = useState('None');
 
   const swipeRightDataSimple = name => ({
@@ -73,6 +73,7 @@ function App() {
 
   const handleSwipeEnd = () => {
     handleSwipeAction('Swipe ended');
+    handleSwipeProgress();
   };
 
   return (
@@ -87,7 +88,7 @@ function App() {
         Callback swipe action: {swipeAction}
       </span>
       <span className={styles.actionInfo}>
-        Callback swipe progress: {swipeProgress}
+        Callback swipe progress: {swipeProgress || '-'}%
       </span>
       <div className={styles.listContainer}>
         <SwipeableList>
