@@ -88,7 +88,8 @@ function App() {
         Callback swipe action: {swipeAction}
       </span>
       <span className={styles.actionInfo}>
-        Callback swipe progress: {swipeProgress || '-'}%
+        Callback swipe progress:{' '}
+        {swipeProgress !== undefined ? swipeProgress : '-'}%
       </span>
       <div className={styles.listContainer}>
         <SwipeableList>
