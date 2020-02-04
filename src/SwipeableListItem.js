@@ -313,7 +313,9 @@ class SwipeableListItem extends PureComponent {
         return;
       }
 
-      this.listElement.style.transform = `translateX(${this.left}px)`;
+      if (this.listElement) {
+        this.listElement.style.transform = `translateX(${this.left}px)`;
+      }
 
       const opacity = (Math.abs(this.left) / 100).toFixed(2);
 
