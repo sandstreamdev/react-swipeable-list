@@ -170,7 +170,7 @@ class SwipeableListItem extends PureComponent {
     if (this.isSwiping()) {
       const threshold = this.props.threshold || 0.5;
 
-      if (this.listElement !== null) {
+      if (this.listElement) {
         if (this.left < this.listElement.offsetWidth * threshold * -1) {
           this.handleSwipedLeft();
         } else if (this.left > this.listElement.offsetWidth * threshold) {
@@ -185,7 +185,7 @@ class SwipeableListItem extends PureComponent {
 
     this.resetState();
 
-    if (this.listElement != null) {
+    if (this.listElement) {
       this.listElement.className = styles.contentReturn;
       this.listElement.style.transform = `translateX(${this.left}px)`;
     }
@@ -317,7 +317,7 @@ class SwipeableListItem extends PureComponent {
 
       const opacity = (Math.abs(this.left) / 100).toFixed(2);
 
-      if (this.props.onSwipeProgress && this.listElement !== null) {
+      if (this.props.onSwipeProgress && this.listElement) {
         const listElementWidth = this.listElement.offsetWidth;
         let swipeDistancePercent = this.previousSwipeDistancePercent;
 
