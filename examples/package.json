@@ -39,7 +39,7 @@
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.9.0",
     "eslint-plugin-prettier": "3.1.2",
-    "eslint-plugin-react": "7.18.0",
+    "eslint-plugin-react": "7.18.3",
     "eslint-plugin-react-hooks": "2.3.0",
     "gh-pages": "2.2.0",
     "html-webpack-plugin": "3.2.0",
@@ -51,11 +51,11 @@
     "url-loader": "3.0.0",
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.10.1"
+    "webpack-dev-server": "3.10.2"
   },
   "dependencies": {
     "@sandstreamdev/react-swipeable-list": "^0.4.0",
-    "@sandstreamdev/std": "0.9.0",
+    "@sandstreamdev/std": "0.10.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }
