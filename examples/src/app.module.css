@@ -70,6 +70,7 @@ footer a:hover {
   height: 100%;
   min-height: 100%;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .listContainer {
