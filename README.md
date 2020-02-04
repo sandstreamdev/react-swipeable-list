@@ -171,6 +171,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/wildeyes"><img src="https://avatars3.githubusercontent.com/u/1652108?v=4" width="100px;" alt=""/><br /><sub><b>wildeyes</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3Awildeyes" title="Bug reports">🐛</a></td>
     <td align="center"><a href="http://www.deruli.de"><img src="https://avatars0.githubusercontent.com/u/1799239?v=4" width="100px;" alt=""/><br /><sub><b>Der Uli im Netz</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3AderUli" title="Bug reports">🐛</a> <a href="#ideas-derUli" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/Iliyaz1995"><img src="https://avatars0.githubusercontent.com/u/31325754?v=4" width="100px;" alt=""/><br /><sub><b>Iliyaz syed</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3AIliyaz1995" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
