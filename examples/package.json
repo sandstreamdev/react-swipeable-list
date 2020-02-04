@@ -54,7 +54,7 @@
     "webpack-dev-server": "3.10.2"
   },
   "dependencies": {
-    "@sandstreamdev/react-swipeable-list": "^0.4.0",
+    "@sandstreamdev/react-swipeable-list": "0.4.1",
     "@sandstreamdev/std": "0.10.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
