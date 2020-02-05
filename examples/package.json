@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@sandstreamdev/react-swipeable-list": "0.4.1",
-    "@sandstreamdev/std": "0.10.0",
+    "@sandstreamdev/std": "0.10.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }
