@@ -57,7 +57,7 @@
     "rollup-plugin-copy": "3.3.0",
     "rollup-plugin-local-resolve": "1.0.7",
     "rollup-plugin-peer-deps-external": "2.2.2",
-    "rollup-plugin-postcss": "2.0.6",
+    "rollup-plugin-postcss": "2.1.1",
     "stylelint": "13.0.0",
     "stylelint-config-standard": "19.0.0"
   },
