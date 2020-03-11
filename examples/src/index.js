@@ -14,7 +14,7 @@ ReactDOM.render(
     <footer>
       <span>
         {`Made with ❤️ by `}
-        <a href="https://sandstream.pl/">Sandstream Development</a>
+        <a href="https://sanddev.com/">Sandstream Development</a>
       </span>
       <div>
         <span>
