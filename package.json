@@ -47,7 +47,7 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "25.1.0",
     "jest-transform-css": "2.0.0",
-    "lint-staged": "10.0.8",
+    "lint-staged": "10.0.9",
     "prettier": "1.19.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
