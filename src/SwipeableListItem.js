@@ -167,13 +167,17 @@ class SwipeableListItem extends PureComponent {
   };
 
   handleDragEnd = () => {
+    let actionTriggered = false;
+
     if (this.isSwiping()) {
       const threshold = this.props.threshold || 0.5;
 
       if (this.listElement) {
         if (this.left < this.listElement.offsetWidth * threshold * -1) {
+          actionTriggered = true;
           this.handleSwipedLeft();
         } else if (this.left > this.listElement.offsetWidth * threshold) {
+          actionTriggered = true;
           this.handleSwipedRight();
         }
       }
@@ -186,8 +190,13 @@ class SwipeableListItem extends PureComponent {
     this.resetState();
 
     if (this.listElement) {
-      this.listElement.className = styles.contentReturn;
-      this.listElement.style.transform = `translateX(${this.left}px)`;
+      if (this.props.swipeRight.endAnimation === 'delete' && actionTriggered) {
+        this.listElement.className = styles.contentRemove;
+        this.listElement.style.transform = `translateX(${this.listElement.offsetWidth}px)`;
+      } else {
+        this.listElement.className = styles.contentReturn;
+        this.listElement.style.transform = 'translateX(0px)';
+      }
     }
 
     // hide backgrounds
@@ -417,6 +426,7 @@ class SwipeableListItem extends PureComponent {
 SwipeableListItem.propTypes = {
   blockSwipe: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  // endAnimation: PropTypes.string,
   swipeLeft: SwipeActionPropType,
   swipeRight: SwipeActionPropType,
   scrollStartThreshold: PropTypes.number,

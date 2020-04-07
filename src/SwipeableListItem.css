@@ -50,3 +50,8 @@
   composes: content;
   transition: transform 0.5s ease-out;
 }
+
+.contentRemove {
+  composes: content;
+  transition: transform 0.35s ease-in;
+}
