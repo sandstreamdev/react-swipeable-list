@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface ISwipeableListProps {
+interface ISwipeableListProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   scrollStartThreshold?: number;
   swipeStartThreshold?: number;
   threshold?: number;

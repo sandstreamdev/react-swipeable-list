@@ -7,9 +7,15 @@ const SwipeableList = ({
   children,
   scrollStartThreshold,
   swipeStartThreshold,
-  threshold
+  threshold,
+  className,
+  ...rest
 }) => (
-  <div className={styles.swipeableList} data-testid="list-wrapper">
+  <div
+    className={`${styles.swipeableList} ${className}`}
+    data-testid="list-wrapper"
+    {...rest}
+  >
     {React.Children.map(children, child =>
       React.cloneElement(child, {
         scrollStartThreshold,
@@ -24,7 +30,8 @@ SwipeableList.propTypes = {
   children: PropTypes.node,
   scrollStartThreshold: PropTypes.number,
   swipeStartThreshold: PropTypes.number,
-  threshold: PropTypes.number
+  threshold: PropTypes.number,
+  className: PropTypes.string
 };
 
 export default SwipeableList;
