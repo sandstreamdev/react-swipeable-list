@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 import {
+  ActionAnimation,
   SwipeableList,
   SwipeableListItem
 } from '@sandstreamdev/react-swipeable-list';
@@ -35,7 +36,17 @@ function App() {
                       <span>Left content</span>
                     </div>
                   ),
-                  endAnimation: 'delete',
+                  actionAnimation: ActionAnimation.REMOVE,
+                  action: () =>
+                    setItems(items => items.filter(item => item.id !== id))
+                }}
+                swipeLeft={{
+                  content: (
+                    <div className={styles.contentRight}>
+                      <span>Right content</span>
+                    </div>
+                  ),
+                  actionAnimation: ActionAnimation.NONE,
                   action: () =>
                     setItems(items => items.filter(item => item.id !== id))
                 }}

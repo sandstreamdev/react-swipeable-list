@@ -23,7 +23,7 @@ const SwipeableList = ({
 );
 
 SwipeableList.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   scrollStartThreshold: PropTypes.number,
   swipeStartThreshold: PropTypes.number,
   threshold: PropTypes.number

@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 
 import styles from './SwipeableListItem.css';
 
+export const ActionAnimation = {
+  RETURN: 'RETURN',
+  REMOVE: 'REMOVE',
+  NONE: 'NONE'
+};
+
 const SwipeActionPropType = PropTypes.shape({
   action: PropTypes.func.isRequired,
+  actionAnimation: PropTypes.oneOf(Object.values(ActionAnimation)),
   content: PropTypes.node.isRequired
 });
 
@@ -166,19 +173,74 @@ class SwipeableListItem extends PureComponent {
     this.handleDragEnd();
   };
 
+  playReturnAnimation = () => {
+    const { contentLeft, contentRight, listElement } = this;
+
+    if (listElement) {
+      listElement.className = styles.contentReturn;
+      listElement.style.transform = 'translateX(0px)';
+    }
+
+    // hide backgrounds
+    if (contentLeft !== null) {
+      contentLeft.style.opacity = 0;
+      contentLeft.className = styles.contentLeftReturn;
+    }
+
+    if (contentRight !== null) {
+      contentRight.style.opacity = 0;
+      contentRight.className = styles.contentRightReturn;
+    }
+  };
+
+  playRemoveAnimation = direction => {
+    const { listElement } = this;
+
+    if (listElement) {
+      listElement.className = styles.contentRemove;
+      listElement.style.transform = `translateX(${
+        direction === DragDirection.LEFT ? '-' : ''
+      }${listElement.offsetWidth}px)`;
+    }
+  };
+
+  playActionAnimation = (type, direction) => {
+    const { listElement } = this;
+
+    if (listElement) {
+      switch (type) {
+        case ActionAnimation.REMOVE:
+          this.playRemoveAnimation(direction);
+          break;
+        case ActionAnimation.NONE:
+          break;
+        default:
+          this.playReturnAnimation();
+      }
+    }
+  };
+
   handleDragEnd = () => {
+    const { left, listElement, props } = this;
+    const { swipeLeft, swipeRight, threshold = 0.5 } = props;
     let actionTriggered = false;
 
     if (this.isSwiping()) {
-      const threshold = this.props.threshold || 0.5;
-
-      if (this.listElement) {
-        if (this.left < this.listElement.offsetWidth * threshold * -1) {
-          actionTriggered = true;
+      if (listElement) {
+        if (left < listElement.offsetWidth * threshold * -1) {
+          this.playActionAnimation(
+            swipeLeft.actionAnimation,
+            DragDirection.LEFT
+          );
           this.handleSwipedLeft();
-        } else if (this.left > this.listElement.offsetWidth * threshold) {
           actionTriggered = true;
+        } else if (left > listElement.offsetWidth * threshold) {
+          this.playActionAnimation(
+            swipeRight.actionAnimation,
+            DragDirection.RIGHT
+          );
           this.handleSwipedRight();
+          actionTriggered = true;
         }
       }
 
@@ -189,25 +251,8 @@ class SwipeableListItem extends PureComponent {
 
     this.resetState();
 
-    if (this.listElement) {
-      if (this.props.swipeRight.endAnimation === 'delete' && actionTriggered) {
-        this.listElement.className = styles.contentRemove;
-        this.listElement.style.transform = `translateX(${this.listElement.offsetWidth}px)`;
-      } else {
-        this.listElement.className = styles.contentReturn;
-        this.listElement.style.transform = 'translateX(0px)';
-      }
-    }
-
-    // hide backgrounds
-    if (this.contentLeft !== null) {
-      this.contentLeft.style.opacity = 0;
-      this.contentLeft.className = styles.contentLeftReturn;
-    }
-
-    if (this.contentRight !== null) {
-      this.contentRight.style.opacity = 0;
-      this.contentRight.className = styles.contentRightReturn;
+    if (!actionTriggered) {
+      this.playReturnAnimation();
     }
   };
 
@@ -426,7 +471,6 @@ class SwipeableListItem extends PureComponent {
 SwipeableListItem.propTypes = {
   blockSwipe: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  // endAnimation: PropTypes.string,
   swipeLeft: SwipeActionPropType,
   swipeRight: SwipeActionPropType,
   scrollStartThreshold: PropTypes.number,
