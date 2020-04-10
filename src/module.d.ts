@@ -1,6 +1,12 @@
 import * as React from 'react';
 
-interface ISwipeableListProps {
+enum ActionAnimation {
+  RETURN = 'RETURN',
+  REMOVE = 'REMOVE',
+  NONE = 'NONE'
+}
+
+export interface ISwipeableListProps {
   scrollStartThreshold?: number;
   swipeStartThreshold?: number;
   threshold?: number;
@@ -10,6 +16,7 @@ export class SwipeableList extends React.Component<ISwipeableListProps> {}
 
 interface ISwipeActionProps {
   action: () => void;
+  actionAnimation?: ActionAnimation;
   content: React.ReactNode;
 }
 
