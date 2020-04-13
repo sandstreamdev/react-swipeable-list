@@ -29,6 +29,26 @@ test('list rendering with items', () => {
   expect(getByText('Item content 2')).toBeInTheDocument();
 });
 
+test('list rendering with items when child as function', () => {
+  const { getByText } = render(
+    <SwipeableList>
+      {props => (
+        <>
+          <SwipeableListItem {...props}>
+            <span>Item content 1</span>
+          </SwipeableListItem>
+          <SwipeableListItem {...props}>
+            <span>Item content 2</span>
+          </SwipeableListItem>
+        </>
+      )}
+    </SwipeableList>
+  );
+
+  expect(getByText('Item content 1')).toBeInTheDocument();
+  expect(getByText('Item content 2')).toBeInTheDocument();
+});
+
 test('blocking swipe on scroll', () => {
   const callbackLeft = jest.fn();
   const callbackRight = jest.fn();

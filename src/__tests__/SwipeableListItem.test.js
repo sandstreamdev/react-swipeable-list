@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 
-import SwipeableListItem from '../SwipeableListItem';
+import SwipeableListItem, { ActionAnimation } from '../SwipeableListItem';
 import {
   swipeRightMouse,
   swipeRightTouch,
@@ -326,4 +326,128 @@ test('start and end callbacks triggered if swipe content is defined', () => {
 
   expect(callbackSwipeStart).toHaveBeenCalledTimes(4);
   expect(callbackSwipeEnd).toHaveBeenCalledTimes(4);
+});
+
+test('if remove animation is applied', () => {
+  const callbackLeft = jest.fn();
+  const callbackRight = jest.fn();
+
+  const { getByTestId } = render(
+    <SwipeableListItem
+      swipeLeft={{
+        content: <span>Left swipe content</span>,
+        actionAnimation: ActionAnimation.REMOVE,
+        action: callbackLeft
+      }}
+      swipeRight={{
+        content: <span>Right swipe content</span>,
+        actionAnimation: ActionAnimation.REMOVE,
+        action: callbackRight
+      }}
+    >
+      <span>Item content</span>
+    </SwipeableListItem>
+  );
+
+  const contentContainer = getByTestId('content');
+
+  swipeLeftMouse(contentContainer);
+  expect(contentContainer).toHaveClass('contentRemove');
+
+  swipeLeftTouch(contentContainer);
+  expect(contentContainer).toHaveClass('contentRemove');
+
+  swipeRightMouse(contentContainer);
+  expect(contentContainer).toHaveClass('contentRemove');
+
+  swipeRightTouch(contentContainer);
+  expect(contentContainer).toHaveClass('contentRemove');
+
+  expect(callbackLeft).toBeCalledTimes(2);
+  expect(callbackRight).toBeCalledTimes(2);
+});
+
+test('if return animation is applied', () => {
+  const callbackLeft = jest.fn();
+  const callbackRight = jest.fn();
+
+  const { getByTestId } = render(
+    <SwipeableListItem
+      swipeLeft={{
+        content: <span>Left swipe content</span>,
+        actionAnimation: ActionAnimation.RETURN,
+        action: callbackLeft
+      }}
+      swipeRight={{
+        content: <span>Right swipe content</span>,
+        action: callbackRight
+      }}
+    >
+      <span>Item content</span>
+    </SwipeableListItem>
+  );
+
+  const contentContainer = getByTestId('content');
+
+  swipeLeftMouse(contentContainer);
+  expect(contentContainer).toHaveClass('contentReturn');
+
+  swipeLeftTouch(contentContainer);
+  expect(contentContainer).toHaveClass('contentReturn');
+
+  swipeRightMouse(contentContainer);
+  expect(contentContainer).toHaveClass('contentReturn');
+
+  swipeRightTouch(contentContainer);
+  expect(contentContainer).toHaveClass('contentReturn');
+
+  expect(callbackLeft).toBeCalledTimes(2);
+  expect(callbackRight).toBeCalledTimes(2);
+});
+
+test('if none animation is applied', () => {
+  const callbackLeft = jest.fn();
+  const callbackRight = jest.fn();
+
+  const { getByTestId } = render(
+    <SwipeableListItem
+      swipeLeft={{
+        content: <span>Left swipe content</span>,
+        actionAnimation: ActionAnimation.NONE,
+        action: callbackLeft
+      }}
+      swipeRight={{
+        content: <span>Right swipe content</span>,
+        actionAnimation: ActionAnimation.NONE,
+        action: callbackRight
+      }}
+    >
+      <span>Item content</span>
+    </SwipeableListItem>
+  );
+
+  const contentContainer = getByTestId('content');
+
+  swipeLeftMouse(contentContainer);
+  expect(contentContainer).toHaveClass('content');
+  expect(contentContainer).not.toHaveClass('contentReturn');
+  expect(contentContainer).not.toHaveClass('contentRemove');
+
+  swipeLeftTouch(contentContainer);
+  expect(contentContainer).toHaveClass('content');
+  expect(contentContainer).not.toHaveClass('contentReturn');
+  expect(contentContainer).not.toHaveClass('contentRemove');
+
+  swipeRightMouse(contentContainer);
+  expect(contentContainer).toHaveClass('content');
+  expect(contentContainer).not.toHaveClass('contentReturn');
+  expect(contentContainer).not.toHaveClass('contentRemove');
+
+  swipeRightTouch(contentContainer);
+  expect(contentContainer).toHaveClass('content');
+  expect(contentContainer).not.toHaveClass('contentReturn');
+  expect(contentContainer).not.toHaveClass('contentRemove');
+
+  expect(callbackLeft).toBeCalledTimes(2);
+  expect(callbackRight).toBeCalledTimes(2);
 });
