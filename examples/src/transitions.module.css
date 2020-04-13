@@ -1,9 +1,0 @@
-.exit {
-  opacity: 1;
-}
-
-.exitActive {
-  opacity: 0;
-  max-height: 0;
-  transition: max-height 500ms, opacity 500ms;
-}

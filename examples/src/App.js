@@ -1,67 +1,78 @@
-import React, { useState } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { v4 as uuidv4 } from 'uuid';
-import {
-  ActionAnimation,
-  SwipeableList,
-  SwipeableListItem
-} from '@sandstreamdev/react-swipeable-list';
-import '@sandstreamdev/react-swipeable-list/dist/styles.css';
+import React, { PureComponent } from 'react';
+import { enumerable } from '@sandstreamdev/std/object';
+
+import BasicList from './basic/List';
+import ComplexList from './complex/List';
+import SizeToContentList from './size-to-content/List';
+import AnimationsList from './animations/List';
 
 import styles from './app.module.css';
-import transitionStyles from './transitions.module.css';
 
-function App() {
-  const [items, setItems] = useState([
-    { id: uuidv4(), text: 'Buy eggs' },
-    { id: uuidv4(), text: 'Pay bills' },
-    { id: uuidv4(), text: 'Invite friends over' },
-    { id: uuidv4(), text: 'Fix the TV' }
-  ]);
+const ExampleType = enumerable(
+  'BASIC',
+  'COMPLEX',
+  'SIZE_TO_CONTENT',
+  'ANIMATIONS'
+);
 
-  return (
-    <SwipeableList>
-      {props => (
-        <TransitionGroup className="todo-list">
-          {items.map(({ id, text }) => (
-            <CSSTransition
-              key={id}
-              timeout={2500}
-              classNames={transitionStyles}
-            >
-              <SwipeableListItem
-                swipeRight={{
-                  content: (
-                    <div className={styles.contentLeft}>
-                      <span>Left content</span>
-                    </div>
-                  ),
-                  actionAnimation: ActionAnimation.REMOVE,
-                  action: () =>
-                    setItems(items => items.filter(item => item.id !== id))
-                }}
-                swipeLeft={{
-                  content: (
-                    <div className={styles.contentRight}>
-                      <span>Right content</span>
-                    </div>
-                  ),
-                  actionAnimation: ActionAnimation.NONE,
-                  action: () =>
-                    setItems(items => items.filter(item => item.id !== id))
-                }}
-                {...props}
-              >
-                <div className={styles.listItem}>
-                  <span>{text}</span>
-                </div>
-              </SwipeableListItem>
-            </CSSTransition>
+const Examples = [
+  { id: ExampleType.BASIC, text: 'Basic text items' },
+  { id: ExampleType.COMPLEX, text: 'Complex items and scroll' },
+  {
+    id: ExampleType.SIZE_TO_CONTENT,
+    text: 'List in size to content container'
+  },
+  { id: ExampleType.ANIMATIONS, text: 'Animations' }
+];
+
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedExample: ExampleType.ANIMATIONS
+    };
+  }
+
+  renderExample = () => {
+    const { selectedExample } = this.state;
+
+    switch (selectedExample) {
+      case ExampleType.BASIC:
+        return <BasicList />;
+      case ExampleType.COMPLEX:
+        return <ComplexList />;
+      case ExampleType.SIZE_TO_CONTENT:
+        return <SizeToContentList />;
+      case ExampleType.ANIMATIONS:
+        return <AnimationsList />;
+    }
+
+    return null;
+  };
+
+  handleSelectExample = event => {
+    this.setState({ selectedExample: event.target.value });
+  };
+
+  render() {
+    const { selectedExample } = this.state;
+
+    return (
+      <div className={styles.example}>
+        <h1>react-swipeable-list example</h1>
+        <h5>(try also mobile view in dev tools for touch events)</h5>
+        <select onChange={this.handleSelectExample} value={selectedExample}>
+          {Examples.map(item => (
+            <option key={item.id} value={item.id}>
+              {item.text}
+            </option>
           ))}
-        </TransitionGroup>
-      )}
-    </SwipeableList>
-  );
+        </select>
+        {this.renderExample()}
+      </div>
+    );
+  }
 }
 
 export default App;

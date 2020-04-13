@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './ComplexListItem.module.css';
+import styles from './ListItem.module.css';
 
 const ComplexListItem = ({ description, icon, name }) => (
   <div className={styles.listItemComponent}>

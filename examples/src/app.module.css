@@ -1,9 +1,5 @@
-h3 {
-  margin-bottom: 8px;
-  text-align: center;
-}
-
 body,
+h3,
 h5 {
   margin: 0;
 }
@@ -39,8 +35,9 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 56px 0;
+  padding: 32px 0;
   text-align: center;
+  margin-top: auto;
 }
 
 a {
@@ -75,6 +72,9 @@ footer a:hover {
 
 .listContainer {
   width: 100%;
+  margin: 24px 0;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 
 .listItem {
@@ -99,15 +99,20 @@ footer a:hover {
 }
 
 .contentRight {
-  composes: contentLeft;
+  composes: contentleft;
   background-color: green;
   justify-content: flex-end;
 }
 
 .actionInfo {
-  padding: 0 8px 4px 8px;
-  font-weight: 400;
+  padding: 0 8px;
+  font-weight: 600;
   font-size: 14px;
+}
+
+.actionInfoValue {
+  font-size: 12px;
+  padding-bottom: 4px;
 }
 
 .complexListContainer {
@@ -116,6 +121,41 @@ footer a:hover {
   min-height: 180px;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
+  margin: 24px 0;
+}
+
+select {
+  height: 32px;
+  padding: 4px;
+  margin: 8px 16px;
+  font-size: 16px;
+  align-self: stretch;
+}
+
+select:focus {
+  outline: none;
+}
+
+button {
+  height: 32px;
+  padding: 4px 8px;
+  margin: 8px 16px;
+  font-size: 16px;
+}
+
+.switcher {
+  align-self: auto;
+}
+
+.switcherRow {
+  padding-top: 8px;
+}
+
+.summary {
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (min-device-width: 1200px) {
@@ -164,5 +204,10 @@ footer a:hover {
     width: 360px;
     height: 640px;
     background: white;
+  }
+
+  footer {
+    padding: 56px 0;
+    margin-top: unset;
   }
 }
