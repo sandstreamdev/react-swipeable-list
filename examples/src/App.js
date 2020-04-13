@@ -30,7 +30,7 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      selectedExample: ExampleType.ANIMATIONS
+      selectedExample: ExampleType.BASIC
     };
   }
 
