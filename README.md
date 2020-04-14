@@ -17,7 +17,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/sandstreamdev/react-swipeable-list.svg)](https://greenkeeper.io/)
 [![codecov](https://codecov.io/gh/sandstreamdev/react-swipeable-list/branch/master/graph/badge.svg)](https://codecov.io/gh/sandstreamdev/react-swipeable-list)
 ![GitHub Release Date](https://img.shields.io/github/release-date/sandstreamdev/react-swipeable-list)
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors)
 
 ## React Swipeable List component
 
@@ -57,6 +57,32 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
   >
     <div>Item name</div>
   </SwipeableListItem>
+</SwipeableList>
+```
+
+or use function as children pattern if other container is needed (check animation example)
+
+```jsx
+<SwipeableList>
+  {props => (
+    <TransitionGroup>
+      <CSSTransition>
+        <SwipeableListItem
+          swipeLeft={{
+            content: <div>Revealed content during swipe</div>,
+            action: () => console.info('swipe action triggered')
+          }}
+          swipeRight={{
+            content: <div>Revealed content during swipe</div>,
+            action: () => console.info('swipe action triggered')
+          }}
+          {...props}
+        >
+          <div>Item name</div>
+        </SwipeableListItem>
+      </CSSTransition>
+    </TransitionGroup>
+  )}
 </SwipeableList>
 ```
 
@@ -103,9 +129,29 @@ Data for defining left swipe action and rendering content after item is swiped. 
 ```js
 {
   action,  // required: swipe action (function)
+  actionAnimation, // optional: type of animation
   content, // required: HTML or React component
 }
 ```
+
+#### action
+
+Type: `function` (required)
+
+Callback function that should be run when swipe is done beyond threshold.
+
+
+#### actionAnimation
+
+Type: `ActionAnimation (RETURN | REMOVE | NONE)` (optional, default: RETURN)
+
+Animation type to be played swipe is done beyond threshold.
+
+#### content
+
+Type: `Anything that can be rendered` (required)
+
+Content that is revealed when swiping.
 
 ### swipeRight
 
