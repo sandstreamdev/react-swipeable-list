@@ -21,7 +21,7 @@
 }
 
 .contentLeft {
-  composes: contentright; /* stylelint-disable-line value-keyword-case */
+  composes: contentRight; /* stylelint-disable-line value-keyword-case */
   justify-content: flex-end;
 }
 
@@ -30,11 +30,11 @@
 }
 
 .contentLeftReturn {
-  composes: contentleft return; /* stylelint-disable-line value-keyword-case */
+  composes: contentLeft return; /* stylelint-disable-line value-keyword-case */
 }
 
 .contentRightReturn {
-  composes: contentright return; /* stylelint-disable-line value-keyword-case */
+  composes: contentRight return; /* stylelint-disable-line value-keyword-case */
 }
 
 .content {
