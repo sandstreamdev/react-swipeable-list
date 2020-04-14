@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-enum ActionAnimation {
+export enum ActionAnimations {
   RETURN = 'RETURN',
   REMOVE = 'REMOVE',
   NONE = 'NONE'
@@ -16,7 +16,7 @@ export class SwipeableList extends React.Component<ISwipeableListProps> {}
 
 interface ISwipeActionProps {
   action: () => void;
-  actionAnimation?: ActionAnimation;
+  actionAnimation?: ActionAnimations;
   content: React.ReactNode;
 }
 

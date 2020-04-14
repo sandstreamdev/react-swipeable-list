@@ -99,7 +99,7 @@ footer a:hover {
 }
 
 .contentRight {
-  composes: contentLeft; /* stylelint-disable-line */
+  composes: contentleft; /* stylelint-disable-line value-keyword-case */
   background-color: green;
   justify-content: flex-end;
 }

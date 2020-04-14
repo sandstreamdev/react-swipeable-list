@@ -62,7 +62,7 @@ class App extends PureComponent {
       <div className={styles.example}>
         <h1>react-swipeable-list example</h1>
         <h5>(try also mobile view in dev tools for touch events)</h5>
-        <select onChange={this.handleSelectExample} value={selectedExample}>
+        <select value={selectedExample} onChange={this.handleSelectExample}>
           {Examples.map(item => (
             <option key={item.id} value={item.id}>
               {item.text}

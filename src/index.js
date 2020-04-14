@@ -1,4 +1,4 @@
 import SwipeableList from './SwipeableList';
-import SwipeableListItem, { ActionAnimation } from './SwipeableListItem';
+import SwipeableListItem, { ActionAnimations } from './SwipeableListItem';
 
-export { ActionAnimation, SwipeableList, SwipeableListItem };
+export { ActionAnimations, SwipeableList, SwipeableListItem };

@@ -14,38 +14,38 @@ import styles from '../app.module.css';
 
 const SizeToContentList = () => {
   const [items] = useState([
-    { id: 1, text: 'First', description: 'first decsription' },
-    { id: 2, text: 'Second', description: 'second decsription' },
-    { id: 3, text: 'Third', description: 'third decsription' },
-    { id: 4, text: 'Fourth', description: 'fourth decsription' },
-    { id: 5, text: 'Fifth', description: 'fifth decsription' },
-    { id: 6, text: 'Sixth', description: 'sixth decsription' },
-    { id: 7, text: 'Seventh', description: 'seventh decsription' },
-    { id: 8, text: 'Eighth', description: 'eighth decsription' },
-    { id: 9, text: 'Ninth', description: 'ninth decsription' },
-    { id: 10, text: 'Tenth', description: 'tenth decsription' },
-    { id: 11, text: 'Eleventh', description: 'eleventh decsription' },
-    { id: 12, text: 'Twelfth', description: 'twelfth decsription' }
+    { id: 1, text: 'First', description: 'first description' },
+    { id: 2, text: 'Second', description: 'second description' },
+    { id: 3, text: 'Third', description: 'third description' },
+    { id: 4, text: 'Fourth', description: 'fourth description' },
+    { id: 5, text: 'Fifth', description: 'fifth description' },
+    { id: 6, text: 'Sixth', description: 'sixth description' },
+    { id: 7, text: 'Seventh', description: 'seventh description' },
+    { id: 8, text: 'Eighth', description: 'eighth description' },
+    { id: 9, text: 'Ninth', description: 'ninth description' },
+    { id: 10, text: 'Tenth', description: 'tenth description' },
+    { id: 11, text: 'Eleventh', description: 'eleventh description' },
+    { id: 12, text: 'Twelfth', description: 'twelfth description' }
   ]);
 
-  const swipeRightData = () => ({
+  const swipeRightOptions = () => ({
     content: (
       <ItemContent
+        color="red"
         icon={<DeleteIcon />}
         label="Delete"
         side="right"
-        color="red"
       />
     ),
     action: identity
   });
 
-  const swipeLeftData = () => ({
+  const swipeLeftOptions = () => ({
     content: (
       <ItemContent
+        color="green"
         icon={<ReplyIcon />}
         label="Reply"
-        color="green"
         side="left"
       />
     ),
@@ -58,13 +58,13 @@ const SizeToContentList = () => {
         {items.map(({ id, text, description }) => (
           <SwipeableListItem
             key={id}
-            swipeLeft={swipeLeftData(text)}
-            swipeRight={swipeRightData(text)}
+            swipeLeft={swipeLeftOptions(text)}
+            swipeRight={swipeRightOptions(text)}
           >
             <ListItem
+              description={description}
               icon={<MailIcon />}
               name={text}
-              description={description}
             />
           </SwipeableListItem>
         ))}

@@ -16,30 +16,30 @@ const ComplexList = () => {
   const [swipeProgress, handleSwipeProgress] = useState();
   const [swipeAction, handleSwipeAction] = useState('None');
   const [items] = useState([
-    { id: 1, text: 'First', description: 'first decsription' },
-    { id: 2, text: 'Second', description: 'second decsription' },
-    { id: 3, text: 'Third', description: 'third decsription' },
-    { id: 4, text: 'Fourth', description: 'fourth decsription' }
+    { id: 1, text: 'First', description: 'first description' },
+    { id: 2, text: 'Second', description: 'second description' },
+    { id: 3, text: 'Third', description: 'third description' },
+    { id: 4, text: 'Fourth', description: 'fourth description' }
   ]);
 
-  const swipeRightData = name => ({
+  const swipeRightOptions = name => ({
     content: (
       <ItemContent
+        color="red"
         icon={<DeleteIcon />}
         label="Delete"
         side="right"
-        color="red"
       />
     ),
     action: () => triggerItemAction(`Delete action triggered on "${name}" item`)
   });
 
-  const swipeLeftData = name => ({
+  const swipeLeftOptions = name => ({
     content: (
       <ItemContent
+        color="green"
         icon={<ReplyIcon />}
         label="Reply"
-        color="green"
         side="left"
       />
     ),
@@ -56,41 +56,40 @@ const ComplexList = () => {
     handleSwipeProgress();
   };
 
+  const threshold = 0.25;
+
   return (
     <>
       <span className={styles.actionInfo}>
-        List in smaller container (trigger threshold: 0.25)
+        List in smaller container (trigger threshold: {threshold})
       </span>
       <div className={styles.complexListContainer}>
-        <SwipeableList threshold={0.25}>
+        <SwipeableList threshold={threshold}>
           {items.map(({ id, text, description }) => (
             <SwipeableListItem
               key={id}
-              swipeLeft={swipeLeftData(text)}
-              swipeRight={swipeRightData(text)}
-              onSwipeStart={handleSwipeStart}
+              swipeLeft={swipeLeftOptions(text)}
+              swipeRight={swipeRightOptions(text)}
               onSwipeEnd={handleSwipeEnd}
               onSwipeProgress={handleSwipeProgress}
+              onSwipeStart={handleSwipeStart}
             >
               <ListItem
+                description={description}
                 icon={<MailIcon />}
                 name={text}
-                description={description}
               />
             </SwipeableListItem>
           ))}
         </SwipeableList>
       </div>
-
       <div className={styles.summary}>
         <span className={styles.actionInfo}>Triggered action:</span>
         <span className={styles.actionInfoValue}>{triggeredItemAction}</span>
         <span className={styles.actionInfo}>Callback swipe action:</span>
         <span className={styles.actionInfoValue}>{swipeAction}</span>
         <span className={styles.actionInfo}>Callback swipe progress:</span>
-        <span className={styles.actionInfoValue}>
-          {swipeProgress !== undefined ? swipeProgress : '-'}%
-        </span>
+        <span className={styles.actionInfoValue}>{swipeProgress ?? '-'}%</span>
       </div>
     </>
   );

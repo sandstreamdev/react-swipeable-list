@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "es6": true,
     "node": true,
     "jest": true
   },
@@ -18,6 +19,10 @@
   },
   "rules": {
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error"
+    "react-hooks/exhaustive-deps": "error",
+    "react/jsx-sort-props": [
+      "error",
+      { "callbacksLast": true, "shorthandFirst": true }
+    ]
   }
 }

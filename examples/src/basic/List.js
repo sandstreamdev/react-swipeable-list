@@ -12,7 +12,7 @@ const SimpleList = () => {
   const [swipeProgress, handleSwipeProgress] = useState();
   const [swipeAction, handleSwipeAction] = useState('None');
 
-  const swipeRightData = name => ({
+  const swipeRightOptions = name => ({
     content: (
       <div className={styles.contentLeft}>
         <span>Left content</span>
@@ -21,7 +21,7 @@ const SimpleList = () => {
     action: () => triggerItemAction(`Swipe right action on "${name}"`)
   });
 
-  const swipeLeftData = name => ({
+  const swipeLeftOptions = name => ({
     content: (
       <div className={styles.contentRight}>
         <span>Right content</span>
@@ -52,27 +52,27 @@ const SimpleList = () => {
       <div className={styles.listContainer}>
         <SwipeableList>
           <SwipeableListItem
-            swipeRight={swipeRightData('Item with swipe right')}
-            onSwipeStart={handleSwipeStart}
+            swipeRight={swipeRightOptions('Item with swipe right')}
             onSwipeEnd={handleSwipeEnd}
             onSwipeProgress={handleSwipeProgress}
+            onSwipeStart={handleSwipeStart}
           >
             {itemContent('Item with swipe right')}
           </SwipeableListItem>
           <SwipeableListItem
-            swipeLeft={swipeLeftData('Item with swipe left')}
-            onSwipeStart={handleSwipeStart}
+            swipeLeft={swipeLeftOptions('Item with swipe left')}
             onSwipeEnd={handleSwipeEnd}
             onSwipeProgress={handleSwipeProgress}
+            onSwipeStart={handleSwipeStart}
           >
             {itemContent('Item with swipe left')}
           </SwipeableListItem>
           <SwipeableListItem
-            swipeRight={swipeRightData('Item with both swipes')}
-            swipeLeft={swipeLeftData('Item with both swipes')}
-            onSwipeStart={handleSwipeStart}
+            swipeLeft={swipeLeftOptions('Item with both swipes')}
+            swipeRight={swipeRightOptions('Item with both swipes')}
             onSwipeEnd={handleSwipeEnd}
             onSwipeProgress={handleSwipeProgress}
+            onSwipeStart={handleSwipeStart}
           >
             {itemContent('Item with both swipes')}
           </SwipeableListItem>
@@ -87,9 +87,7 @@ const SimpleList = () => {
         <span className={styles.actionInfo}>Callback swipe action:</span>
         <span className={styles.actionInfoValue}>{swipeAction}</span>
         <span className={styles.actionInfo}>Callback swipe progress:</span>
-        <span className={styles.actionInfoValue}>
-          {swipeProgress !== undefined ? swipeProgress : '-'}%
-        </span>
+        <span className={styles.actionInfoValue}>{swipeProgress ?? '-'}%</span>
       </div>
     </>
   );

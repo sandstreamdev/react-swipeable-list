@@ -2,21 +2,27 @@ import React, { useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  ActionAnimation,
+  ActionAnimations,
   SwipeableList,
   SwipeableListItem
 } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
-import { mapValues } from '@sandstreamdev/std/object';
+import { findKey, mapEntries } from '@sandstreamdev/std/object';
 
 import styles from '../app.module.css';
 import transitionStyles from './transitions.module.css';
 
+const itemContent = name => (
+  <div className={styles.listItem}>
+    <span>{name}</span>
+  </div>
+);
+
 const SimpleList = () => {
   const [contentAnimation, setContentAnimation] = useState(
-    ActionAnimation.REMOVE
+    ActionAnimations.REMOVE
   );
-  const [listAnimations, setListAnimations] = useState('on');
+  const [listAnimations, setListAnimations] = useState(true);
   const [items, setItems] = useState(() => [
     { id: uuidv4(), text: 'Item 1' },
     { id: uuidv4(), text: 'Item 2' },
@@ -24,65 +30,67 @@ const SimpleList = () => {
     { id: uuidv4(), text: 'Item 4' }
   ]);
 
+  const deleteItemById = id =>
+    setItems(items => items.filter(item => item.id !== id));
+
   const addItem = () =>
     setItems([...items, { id: uuidv4(), text: `New item` }]);
 
-  const swipeRightData = id => ({
+  const swipeRightOptions = id => ({
     content: (
       <div className={styles.contentLeft}>
         <span>Delete</span>
       </div>
     ),
     actionAnimation: contentAnimation,
-    action: () => setItems(items => items.filter(item => item.id !== id))
+    action: () => deleteItemById(id)
   });
 
-  const swipeLeftData = id => ({
+  const swipeLeftOptions = id => ({
     content: (
       <div className={styles.contentRight}>
         <span>Delete</span>
       </div>
     ),
     actionAnimation: contentAnimation,
-    action: () => setItems(items => items.filter(item => item.id !== id))
+    action: () => deleteItemById(id)
   });
 
-  const itemContent = name => (
-    <div className={styles.listItem}>
-      <span>{name}</span>
-    </div>
-  );
-
   const handleChangeActionAnimation = ({ target: { value } }) =>
-    setContentAnimation(value);
+    setContentAnimation(ActionAnimations[value]);
 
   const handleChangeListAnimations = ({ target: { value } }) =>
-    setListAnimations(value);
+    setListAnimations(value === 'true');
+
+  const threshold = 0.33;
+  const transitionTimeout = 2500;
 
   return (
     <>
       <span className={styles.actionInfo}>
-        Swipe to delete (trigger threshold: 0.33)
+        Swipe to delete (trigger threshold: {threshold})
       </span>
       <div className={styles.listContainer}>
-        <SwipeableList threshold={0.33}>
-          {props => (
+        <SwipeableList threshold={threshold}>
+          {({ scrollStartThreshold, swipeStartThreshold, threshold }) => (
             <TransitionGroup
               className="todo-list"
-              enter={listAnimations === 'on'}
-              exit={listAnimations === 'on'}
+              enter={listAnimations}
+              exit={listAnimations}
             >
               {items.map(({ id, text }) => (
                 <CSSTransition
-                  key={id}
-                  timeout={2500}
                   classNames={transitionStyles}
+                  key={id}
+                  timeout={transitionTimeout}
                 >
                   <SwipeableListItem
                     key={id}
-                    swipeLeft={swipeLeftData(id)}
-                    swipeRight={swipeRightData(id)}
-                    {...props}
+                    scrollStartThreshold={scrollStartThreshold}
+                    swipeLeft={swipeLeftOptions(id)}
+                    swipeRight={swipeRightOptions(id)}
+                    swipeStartThreshold={swipeStartThreshold}
+                    threshold={threshold}
                   >
                     {itemContent(text)}
                   </SwipeableListItem>
@@ -96,26 +104,26 @@ const SimpleList = () => {
       <div className={styles.switcherRow}>
         <span>Item content animation:</span>
         <select
-          onChange={handleChangeActionAnimation}
-          value={contentAnimation}
           className={styles.switcher}
+          value={findKey(value => value === contentAnimation)(ActionAnimations)}
+          onChange={handleChangeActionAnimation}
         >
-          {mapValues(item => (
-            <option key={item} value={item}>
-              {item}
+          {mapEntries((value, key) => (
+            <option key={key} value={key}>
+              {value.description}
             </option>
-          ))(ActionAnimation)}
+          ))(ActionAnimations)}
         </select>
       </div>
       <div>
         <span>List content animations:</span>
         <select
-          onChange={handleChangeListAnimations}
-          value={listAnimations}
           className={styles.switcher}
+          value={listAnimations}
+          onChange={handleChangeListAnimations}
         >
-          <option value="on">ON</option>
-          <option value="off">OFF</option>
+          <option value="true">ON</option>
+          <option value="false">OFF</option>
         </select>
       </div>
     </>

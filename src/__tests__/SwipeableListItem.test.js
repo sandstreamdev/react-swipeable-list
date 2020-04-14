@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 
-import SwipeableListItem, { ActionAnimation } from '../SwipeableListItem';
+import SwipeableListItem, { ActionAnimations } from '../SwipeableListItem';
 import {
   swipeRightMouse,
   swipeRightTouch,
@@ -249,8 +249,8 @@ test('start and end callbacks not triggered if swipe content not defined', () =>
 
   const { getByTestId } = render(
     <SwipeableListItem
-      onSwipeStart={callbackSwipeStart}
       onSwipeEnd={callbackSwipeEnd}
+      onSwipeStart={callbackSwipeStart}
     >
       <span>Item content</span>
     </SwipeableListItem>
@@ -278,8 +278,8 @@ test('start and end callbacks not triggered if blockSwipe is set', () => {
         content: <span>Left swipe content</span>,
         action: callbackLeft
       }}
-      onSwipeStart={callbackSwipeStart}
       onSwipeEnd={callbackSwipeEnd}
+      onSwipeStart={callbackSwipeStart}
     >
       <span>Item content</span>
     </SwipeableListItem>
@@ -311,8 +311,8 @@ test('start and end callbacks triggered if swipe content is defined', () => {
         content: <span>Right swipe content</span>,
         action: callbackRight
       }}
-      onSwipeStart={callbackSwipeStart}
       onSwipeEnd={callbackSwipeEnd}
+      onSwipeStart={callbackSwipeStart}
     >
       <span>Item content</span>
     </SwipeableListItem>
@@ -336,12 +336,12 @@ test('if remove animation is applied', () => {
     <SwipeableListItem
       swipeLeft={{
         content: <span>Left swipe content</span>,
-        actionAnimation: ActionAnimation.REMOVE,
+        actionAnimation: ActionAnimations.REMOVE,
         action: callbackLeft
       }}
       swipeRight={{
         content: <span>Right swipe content</span>,
-        actionAnimation: ActionAnimation.REMOVE,
+        actionAnimation: ActionAnimations.REMOVE,
         action: callbackRight
       }}
     >
@@ -375,7 +375,7 @@ test('if return animation is applied', () => {
     <SwipeableListItem
       swipeLeft={{
         content: <span>Left swipe content</span>,
-        actionAnimation: ActionAnimation.RETURN,
+        actionAnimation: ActionAnimations.RETURN,
         action: callbackLeft
       }}
       swipeRight={{
@@ -413,12 +413,12 @@ test('if none animation is applied', () => {
     <SwipeableListItem
       swipeLeft={{
         content: <span>Left swipe content</span>,
-        actionAnimation: ActionAnimation.NONE,
+        actionAnimation: ActionAnimations.NONE,
         action: callbackLeft
       }}
       swipeRight={{
         content: <span>Right swipe content</span>,
-        actionAnimation: ActionAnimation.NONE,
+        actionAnimation: ActionAnimations.NONE,
         action: callbackRight
       }}
     >

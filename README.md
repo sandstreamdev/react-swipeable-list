@@ -143,7 +143,7 @@ Callback function that should be run when swipe is done beyond threshold.
 
 #### actionAnimation
 
-Type: `ActionAnimation (RETURN | REMOVE | NONE)` (optional, default: RETURN)
+Type: `ActionAnimations (RETURN | REMOVE | NONE)` (optional, default: RETURN)
 
 Animation type to be played swipe is done beyond threshold.
 
