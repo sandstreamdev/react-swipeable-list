@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   SwipeableList,
   SwipeableListItem
@@ -13,7 +13,7 @@ import { MailIcon, ReplyIcon, DeleteIcon } from '../../images/icons';
 import styles from '../app.module.css';
 
 const SizeToContentList = () => {
-  const [items] = useState([
+  const items = [
     { id: 1, text: 'First', description: 'first description' },
     { id: 2, text: 'Second', description: 'second description' },
     { id: 3, text: 'Third', description: 'third description' },
@@ -26,7 +26,7 @@ const SizeToContentList = () => {
     { id: 10, text: 'Tenth', description: 'tenth description' },
     { id: 11, text: 'Eleventh', description: 'eleventh description' },
     { id: 12, text: 'Twelfth', description: 'twelfth description' }
-  ]);
+  ];
 
   const swipeRightOptions = () => ({
     content: (

@@ -90,7 +90,7 @@ or use function as children pattern if other container is needed (check animatio
 
 ### scrollStartThreshold
 
-Type: `number` (default: `10`)
+Type: `number` (optional, default: `10`)
 
 How far in pixels scroll needs to be done to block swiping. After scrolling is started and goes beyond the threshold, swiping is blocked.
 
@@ -98,7 +98,7 @@ It can be set for the whole list or for every item. See `scrollStartThreshold` f
 
 ### swipeStartThreshold
 
-Type: `number` (default: `10`)
+Type: `number` (optional, default: `10`)
 
 How far in pixels swipe needs to be done to start swiping on list item. After a swipe is started and goes beyond the threshold, scrolling is blocked.
 
@@ -106,7 +106,7 @@ It can be set for the whole list or for every item. See `swipeStartThreshold` fo
 
 ### threshold
 
-Type: `number` (default: `0.5`)
+Type: `number` (optional, default: `0.5`)
 
 How far swipe needs to be done to trigger attached action. `0.5` means that item needs to be swiped to half of its width, `0.25` - one-quarter of width.
 
@@ -116,13 +116,13 @@ It can be set for the whole list or for every item. See `threshold` for `Swipeab
 
 ### blockSwipe
 
-Type: `boolean` (default: `false`)
+Type: `boolean` (optional, default: `false`)
 
 If set to `true` all defined swipe actions are blocked.
 
 ### swipeLeft
 
-Type: `Object`
+Type: `Object` (optional)
 
 Data for defining left swipe action and rendering content after item is swiped. The object requires following structure:
 
@@ -143,7 +143,7 @@ Callback function that should be run when swipe is done beyond threshold.
 
 #### actionAnimation
 
-Type: `ActionAnimations (RETURN | REMOVE | NONE)` (optional, default: RETURN)
+Type: `ActionAnimations (RETURN | REMOVE | NONE)` (optional, default: `RETURN`)
 
 Animation type to be played swipe is done beyond threshold.
 
@@ -163,6 +163,8 @@ Same as `swipeLeft` but to right. :wink:
 
 Type: `number` (default: `10`)
 
+How far in pixels scroll needs to be done to block swiping. After scrolling is started and goes beyond the threshold, swiping is blocked.
+
 It can be set for the whole list or for every item. See `scrollStartThreshold` for `SwipeableList`. Value from the `SwipeableListItem` takes precedence.
 
 ### swipeStartThreshold
@@ -176,6 +178,8 @@ It can be set for the whole list or for every item. See `swipeStartThreshold` fo
 ### threshold
 
 Type: `number` (default: `0.5`)
+
+How far swipe needs to be done to trigger attached action. `0.5` means that item needs to be swiped to half of its width, `0.25` - one-quarter of width.
 
 It can be set for the whole list or for every item. See `threshold` for `SwipeableList`. Value from the `SwipeableListItem` takes precedence.
 
