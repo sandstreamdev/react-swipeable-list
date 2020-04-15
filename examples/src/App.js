@@ -5,6 +5,7 @@ import BasicList from './basic/List';
 import ComplexList from './complex/List';
 import SizeToContentList from './size-to-content/List';
 import AnimationsList from './animations/List';
+import StyledList from './styled/List';
 
 import styles from './app.module.css';
 
@@ -12,7 +13,8 @@ const ExampleType = enumerable(
   'BASIC',
   'COMPLEX',
   'SIZE_TO_CONTENT',
-  'ANIMATIONS'
+  'ANIMATIONS',
+  'STYLED'
 );
 
 const Examples = [
@@ -22,7 +24,8 @@ const Examples = [
     id: ExampleType.SIZE_TO_CONTENT,
     text: 'List in size to content container'
   },
-  { id: ExampleType.ANIMATIONS, text: 'Animations' }
+  { id: ExampleType.ANIMATIONS, text: 'Animations' },
+  { id: ExampleType.STYLED, text: 'Custom container' }
 ];
 
 class App extends PureComponent {
@@ -46,6 +49,8 @@ class App extends PureComponent {
         return <SizeToContentList />;
       case ExampleType.ANIMATIONS:
         return <AnimationsList />;
+      case ExampleType.STYLED:
+        return <StyledList />;
     }
 
     return null;

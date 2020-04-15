@@ -112,9 +112,13 @@ interface IBaseSwipeableListProps {
   threshold?: number;
 }
 
+interface IStyledSwipeableListProps extends IBaseSwipeableListProps {
+  className: string;
+}
+
 type SwipeableListChildren =
   | ReactNode
-  | ((props: IBaseSwipeableListProps) => ReactNode);
+  | ((props: IStyledSwipeableListProps) => ReactNode);
 
 interface ISwipeableListProps extends IBaseSwipeableListProps {
   /**

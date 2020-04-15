@@ -8,19 +8,25 @@ const SwipeableList = ({
   scrollStartThreshold,
   swipeStartThreshold,
   threshold
-}) => (
-  <div className={styles.swipeableList} data-testid="list-wrapper">
-    {typeof children === 'function'
-      ? children({ scrollStartThreshold, swipeStartThreshold, threshold })
-      : React.Children.map(children, child =>
-          React.cloneElement(child, {
-            scrollStartThreshold,
-            swipeStartThreshold,
-            threshold
-          })
-        )}
-  </div>
-);
+}) =>
+  typeof children === 'function' ? (
+    children({
+      className: styles.swipeableList,
+      scrollStartThreshold,
+      swipeStartThreshold,
+      threshold
+    })
+  ) : (
+    <div className={styles.swipeableList} data-testid="list-wrapper">
+      {React.Children.map(children, child =>
+        React.cloneElement(child, {
+          scrollStartThreshold,
+          swipeStartThreshold,
+          threshold
+        })
+      )}
+    </div>
+  );
 
 SwipeableList.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
