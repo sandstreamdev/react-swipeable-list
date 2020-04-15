@@ -21,7 +21,7 @@
 }
 
 .contentLeft {
-  composes: contentRight;
+  composes: contentRight; /* stylelint-disable-line value-keyword-case */
   justify-content: flex-end;
 }
 
@@ -30,11 +30,11 @@
 }
 
 .contentLeftReturn {
-  composes: contentLeft return;
+  composes: contentLeft return; /* stylelint-disable-line value-keyword-case */
 }
 
 .contentRightReturn {
-  composes: contentRight return;
+  composes: contentRight return; /* stylelint-disable-line value-keyword-case */
 }
 
 .content {
@@ -49,4 +49,9 @@
 .contentReturn {
   composes: content;
   transition: transform 0.5s ease-out;
+}
+
+.contentRemove {
+  composes: content;
+  transition: transform 0.35s ease-in;
 }

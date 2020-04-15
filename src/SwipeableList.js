@@ -10,18 +10,20 @@ const SwipeableList = ({
   threshold
 }) => (
   <div className={styles.swipeableList} data-testid="list-wrapper">
-    {React.Children.map(children, child =>
-      React.cloneElement(child, {
-        scrollStartThreshold,
-        swipeStartThreshold,
-        threshold
-      })
-    )}
+    {typeof children === 'function'
+      ? children({ scrollStartThreshold, swipeStartThreshold, threshold })
+      : React.Children.map(children, child =>
+          React.cloneElement(child, {
+            scrollStartThreshold,
+            swipeStartThreshold,
+            threshold
+          })
+        )}
   </div>
 );
 
 SwipeableList.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   scrollStartThreshold: PropTypes.number,
   swipeStartThreshold: PropTypes.number,
   threshold: PropTypes.number

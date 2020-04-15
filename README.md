@@ -17,7 +17,7 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/sandstreamdev/react-swipeable-list.svg)](https://greenkeeper.io/)
 [![codecov](https://codecov.io/gh/sandstreamdev/react-swipeable-list/branch/master/graph/badge.svg)](https://codecov.io/gh/sandstreamdev/react-swipeable-list)
 ![GitHub Release Date](https://img.shields.io/github/release-date/sandstreamdev/react-swipeable-list)
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors)
 
 ## React Swipeable List component
 
@@ -60,11 +60,37 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 </SwipeableList>
 ```
 
+or use function as children pattern if other container is needed (check animation example)
+
+```jsx
+<SwipeableList>
+  {props => (
+    <TransitionGroup>
+      <CSSTransition>
+        <SwipeableListItem
+          swipeLeft={{
+            content: <div>Revealed content during swipe</div>,
+            action: () => console.info('swipe action triggered')
+          }}
+          swipeRight={{
+            content: <div>Revealed content during swipe</div>,
+            action: () => console.info('swipe action triggered')
+          }}
+          {...props}
+        >
+          <div>Item name</div>
+        </SwipeableListItem>
+      </CSSTransition>
+    </TransitionGroup>
+  )}
+</SwipeableList>
+```
+
 ## SwipeableList Props
 
 ### scrollStartThreshold
 
-Type: `number` (default: `10`)
+Type: `number` (optional, default: `10`)
 
 How far in pixels scroll needs to be done to block swiping. After scrolling is started and goes beyond the threshold, swiping is blocked.
 
@@ -72,7 +98,7 @@ It can be set for the whole list or for every item. See `scrollStartThreshold` f
 
 ### swipeStartThreshold
 
-Type: `number` (default: `10`)
+Type: `number` (optional, default: `10`)
 
 How far in pixels swipe needs to be done to start swiping on list item. After a swipe is started and goes beyond the threshold, scrolling is blocked.
 
@@ -80,7 +106,7 @@ It can be set for the whole list or for every item. See `swipeStartThreshold` fo
 
 ### threshold
 
-Type: `number` (default: `0.5`)
+Type: `number` (optional, default: `0.5`)
 
 How far swipe needs to be done to trigger attached action. `0.5` means that item needs to be swiped to half of its width, `0.25` - one-quarter of width.
 
@@ -90,22 +116,42 @@ It can be set for the whole list or for every item. See `threshold` for `Swipeab
 
 ### blockSwipe
 
-Type: `boolean` (default: `false`)
+Type: `boolean` (optional, default: `false`)
 
 If set to `true` all defined swipe actions are blocked.
 
 ### swipeLeft
 
-Type: `Object`
+Type: `Object` (optional)
 
 Data for defining left swipe action and rendering content after item is swiped. The object requires following structure:
 
 ```js
 {
   action,  // required: swipe action (function)
+  actionAnimation, // optional: type of animation
   content, // required: HTML or React component
 }
 ```
+
+#### action
+
+Type: `function` (required)
+
+Callback function that should be run when swipe is done beyond threshold.
+
+
+#### actionAnimation
+
+Type: `ActionAnimations (RETURN | REMOVE | NONE)` (optional, default: `RETURN`)
+
+Animation type to be played swipe is done beyond threshold.
+
+#### content
+
+Type: `Anything that can be rendered` (required)
+
+Content that is revealed when swiping.
 
 ### swipeRight
 
@@ -116,6 +162,8 @@ Same as `swipeLeft` but to right. :wink:
 ### scrollStartThreshold
 
 Type: `number` (default: `10`)
+
+How far in pixels scroll needs to be done to block swiping. After scrolling is started and goes beyond the threshold, swiping is blocked.
 
 It can be set for the whole list or for every item. See `scrollStartThreshold` for `SwipeableList`. Value from the `SwipeableListItem` takes precedence.
 
@@ -130,6 +178,8 @@ It can be set for the whole list or for every item. See `swipeStartThreshold` fo
 ### threshold
 
 Type: `number` (default: `0.5`)
+
+How far swipe needs to be done to trigger attached action. `0.5` means that item needs to be swiped to half of its width, `0.25` - one-quarter of width.
 
 It can be set for the whole list or for every item. See `threshold` for `SwipeableList`. Value from the `SwipeableListItem` takes precedence.
 

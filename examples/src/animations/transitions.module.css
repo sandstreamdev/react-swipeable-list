@@ -1,0 +1,20 @@
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  max-height: 0;
+  transition: max-height 1000ms, opacity 1500ms;
+}
+
+.enter {
+  opacity: 0;
+  max-height: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  max-height: 1000px;
+  transition: max-height 4000ms, opacity 1500ms;
+}

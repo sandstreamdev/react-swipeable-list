@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { classNames } from '@sandstreamdev/std/web';
 
-import styles from './ComplexItemContent.module.css';
+import styles from './ItemContent.module.css';
 
 const ComplexItemConent = ({ icon, color, side, label }) => (
   <div

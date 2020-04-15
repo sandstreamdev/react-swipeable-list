@@ -57,6 +57,8 @@
     "@sandstreamdev/react-swipeable-list": "0.4.1",
     "@sandstreamdev/std": "0.13.0",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-transition-group": "4.3.0",
+    "uuid": "7.0.3"
   }
 }

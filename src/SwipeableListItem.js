@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 
 import styles from './SwipeableListItem.css';
 
+export const ActionAnimations = {
+  RETURN: Symbol('Return'),
+  REMOVE: Symbol('Remove'),
+  NONE: Symbol('None')
+};
+
 const SwipeActionPropType = PropTypes.shape({
   action: PropTypes.func.isRequired,
+  actionAnimation: PropTypes.oneOf(Object.values(ActionAnimations)),
   content: PropTypes.node.isRequired
 });
 
@@ -166,15 +173,73 @@ class SwipeableListItem extends PureComponent {
     this.handleDragEnd();
   };
 
-  handleDragEnd = () => {
-    if (this.isSwiping()) {
-      const threshold = this.props.threshold || 0.5;
+  playReturnAnimation = () => {
+    const { contentLeft, contentRight, listElement } = this;
 
-      if (this.listElement) {
-        if (this.left < this.listElement.offsetWidth * threshold * -1) {
+    if (listElement) {
+      listElement.className = styles.contentReturn;
+      listElement.style.transform = 'translateX(0px)';
+    }
+
+    // hide backgrounds
+    if (contentLeft !== null) {
+      contentLeft.style.opacity = 0;
+      contentLeft.className = styles.contentLeftReturn;
+    }
+
+    if (contentRight !== null) {
+      contentRight.style.opacity = 0;
+      contentRight.className = styles.contentRightReturn;
+    }
+  };
+
+  playRemoveAnimation = direction => {
+    const { listElement } = this;
+
+    if (listElement) {
+      listElement.className = styles.contentRemove;
+      listElement.style.transform = `translateX(${listElement.offsetWidth *
+        (direction === DragDirection.LEFT ? -1 : 1)}px)`;
+    }
+  };
+
+  playActionAnimation = (type, direction) => {
+    const { listElement } = this;
+
+    if (listElement) {
+      switch (type) {
+        case ActionAnimations.REMOVE:
+          this.playRemoveAnimation(direction);
+          break;
+        case ActionAnimations.NONE:
+          break;
+        default:
+          this.playReturnAnimation();
+      }
+    }
+  };
+
+  handleDragEnd = () => {
+    const { left, listElement, props } = this;
+    const { swipeLeft, swipeRight, threshold = 0.5 } = props;
+    let actionTriggered = false;
+
+    if (this.isSwiping()) {
+      if (listElement) {
+        if (left < listElement.offsetWidth * threshold * -1) {
+          this.playActionAnimation(
+            swipeLeft.actionAnimation,
+            DragDirection.LEFT
+          );
           this.handleSwipedLeft();
-        } else if (this.left > this.listElement.offsetWidth * threshold) {
+          actionTriggered = true;
+        } else if (left > listElement.offsetWidth * threshold) {
+          this.playActionAnimation(
+            swipeRight.actionAnimation,
+            DragDirection.RIGHT
+          );
           this.handleSwipedRight();
+          actionTriggered = true;
         }
       }
 
@@ -185,20 +250,8 @@ class SwipeableListItem extends PureComponent {
 
     this.resetState();
 
-    if (this.listElement) {
-      this.listElement.className = styles.contentReturn;
-      this.listElement.style.transform = `translateX(${this.left}px)`;
-    }
-
-    // hide backgrounds
-    if (this.contentLeft !== null) {
-      this.contentLeft.style.opacity = 0;
-      this.contentLeft.className = styles.contentLeftReturn;
-    }
-
-    if (this.contentRight !== null) {
-      this.contentRight.style.opacity = 0;
-      this.contentRight.className = styles.contentRightReturn;
+    if (!actionTriggered) {
+      this.playReturnAnimation();
     }
   };
 
@@ -386,26 +439,26 @@ class SwipeableListItem extends PureComponent {
       <div className={styles.swipeableListItem} ref={this.bindWrapper}>
         {swipeLeft && (
           <div
-            ref={this.bindContentLeft}
             className={styles.contentLeft}
             data-testid="swipe-left-content"
+            ref={this.bindContentLeft}
           >
             {swipeLeft.content}
           </div>
         )}
         {swipeRight && (
           <div
-            ref={this.bindContentRight}
             className={styles.contentRight}
             data-testid="swipe-right-content"
+            ref={this.bindContentRight}
           >
             {swipeRight.content}
           </div>
         )}
         <div
-          ref={this.bindListElement}
           className={styles.content}
           data-testid="content"
+          ref={this.bindListElement}
         >
           {children}
         </div>
