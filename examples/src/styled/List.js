@@ -6,7 +6,7 @@ import {
 } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import { classNames } from '@sandstreamdev/std/web';
-import { identity } from '@sandstreamdev/std/function';
+import { noOp } from '@sandstreamdev/std/function';
 
 import styles from '../app.module.css';
 import customStyles from './custom.module.css';
@@ -31,7 +31,7 @@ const StyledList = () => {
         <span>Delete</span>
       </div>
     ),
-    action: identity
+    action: noOp
   });
 
   const swipeLeftOptions = () => ({
@@ -40,7 +40,7 @@ const StyledList = () => {
         <span>Delete</span>
       </div>
     ),
-    action: identity
+    action: noOp
   });
 
   return (
@@ -51,12 +51,7 @@ const StyledList = () => {
       <div className={styles.listContainer}>
         <SwipeableList>
           {({ className, ...rest }) => (
-            <div
-              className={classNames({
-                [className]: true,
-                [customStyles.customList]: true
-              })}
-            >
+            <div className={classNames(className, customStyles.customList)}>
               {items.map(({ id, text }) => (
                 <SwipeableListItem
                   key={id}

@@ -4,7 +4,7 @@ import {
   SwipeableListItem
 } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
-import { identity } from '@sandstreamdev/std/function';
+import { noOp } from '@sandstreamdev/std/function';
 
 import ListItem from '../complex/ListItem';
 import ItemContent from '../complex/ItemContent';
@@ -37,7 +37,7 @@ const SizeToContentList = () => {
         side="right"
       />
     ),
-    action: identity
+    action: noOp
   });
 
   const swipeLeftOptions = () => ({
@@ -49,7 +49,7 @@ const SizeToContentList = () => {
         side="left"
       />
     ),
-    action: identity
+    action: noOp
   });
 
   return (

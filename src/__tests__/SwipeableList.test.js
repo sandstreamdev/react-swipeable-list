@@ -14,7 +14,7 @@ import {
 afterEach(cleanup);
 
 test('list rendering with items', () => {
-  const { getByText } = render(
+  const { container, getByText } = render(
     <SwipeableList>
       <SwipeableListItem>
         <span>Item content 1</span>
@@ -27,10 +27,11 @@ test('list rendering with items', () => {
 
   expect(getByText('Item content 1')).toBeInTheDocument();
   expect(getByText('Item content 2')).toBeInTheDocument();
+  expect(container.firstChild).toHaveClass('swipeableList');
 });
 
 test('list rendering with items when child as function', () => {
-  const { getByText } = render(
+  const { container, getByText } = render(
     <SwipeableList>
       {props => (
         <>
@@ -47,6 +48,22 @@ test('list rendering with items when child as function', () => {
 
   expect(getByText('Item content 1')).toBeInTheDocument();
   expect(getByText('Item content 2')).toBeInTheDocument();
+  expect(container.firstChild).not.toHaveClass('swipeableList');
+});
+
+test('passing className to child function', () => {
+  const { container, getByTestId } = render(
+    <SwipeableList>
+      {({ className }) => (
+        <div>
+          <div className={className} data-testid="tested-div" />
+        </div>
+      )}
+    </SwipeableList>
+  );
+
+  expect(container.firstChild).not.toHaveClass('swipeableList');
+  expect(getByTestId('tested-div')).toHaveClass('swipeableList');
 });
 
 test('blocking swipe on scroll', () => {

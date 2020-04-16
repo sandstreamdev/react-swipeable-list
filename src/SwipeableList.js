@@ -17,7 +17,7 @@ const SwipeableList = ({
       threshold
     })
   ) : (
-    <div className={styles.swipeableList} data-testid="list-wrapper">
+    <div className={styles.swipeableList}>
       {React.Children.map(children, child =>
         React.cloneElement(child, {
           scrollStartThreshold,
