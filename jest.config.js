@@ -20,11 +20,5 @@ module.exports = {
   },
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ['**/__tests__/**/*.test.js'],
-
-  // A map from regular expressions to paths to transformers
-  transform: {
-    '\\.js$': ['babel-jest'],
-    '.+\\.(css)$': 'jest-transform-css'
-  }
+  testMatch: ['**/__tests__/**/*.test.js']
 };
