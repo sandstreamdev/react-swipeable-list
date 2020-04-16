@@ -60,28 +60,26 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 </SwipeableList>
 ```
 
-or use function as children pattern if other container is needed (check animation example)
+or use function as children pattern if other container is needed (check animation and styled container examples). Note that in this case you need to provide list wrapper and pass default `className` props to have same behaviour. Default `SwipeableList` styles are passed in `className` prop.
 
 ```jsx
 <SwipeableList>
-  {props => (
-    <TransitionGroup>
-      <CSSTransition>
-        <SwipeableListItem
-          swipeLeft={{
-            content: <div>Revealed content during swipe</div>,
-            action: () => console.info('swipe action triggered')
-          }}
-          swipeRight={{
-            content: <div>Revealed content during swipe</div>,
-            action: () => console.info('swipe action triggered')
-          }}
-          {...props}
-        >
-          <div>Item name</div>
-        </SwipeableListItem>
-      </CSSTransition>
-    </TransitionGroup>
+  {({ className, ...rest }) => (
+    <div className={className}>
+      <SwipeableListItem
+        swipeLeft={{
+          content: <div>Revealed content during swipe</div>,
+          action: () => console.info('swipe action triggered')
+        }}
+        swipeRight={{
+          content: <div>Revealed content during swipe</div>,
+          action: () => console.info('swipe action triggered')
+        }}
+        {...rest}
+      >
+        <div>Item name</div>
+      </SwipeableListItem>
+    </div>
   )}
 </SwipeableList>
 ```

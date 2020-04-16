@@ -72,9 +72,14 @@ const SimpleList = () => {
       </span>
       <div className={styles.listContainer}>
         <SwipeableList threshold={threshold}>
-          {({ scrollStartThreshold, swipeStartThreshold, threshold }) => (
+          {({
+            className,
+            scrollStartThreshold,
+            swipeStartThreshold,
+            threshold
+          }) => (
             <TransitionGroup
-              className="todo-list"
+              className={className}
               enter={listAnimations}
               exit={listAnimations}
             >
