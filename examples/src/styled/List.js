@@ -45,9 +45,7 @@ const StyledList = () => {
 
   return (
     <>
-      <span className={styles.actionInfo}>
-        Custom styled list wrapper width
-      </span>
+      <span className={styles.actionInfo}>Custom styled list wrapper</span>
       <div className={styles.listContainer}>
         <SwipeableList>
           {({ className, ...rest }) => (
