@@ -24,7 +24,7 @@
   "scripts": {
     "predeploy": "webpack --mode production",
     "start": "webpack-dev-server",
-    "dev": "webpack-dev-server --config webpack.config.dev.js",
+    "start:dev": "webpack-dev-server --config webpack.config.dev.js",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
