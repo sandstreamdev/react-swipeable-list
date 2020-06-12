@@ -20,7 +20,7 @@ const presets = [
 
 const plugins = ['@babel/plugin-proposal-class-properties'];
 
-module.exports = function(api) {
+module.exports = function (api) {
   const isTest = api.env('test');
 
   if (isTest) {

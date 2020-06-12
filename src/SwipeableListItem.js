@@ -198,8 +198,9 @@ class SwipeableListItem extends PureComponent {
 
     if (listElement) {
       listElement.className = styles.contentRemove;
-      listElement.style.transform = `translateX(${listElement.offsetWidth *
-        (direction === DragDirection.LEFT ? -1 : 1)}px)`;
+      listElement.style.transform = `translateX(${
+        listElement.offsetWidth * (direction === DragDirection.LEFT ? -1 : 1)
+      }px)`;
     }
   };
 
