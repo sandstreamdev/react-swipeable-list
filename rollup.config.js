@@ -1,3 +1,4 @@
+import path from 'path';
 import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
@@ -37,7 +38,7 @@ const config = {
     postcss({
       modules: true,
       plugins: [autoprefixer],
-      extract: './dist/styles.css'
+      extract: path.resolve('dist/styles.css')
     }),
     babel({ exclude: 'node_modules/**' }),
     localResolve(),
