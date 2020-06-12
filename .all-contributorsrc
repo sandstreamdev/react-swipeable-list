@@ -133,6 +133,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "davidreact",
+      "name": "David",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/17351751?v=4",
+      "profile": "https://davidreact.github.io/portfolio/",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
