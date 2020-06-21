@@ -352,16 +352,16 @@ test('if remove animation is applied', () => {
   const contentContainer = getByTestId('content');
 
   swipeLeftMouse(contentContainer);
-  expect(contentContainer).toHaveClass('contentRemove');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content--remove');
 
   swipeLeftTouch(contentContainer);
-  expect(contentContainer).toHaveClass('contentRemove');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content--remove');
 
   swipeRightMouse(contentContainer);
-  expect(contentContainer).toHaveClass('contentRemove');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content--remove');
 
   swipeRightTouch(contentContainer);
-  expect(contentContainer).toHaveClass('contentRemove');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content--remove');
 
   expect(callbackLeft).toBeCalledTimes(2);
   expect(callbackRight).toBeCalledTimes(2);
@@ -390,16 +390,16 @@ test('if return animation is applied', () => {
   const contentContainer = getByTestId('content');
 
   swipeLeftMouse(contentContainer);
-  expect(contentContainer).toHaveClass('contentReturn');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content--return');
 
   swipeLeftTouch(contentContainer);
-  expect(contentContainer).toHaveClass('contentReturn');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content--return');
 
   swipeRightMouse(contentContainer);
-  expect(contentContainer).toHaveClass('contentReturn');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content--return');
 
   swipeRightTouch(contentContainer);
-  expect(contentContainer).toHaveClass('contentReturn');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content--return');
 
   expect(callbackLeft).toBeCalledTimes(2);
   expect(callbackRight).toBeCalledTimes(2);
@@ -429,24 +429,40 @@ test('if none animation is applied', () => {
   const contentContainer = getByTestId('content');
 
   swipeLeftMouse(contentContainer);
-  expect(contentContainer).toHaveClass('content');
-  expect(contentContainer).not.toHaveClass('contentReturn');
-  expect(contentContainer).not.toHaveClass('contentRemove');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content');
+  expect(contentContainer).not.toHaveClass(
+    'swipeable-list-item__content--return'
+  );
+  expect(contentContainer).not.toHaveClass(
+    'swipeable-list-item__content--remove'
+  );
 
   swipeLeftTouch(contentContainer);
-  expect(contentContainer).toHaveClass('content');
-  expect(contentContainer).not.toHaveClass('contentReturn');
-  expect(contentContainer).not.toHaveClass('contentRemove');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content');
+  expect(contentContainer).not.toHaveClass(
+    'swipeable-list-item__content--return'
+  );
+  expect(contentContainer).not.toHaveClass(
+    'swipeable-list-item__content--remove'
+  );
 
   swipeRightMouse(contentContainer);
-  expect(contentContainer).toHaveClass('content');
-  expect(contentContainer).not.toHaveClass('contentReturn');
-  expect(contentContainer).not.toHaveClass('contentRemove');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content');
+  expect(contentContainer).not.toHaveClass(
+    'swipeable-list-item__content--return'
+  );
+  expect(contentContainer).not.toHaveClass(
+    'swipeable-list-item__content--remove'
+  );
 
   swipeRightTouch(contentContainer);
-  expect(contentContainer).toHaveClass('content');
-  expect(contentContainer).not.toHaveClass('contentReturn');
-  expect(contentContainer).not.toHaveClass('contentRemove');
+  expect(contentContainer).toHaveClass('swipeable-list-item__content');
+  expect(contentContainer).not.toHaveClass(
+    'swipeable-list-item__content--return'
+  );
+  expect(contentContainer).not.toHaveClass(
+    'swipeable-list-item__content--remove'
+  );
 
   expect(callbackLeft).toBeCalledTimes(2);
   expect(callbackRight).toBeCalledTimes(2);

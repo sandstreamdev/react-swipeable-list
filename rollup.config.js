@@ -36,7 +36,6 @@ const config = {
   plugins: [
     peerDepsExternal(),
     postcss({
-      modules: true,
       plugins: [autoprefixer],
       extract: path.resolve('dist/styles.css')
     }),

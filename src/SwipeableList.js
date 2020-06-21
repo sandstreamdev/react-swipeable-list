@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './SwipeableList.css';
+import './SwipeableList.css';
 
 const SwipeableList = ({
   children,
@@ -11,13 +11,13 @@ const SwipeableList = ({
 }) =>
   typeof children === 'function' ? (
     children({
-      className: styles.swipeableList,
+      className: 'swipeable-list',
       scrollStartThreshold,
       swipeStartThreshold,
       threshold
     })
   ) : (
-    <div className={styles.swipeableList}>
+    <div className="swipeable-list">
       {React.Children.map(children, child =>
         React.cloneElement(child, {
           scrollStartThreshold,

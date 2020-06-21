@@ -9,16 +9,11 @@ import {
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import { findKey, mapEntries } from '@sandstreamdev/std/object';
 
-import styles from '../app.module.css';
-import transitionStyles from './transitions.module.css';
+import BasicListItem from '../list-items/BasicListItem';
+import BasicSwipeContent from '../list-items/BasicSwipeContent';
+import './AnimationsExample.css';
 
-const itemContent = name => (
-  <div className={styles.listItem}>
-    <span>{name}</span>
-  </div>
-);
-
-const SimpleList = () => {
+const AnimationsExample = () => {
   const [contentAnimation, setContentAnimation] = useState(
     ActionAnimations.REMOVE
   );
@@ -37,21 +32,13 @@ const SimpleList = () => {
     setItems([...items, { id: uuidv4(), text: `New item` }]);
 
   const swipeRightOptions = id => ({
-    content: (
-      <div className={styles.contentLeft}>
-        <span>Delete</span>
-      </div>
-    ),
+    content: <BasicSwipeContent direction="left" label="Delete" />,
     actionAnimation: contentAnimation,
     action: () => deleteItemById(id)
   });
 
   const swipeLeftOptions = id => ({
-    content: (
-      <div className={styles.contentRight}>
-        <span>Delete</span>
-      </div>
-    ),
+    content: <BasicSwipeContent direction="right" label="Delete" />,
     actionAnimation: contentAnimation,
     action: () => deleteItemById(id)
   });
@@ -67,10 +54,10 @@ const SimpleList = () => {
 
   return (
     <>
-      <span className={styles.actionInfo}>
+      <span className="page__action--title">
         Swipe to delete (trigger threshold: {threshold})
       </span>
-      <div className={styles.listContainer}>
+      <div className="animations-swipeable-list__container">
         <SwipeableList threshold={threshold}>
           {({
             className,
@@ -85,7 +72,7 @@ const SimpleList = () => {
             >
               {items.map(({ id, text }) => (
                 <CSSTransition
-                  classNames={transitionStyles}
+                  classNames="my-node"
                   key={id}
                   timeout={transitionTimeout}
                 >
@@ -97,7 +84,7 @@ const SimpleList = () => {
                     swipeStartThreshold={swipeStartThreshold}
                     threshold={threshold}
                   >
-                    {itemContent(text)}
+                    <BasicListItem label={text} />
                   </SwipeableListItem>
                 </CSSTransition>
               ))}
@@ -105,11 +92,13 @@ const SimpleList = () => {
           )}
         </SwipeableList>
       </div>
-      <button onClick={addItem}>Add item</button>
-      <div className={styles.switcherRow}>
+      <button className="page__button" onClick={addItem}>
+        Add item
+      </button>
+      <div className="animations__switcher-row">
         <span>Item content animation:</span>
         <select
-          className={styles.switcher}
+          className="page__select animations__switcher"
           value={findKey(value => value === contentAnimation)(ActionAnimations)}
           onChange={handleChangeActionAnimation}
         >
@@ -123,7 +112,7 @@ const SimpleList = () => {
       <div>
         <span>List content animations:</span>
         <select
-          className={styles.switcher}
+          className="page__select animations__switcher"
           value={listAnimations}
           onChange={handleChangeListAnimations}
         >
@@ -135,4 +124,4 @@ const SimpleList = () => {
   );
 };
 
-export default SimpleList;
+export default AnimationsExample;

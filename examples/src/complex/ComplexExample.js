@@ -5,13 +5,12 @@ import {
 } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 
-import ListItem from './ListItem';
-import ItemContent from './ItemContent';
+import ComplexListItem from '../list-items/ComplexListItem';
+import ComplexSwipeContent from '../list-items/ComplexSwipeContent';
 import { MailIcon, ReplyIcon, DeleteIcon } from '../../images/icons';
+import './ComplexExample.css';
 
-import styles from '../app.module.css';
-
-const ComplexList = () => {
+const ComplexExample = () => {
   const [triggeredItemAction, triggerItemAction] = useState('None');
   const [swipeProgress, handleSwipeProgress] = useState();
   const [swipeAction, handleSwipeAction] = useState('None');
@@ -24,11 +23,10 @@ const ComplexList = () => {
 
   const swipeRightOptions = name => ({
     content: (
-      <ItemContent
-        color="red"
+      <ComplexSwipeContent
+        direction="left"
         icon={<DeleteIcon />}
         label="Delete"
-        side="right"
       />
     ),
     action: () => triggerItemAction(`Delete action triggered on "${name}" item`)
@@ -36,11 +34,10 @@ const ComplexList = () => {
 
   const swipeLeftOptions = name => ({
     content: (
-      <ItemContent
-        color="green"
+      <ComplexSwipeContent
+        direction="right"
         icon={<ReplyIcon />}
         label="Reply"
-        side="left"
       />
     ),
     action: () => triggerItemAction(`Reply action triggered on "${name}" item`)
@@ -60,10 +57,10 @@ const ComplexList = () => {
 
   return (
     <>
-      <span className={styles.actionInfo}>
+      <span className="page__action--title">
         List in smaller container (trigger threshold: {threshold})
       </span>
-      <div className={styles.complexListContainer}>
+      <div className="complex-swipeable-list__container">
         <SwipeableList threshold={threshold}>
           {items.map(({ id, text, description }) => (
             <SwipeableListItem
@@ -74,7 +71,7 @@ const ComplexList = () => {
               onSwipeProgress={handleSwipeProgress}
               onSwipeStart={handleSwipeStart}
             >
-              <ListItem
+              <ComplexListItem
                 description={description}
                 icon={<MailIcon />}
                 name={text}
@@ -83,16 +80,16 @@ const ComplexList = () => {
           ))}
         </SwipeableList>
       </div>
-      <div className={styles.summary}>
-        <span className={styles.actionInfo}>Triggered action:</span>
-        <span className={styles.actionInfoValue}>{triggeredItemAction}</span>
-        <span className={styles.actionInfo}>Callback swipe action:</span>
-        <span className={styles.actionInfoValue}>{swipeAction}</span>
-        <span className={styles.actionInfo}>Callback swipe progress:</span>
-        <span className={styles.actionInfoValue}>{swipeProgress ?? '-'}%</span>
+      <div className="page__summary">
+        <span className="page__action--title">Triggered action:</span>
+        <span className="page__action--value">{triggeredItemAction}</span>
+        <span className="page__action--title">Callback swipe action:</span>
+        <span className="page__action--value">{swipeAction}</span>
+        <span className="page__action--title">Callback swipe progress:</span>
+        <span className="page__action--value">{swipeProgress ?? '-'}%</span>
       </div>
     </>
   );
 };
 
-export default ComplexList;
+export default ComplexExample;

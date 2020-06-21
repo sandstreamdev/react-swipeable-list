@@ -16,7 +16,7 @@
 [![Actions Status](https://github.com/sandstreamdev/react-swipeable-list/workflows/Node%20CI/badge.svg)](https://github.com/sandstreamdev/react-swipeable-list/actions)
 [![codecov](https://codecov.io/gh/sandstreamdev/react-swipeable-list/branch/master/graph/badge.svg)](https://codecov.io/gh/sandstreamdev/react-swipeable-list)
 ![GitHub Release Date](https://img.shields.io/github/release-date/sandstreamdev/react-swipeable-list)
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 
 ## React Swipeable List component
 

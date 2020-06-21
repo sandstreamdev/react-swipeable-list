@@ -29,21 +29,12 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true
-            }
-          },
-          { loader: 'postcss-loader' }
-        ]
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       },
       {
         test: /\.css$/,
         include: /node_modules/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+        use: ['style-loader', 'css-loader']
       }
     ]
   },

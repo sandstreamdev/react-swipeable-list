@@ -1,0 +1,9 @@
+.complex-swipeable-list__container {
+  width: 100%;
+  height: 180px;
+  min-height: 180px;
+  outline-color: gray;
+  outline-style: solid;
+  outline-width: 1px 0;
+  margin: 24px 0;
+}

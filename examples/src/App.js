@@ -1,13 +1,11 @@
 import React, { PureComponent } from 'react';
 import { enumerable } from '@sandstreamdev/std/object';
 
-import BasicList from './basic/List';
-import ComplexList from './complex/List';
-import SizeToContentList from './size-to-content/List';
-import AnimationsList from './animations/List';
-import StyledList from './styled/List';
-
-import styles from './app.module.css';
+import BasicExample from './basic/BasicExample';
+import ComplexExample from './complex/ComplexExample';
+import SizeToContentExample from './size-to-content/SizeToContentExample';
+import AnimationsExample from './animations/AnimationsExample';
+import StyledExample from './styled/StyledExample';
 
 const ExampleType = enumerable(
   'BASIC',
@@ -42,15 +40,15 @@ class App extends PureComponent {
 
     switch (selectedExample) {
       case ExampleType.BASIC:
-        return <BasicList />;
+        return <BasicExample />;
       case ExampleType.COMPLEX:
-        return <ComplexList />;
+        return <ComplexExample />;
       case ExampleType.SIZE_TO_CONTENT:
-        return <SizeToContentList />;
+        return <SizeToContentExample />;
       case ExampleType.ANIMATIONS:
-        return <AnimationsList />;
+        return <AnimationsExample />;
       case ExampleType.STYLED:
-        return <StyledList />;
+        return <StyledExample />;
     }
 
     return null;
@@ -64,10 +62,16 @@ class App extends PureComponent {
     const { selectedExample } = this.state;
 
     return (
-      <div className={styles.example}>
-        <h1>react-swipeable-list example</h1>
-        <h5>(try also mobile view in dev tools for touch events)</h5>
-        <select value={selectedExample} onChange={this.handleSelectExample}>
+      <div className="page-content">
+        <div className="page-content__title">react-swipeable-list example</div>
+        <div className="page-content__subtitle">
+          (try also mobile view in dev tools for touch events)
+        </div>
+        <select
+          className="page__select"
+          value={selectedExample}
+          onChange={this.handleSelectExample}
+        >
           {Examples.map(item => (
             <option key={item.id} value={item.id}>
               {item.text}

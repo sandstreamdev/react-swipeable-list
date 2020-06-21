@@ -1,0 +1,22 @@
+.basic-swipeable-list__item-content-left {
+  background-color: red;
+  box-sizing: border-box;
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+}
+
+.basic-swipeable-list__item-content-right {
+  background-color: green;
+  box-sizing: border-box;
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  justify-content: flex-end;
+}
