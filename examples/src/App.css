@@ -6,15 +6,16 @@ body {
 }
 
 .page-content__title {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: bold;
-  margin-top: 17px;
+  margin-top: 16px;
   margin-bottom: 0;
 }
 
 .page-content__subtitle {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
+  margin: 0;
 }
 
 .footer {
@@ -132,13 +133,13 @@ body {
   }
 
   /* The screen (or content) of the device */
-  .smartfone__content {
+  .smartphone__content {
     width: 360px;
     height: 640px;
     background: white;
   }
 
-  .smartfone__footer {
+  .smartphone__footer {
     padding: 56px 0;
     margin-top: unset;
   }

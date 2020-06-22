@@ -5,10 +5,12 @@ import {
   SwipeableListItem
 } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
+import { classNames } from '@sandstreamdev/std/web';
 import { noOp } from '@sandstreamdev/std/function';
 
 import BasicListItem from '../list-items/BasicListItem';
 import BasicSwipeContent from '../list-items/BasicSwipeContent';
+
 import './StyledExample.css';
 
 const StyledExample = () => {
@@ -20,12 +22,12 @@ const StyledExample = () => {
   ];
 
   const swipeRightOptions = () => ({
-    content: <BasicSwipeContent direction="left" label="Delete" />,
+    content: <BasicSwipeContent label="Delete" position="left" />,
     action: noOp
   });
 
   const swipeLeftOptions = () => ({
-    content: <BasicSwipeContent direction="right" label="Delete" />,
+    content: <BasicSwipeContent label="Delete" position="right" />,
     action: noOp
   });
 
@@ -35,7 +37,7 @@ const StyledExample = () => {
       <div className="styled-swipeable-list__container">
         <SwipeableList>
           {({ className, ...rest }) => (
-            <div className={`${className} styled-swipeable-list`}>
+            <div className={classNames(className, 'styled-swipeable-list')}>
               {items.map(({ id, text }) => (
                 <SwipeableListItem
                   key={id}

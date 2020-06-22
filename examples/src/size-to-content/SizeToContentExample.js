@@ -9,6 +9,7 @@ import { noOp } from '@sandstreamdev/std/function';
 import ComplexListItem from '../list-items/ComplexListItem';
 import ComplexSwipeContent from '../list-items/ComplexSwipeContent';
 import { MailIcon, ReplyIcon, DeleteIcon } from '../../images/icons';
+
 import './SizeToContentExample.css';
 
 const SizeToContentExample = () => {
@@ -30,10 +31,9 @@ const SizeToContentExample = () => {
   const swipeRightOptions = () => ({
     content: (
       <ComplexSwipeContent
-        color="red"
-        direction="right"
         icon={<DeleteIcon />}
         label="Delete"
+        position="left"
       />
     ),
     action: noOp
@@ -42,10 +42,9 @@ const SizeToContentExample = () => {
   const swipeLeftOptions = () => ({
     content: (
       <ComplexSwipeContent
-        color="green"
-        direction="left"
         icon={<ReplyIcon />}
         label="Reply"
+        position="right"
       />
     ),
     action: noOp

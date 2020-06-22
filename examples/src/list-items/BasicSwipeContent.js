@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 import './BasicSwipeContent.css';
 
-const BasicSwipeContent = ({ direction, label }) => (
-  <div className={`basic-swipeable-list__item-content-${direction}`}>
+const BasicSwipeContent = ({ label, position }) => (
+  <div className={`basic-swipeable-list__item-content-${position}`}>
     <span>{label}</span>
   </div>
 );
 
 BasicSwipeContent.propTypes = {
-  direction: PropTypes.oneOf(['left', 'right']).isRequired,
-  label: PropTypes.string
+  label: PropTypes.string,
+  position: PropTypes.oneOf(['left', 'right']).isRequired
 };
 
 export default BasicSwipeContent;

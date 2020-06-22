@@ -63,10 +63,10 @@ class App extends PureComponent {
 
     return (
       <div className="page-content">
-        <div className="page-content__title">react-swipeable-list example</div>
-        <div className="page-content__subtitle">
+        <h1 className="page-content__title">react-swipeable-list example</h1>
+        <h2 className="page-content__subtitle">
           (try also mobile view in dev tools for touch events)
-        </div>
+        </h2>
         <select
           className="page__select"
           value={selectedExample}

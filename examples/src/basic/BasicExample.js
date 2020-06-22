@@ -7,6 +7,7 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 
 import BasicListItem from '../list-items/BasicListItem';
 import BasicSwipeContent from '../list-items/BasicSwipeContent';
+
 import './BasicExample.css';
 
 const BasicExample = () => {
@@ -15,12 +16,12 @@ const BasicExample = () => {
   const [swipeAction, handleSwipeAction] = useState('None');
 
   const swipeRightOptions = name => ({
-    content: <BasicSwipeContent direction="left" label="Left content" />,
+    content: <BasicSwipeContent label="Left content" position="left" />,
     action: () => triggerItemAction(`Swipe right action on "${name}"`)
   });
 
   const swipeLeftOptions = name => ({
-    content: <BasicSwipeContent direction="right" label="Right content" />,
+    content: <BasicSwipeContent label="Right content" position="right" />,
     action: () => triggerItemAction(`Swipe left action on "${name}"`)
   });
 
@@ -62,7 +63,7 @@ const BasicExample = () => {
             onSwipeProgress={handleSwipeProgress}
             onSwipeStart={handleSwipeStart}
           >
-            <BasicListItem label="Item with both swipes" />{' '}
+            <BasicListItem label="Item with both swipes" />
           </SwipeableListItem>
           <SwipeableListItem>
             <BasicListItem label="Item without swipe actions" />

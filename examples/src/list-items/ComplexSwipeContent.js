@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 
 import './ComplexSwipeContent.css';
 
-const ComplexSwipeConent = ({ direction, icon, label }) => (
-  <div className={`complex-swipeable-list__item-content-${direction}`}>
+const ComplexSwipeConent = ({ icon, label, position }) => (
+  <div className={`complex-swipeable-list__item-content-${position}`}>
     <div className="complex-swipeable-list__content">
-      <span className="complex-swipeable-list__svg">{icon}</span>
+      <span className="complex-swipeable-list__icon">{icon}</span>
       {label && <span>{label}</span>}
     </div>
   </div>
 );
 
 ComplexSwipeConent.propTypes = {
-  direction: PropTypes.oneOf(['left', 'right']).isRequired,
   icon: PropTypes.node,
-  label: PropTypes.string
+  label: PropTypes.string,
+  position: PropTypes.oneOf(['left', 'right']).isRequired
 };
 
 export default ComplexSwipeConent;

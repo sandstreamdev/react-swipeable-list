@@ -5,12 +5,12 @@ import './ComplexListItem.css';
 
 const ComplexListItem = ({ description, icon, name }) => (
   <div className="complex-swipeable-list__item">
-    <div className="complex-swipeable-list__item--label">
-      {icon}
-      <span className="complex-swipeable-list__item--name">{name}</span>
+    <div className="complex-swipeable-list__item-label">
+      <span className="complex-swipeable-list__item-icon">{icon}</span>
+      <span className="complex-swipeable-list__item-name">{name}</span>
     </div>
     {description && (
-      <div className="complex-swipeable-list__item--description">
+      <div className="complex-swipeable-list__item-description">
         {description}
       </div>
     )}

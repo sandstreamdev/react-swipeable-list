@@ -8,6 +8,7 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import ComplexListItem from '../list-items/ComplexListItem';
 import ComplexSwipeContent from '../list-items/ComplexSwipeContent';
 import { MailIcon, ReplyIcon, DeleteIcon } from '../../images/icons';
+
 import './ComplexExample.css';
 
 const ComplexExample = () => {
@@ -24,9 +25,9 @@ const ComplexExample = () => {
   const swipeRightOptions = name => ({
     content: (
       <ComplexSwipeContent
-        direction="left"
         icon={<DeleteIcon />}
         label="Delete"
+        position="left"
       />
     ),
     action: () => triggerItemAction(`Delete action triggered on "${name}" item`)
@@ -35,9 +36,9 @@ const ComplexExample = () => {
   const swipeLeftOptions = name => ({
     content: (
       <ComplexSwipeContent
-        direction="right"
         icon={<ReplyIcon />}
         label="Reply"
+        position="right"
       />
     ),
     action: () => triggerItemAction(`Reply action triggered on "${name}" item`)

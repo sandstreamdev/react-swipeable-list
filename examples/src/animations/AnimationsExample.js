@@ -11,6 +11,7 @@ import { findKey, mapEntries } from '@sandstreamdev/std/object';
 
 import BasicListItem from '../list-items/BasicListItem';
 import BasicSwipeContent from '../list-items/BasicSwipeContent';
+
 import './AnimationsExample.css';
 
 const AnimationsExample = () => {
@@ -32,13 +33,13 @@ const AnimationsExample = () => {
     setItems([...items, { id: uuidv4(), text: `New item` }]);
 
   const swipeRightOptions = id => ({
-    content: <BasicSwipeContent direction="left" label="Delete" />,
+    content: <BasicSwipeContent label="Delete" position="left" />,
     actionAnimation: contentAnimation,
     action: () => deleteItemById(id)
   });
 
   const swipeLeftOptions = id => ({
-    content: <BasicSwipeContent direction="right" label="Delete" />,
+    content: <BasicSwipeContent label="Delete" position="right" />,
     actionAnimation: contentAnimation,
     action: () => deleteItemById(id)
   });
