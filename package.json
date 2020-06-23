@@ -1,7 +1,7 @@
 {
   "name": "@sandstreamdev/react-swipeable-list",
   "description": "Swipeable list component for React",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "author": {
     "name": "Sandstream Development",
     "url": "https://github.com/sandstreamdev/react-swipeable-list/graphs/contributors"
