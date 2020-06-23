@@ -1,4 +1,5 @@
-.complexItemContent {
+.complex-swipeable-list__item-content-left {
+  background-color: red;
   color: white;
   flex: 1;
   height: 100%;
@@ -7,11 +8,18 @@
   justify-content: center;
 }
 
-.backgroundLeft {
+.complex-swipeable-list__item-content-right {
+  background-color: green;
+  color: white;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
   align-items: flex-end;
 }
 
-.content {
+.complex-swipeable-list__content {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -21,9 +29,10 @@
   max-width: 64px;
   text-align: center;
   padding: 4px;
+  padding-top: 8px;
 }
 
-svg {
+.complex-swipeable-list__icon {
   fill: white;
   width: 32px;
   height: 32px;

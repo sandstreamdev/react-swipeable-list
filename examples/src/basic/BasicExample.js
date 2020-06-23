@@ -5,36 +5,25 @@ import {
 } from '@sandstreamdev/react-swipeable-list';
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 
-import styles from '../app.module.css';
+import BasicListItem from '../list-items/BasicListItem';
+import BasicSwipeContent from '../list-items/BasicSwipeContent';
 
-const SimpleList = () => {
+import './BasicExample.css';
+
+const BasicExample = () => {
   const [triggeredItemAction, triggerItemAction] = useState('None');
   const [swipeProgress, handleSwipeProgress] = useState();
   const [swipeAction, handleSwipeAction] = useState('None');
 
   const swipeRightOptions = name => ({
-    content: (
-      <div className={styles.contentLeft}>
-        <span>Left content</span>
-      </div>
-    ),
+    content: <BasicSwipeContent label="Left content" position="left" />,
     action: () => triggerItemAction(`Swipe right action on "${name}"`)
   });
 
   const swipeLeftOptions = name => ({
-    content: (
-      <div className={styles.contentRight}>
-        <span>Right content</span>
-      </div>
-    ),
+    content: <BasicSwipeContent label="Right content" position="right" />,
     action: () => triggerItemAction(`Swipe left action on "${name}"`)
   });
-
-  const itemContent = name => (
-    <div className={styles.listItem}>
-      <span>{name}</span>
-    </div>
-  );
 
   const handleSwipeStart = () => {
     triggerItemAction('None');
@@ -48,8 +37,8 @@ const SimpleList = () => {
 
   return (
     <>
-      <span className={styles.actionInfo}>Trigger threshold: 0.5</span>
-      <div className={styles.listContainer}>
+      <span className="page__action--title">Trigger threshold: 0.5</span>
+      <div className="basic-swipeable-list__container">
         <SwipeableList>
           <SwipeableListItem
             swipeRight={swipeRightOptions('Item with swipe right')}
@@ -57,7 +46,7 @@ const SimpleList = () => {
             onSwipeProgress={handleSwipeProgress}
             onSwipeStart={handleSwipeStart}
           >
-            {itemContent('Item with swipe right')}
+            <BasicListItem label="Item with swipe right" />
           </SwipeableListItem>
           <SwipeableListItem
             swipeLeft={swipeLeftOptions('Item with swipe left')}
@@ -65,7 +54,7 @@ const SimpleList = () => {
             onSwipeProgress={handleSwipeProgress}
             onSwipeStart={handleSwipeStart}
           >
-            {itemContent('Item with swipe left')}
+            <BasicListItem label="Item with swipe left" />
           </SwipeableListItem>
           <SwipeableListItem
             swipeLeft={swipeLeftOptions('Item with both swipes')}
@@ -74,23 +63,23 @@ const SimpleList = () => {
             onSwipeProgress={handleSwipeProgress}
             onSwipeStart={handleSwipeStart}
           >
-            {itemContent('Item with both swipes')}
+            <BasicListItem label="Item with both swipes" />
           </SwipeableListItem>
           <SwipeableListItem>
-            {itemContent('Item without swipe actions')}
+            <BasicListItem label="Item without swipe actions" />
           </SwipeableListItem>
         </SwipeableList>
       </div>
-      <div className={styles.summary}>
-        <span className={styles.actionInfo}>Triggered action:</span>
-        <span className={styles.actionInfoValue}>{triggeredItemAction}</span>
-        <span className={styles.actionInfo}>Callback swipe action:</span>
-        <span className={styles.actionInfoValue}>{swipeAction}</span>
-        <span className={styles.actionInfo}>Callback swipe progress:</span>
-        <span className={styles.actionInfoValue}>{swipeProgress ?? '-'}%</span>
+      <div className="page__summary">
+        <span className="page__action--title">Triggered action:</span>
+        <span className="page__action--value">{triggeredItemAction}</span>
+        <span className="page__action--title">Callback swipe action:</span>
+        <span className="page__action--value">{swipeAction}</span>
+        <span className="page__action--title">Callback swipe progress:</span>
+        <span className="page__action--value">{swipeProgress ?? '-'}%</span>
       </div>
     </>
   );
 };
 
-export default SimpleList;
+export default BasicExample;

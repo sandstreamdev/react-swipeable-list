@@ -1,4 +1,4 @@
-.listItemComponent {
+.complex-swipeable-list__item {
   background-color: white;
   padding: 10px;
   border-bottom: 1px solid #c4c4c4;
@@ -8,12 +8,12 @@
   cursor: pointer;
 }
 
-.label {
+.complex-swipeable-list__item-label {
   display: flex;
   align-items: center;
 }
 
-.label > svg {
+.complex-swipeable-list__item-icon {
   width: 24px;
   min-width: 24px;
   max-width: 24px;
@@ -23,7 +23,7 @@
   fill: #083749;
 }
 
-.name {
+.complex-swipeable-list__item-name {
   font-weight: bold;
   font-size: 22px;
   line-height: 27px;
@@ -34,7 +34,7 @@
   text-overflow: ellipsis;
 }
 
-.description {
+.complex-swipeable-list__item-description {
   margin-left: 2px;
   margin-top: 4px;
   color: #959595;

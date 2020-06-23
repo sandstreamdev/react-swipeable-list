@@ -1,31 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import styles from './app.module.css';
+import './App.css';
 import App from './App';
 
 ReactDOM.render(
-  <div className={styles.testApp}>
-    <div className={styles.smartphone}>
-      <div className={styles.content}>
+  <div className="application">
+    <div className="smartphone">
+      <div className="smartphone__content">
         <App />
       </div>
     </div>
-    <footer>
+    <footer className="footer smartphone__footer">
       <span>
         {`Made with ❤️ by `}
-        <a href="https://sanddev.com/">Sandstream Development</a>
+        <a
+          className="footer__link"
+          href="https://sanddev.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Sandstream Development
+        </a>
       </span>
       <div>
         <span>
-          <a href="https://github.com/sandstreamdev/react-swipeable-list">
+          <a
+            className="footer__link"
+            href="https://github.com/sandstreamdev/react-swipeable-list"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             GitHub
           </a>
         </span>
         {` • `}
         <span>
           {`License: `}
-          <a href="https://github.com/sandstreamdev/react-swipeable-list/blob/master/LICENSE">
+          <a
+            className="footer__link"
+            href="https://github.com/sandstreamdev/react-swipeable-list/blob/master/LICENSE"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             MIT
           </a>
         </span>

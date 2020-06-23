@@ -6,13 +6,13 @@ import {
 import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import { noOp } from '@sandstreamdev/std/function';
 
-import ListItem from '../complex/ListItem';
-import ItemContent from '../complex/ItemContent';
+import ComplexListItem from '../list-items/ComplexListItem';
+import ComplexSwipeContent from '../list-items/ComplexSwipeContent';
 import { MailIcon, ReplyIcon, DeleteIcon } from '../../images/icons';
 
-import styles from '../app.module.css';
+import './SizeToContentExample.css';
 
-const SizeToContentList = () => {
+const SizeToContentExample = () => {
   const items = [
     { id: 1, text: 'First', description: 'first description' },
     { id: 2, text: 'Second', description: 'second description' },
@@ -30,11 +30,10 @@ const SizeToContentList = () => {
 
   const swipeRightOptions = () => ({
     content: (
-      <ItemContent
-        color="red"
+      <ComplexSwipeContent
         icon={<DeleteIcon />}
         label="Delete"
-        side="right"
+        position="left"
       />
     ),
     action: noOp
@@ -42,18 +41,17 @@ const SizeToContentList = () => {
 
   const swipeLeftOptions = () => ({
     content: (
-      <ItemContent
-        color="green"
+      <ComplexSwipeContent
         icon={<ReplyIcon />}
         label="Reply"
-        side="left"
+        position="right"
       />
     ),
     action: noOp
   });
 
   return (
-    <div className={styles.listContainer}>
+    <div className="size-to-content-swipeable-list__container">
       <SwipeableList>
         {items.map(({ id, text, description }) => (
           <SwipeableListItem
@@ -61,7 +59,7 @@ const SizeToContentList = () => {
             swipeLeft={swipeLeftOptions(text)}
             swipeRight={swipeRightOptions(text)}
           >
-            <ListItem
+            <ComplexListItem
               description={description}
               icon={<MailIcon />}
               name={text}
@@ -73,4 +71,4 @@ const SizeToContentList = () => {
   );
 };
 
-export default SizeToContentList;
+export default SizeToContentExample;

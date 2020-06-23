@@ -30,13 +30,8 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true
-            }
-          },
+          'style-loader',
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
@@ -61,7 +56,7 @@ module.exports = {
       '@sandstreamdev/react-swipeable-list/dist/styles.css': path.join(
         __dirname,
         'src',
-        'app.module.css'
+        'App.css'
       ),
 
       // to import module sources

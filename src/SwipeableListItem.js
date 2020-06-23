@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './SwipeableListItem.css';
+import './SwipeableListItem.css';
 
 export const ActionAnimations = {
   RETURN: Symbol('Return'),
@@ -106,13 +106,13 @@ class SwipeableListItem extends PureComponent {
     this.resetState();
     this.dragStartPoint = { x: clientX, y: clientY };
 
-    this.listElement.className = styles.content;
+    this.listElement.className = 'swipeable-list-item__content';
     if (this.contentLeft !== null) {
-      this.contentLeft.className = styles.contentLeft;
+      this.contentLeft.className = 'swipeable-list-item__content-left';
     }
 
     if (this.contentRight !== null) {
-      this.contentRight.className = styles.contentRight;
+      this.contentRight.className = 'swipeable-list-item__content-right';
     }
 
     this.startTime = Date.now();
@@ -177,19 +177,22 @@ class SwipeableListItem extends PureComponent {
     const { contentLeft, contentRight, listElement } = this;
 
     if (listElement) {
-      listElement.className = styles.contentReturn;
+      listElement.className =
+        'swipeable-list-item__content swipeable-list-item__content--return';
       listElement.style.transform = 'translateX(0px)';
     }
 
     // hide backgrounds
     if (contentLeft !== null) {
       contentLeft.style.opacity = 0;
-      contentLeft.className = styles.contentLeftReturn;
+      contentLeft.className =
+        'swipeable-list-item__content-left swipeable-list-item__content-left--return';
     }
 
     if (contentRight !== null) {
       contentRight.style.opacity = 0;
-      contentRight.className = styles.contentRightReturn;
+      contentRight.className =
+        'swipeable-list-item__content-right swipeable-list-item__content-right--return';
     }
   };
 
@@ -197,7 +200,8 @@ class SwipeableListItem extends PureComponent {
     const { listElement } = this;
 
     if (listElement) {
-      listElement.className = styles.contentRemove;
+      listElement.className =
+        'swipeable-list-item__content swipeable-list-item__content--remove';
       listElement.style.transform = `translateX(${
         listElement.offsetWidth * (direction === DragDirection.LEFT ? -1 : 1)
       }px)`;
@@ -437,10 +441,10 @@ class SwipeableListItem extends PureComponent {
     const { children, swipeLeft, swipeRight } = this.props;
 
     return (
-      <div className={styles.swipeableListItem} ref={this.bindWrapper}>
+      <div className="swipeable-list-item" ref={this.bindWrapper}>
         {swipeLeft && (
           <div
-            className={styles.contentLeft}
+            className="swipeable-list-item__content-left"
             data-testid="swipe-left-content"
             ref={this.bindContentLeft}
           >
@@ -449,7 +453,7 @@ class SwipeableListItem extends PureComponent {
         )}
         {swipeRight && (
           <div
-            className={styles.contentRight}
+            className="swipeable-list-item__content-right"
             data-testid="swipe-right-content"
             ref={this.bindContentRight}
           >
@@ -457,7 +461,7 @@ class SwipeableListItem extends PureComponent {
           </div>
         )}
         <div
-          className={styles.content}
+          className="swipeable-list-item__content"
           data-testid="content"
           ref={this.bindListElement}
         >

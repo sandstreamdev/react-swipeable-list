@@ -27,7 +27,7 @@ test('list rendering with items', () => {
 
   expect(getByText('Item content 1')).toBeInTheDocument();
   expect(getByText('Item content 2')).toBeInTheDocument();
-  expect(container.firstChild).toHaveClass('swipeableList');
+  expect(container.firstChild).toHaveClass('swipeable-list');
 });
 
 test('list rendering with items when child as function', () => {
@@ -48,7 +48,7 @@ test('list rendering with items when child as function', () => {
 
   expect(getByText('Item content 1')).toBeInTheDocument();
   expect(getByText('Item content 2')).toBeInTheDocument();
-  expect(container.firstChild).not.toHaveClass('swipeableList');
+  expect(container.firstChild).not.toHaveClass('swipeable-list');
 });
 
 test('passing className to child function', () => {
@@ -62,8 +62,8 @@ test('passing className to child function', () => {
     </SwipeableList>
   );
 
-  expect(container.firstChild).not.toHaveClass('swipeableList');
-  expect(getByTestId('tested-div')).toHaveClass('swipeableList');
+  expect(container.firstChild).not.toHaveClass('swipeable-list');
+  expect(getByTestId('tested-div')).toHaveClass('swipeable-list');
 });
 
 test('blocking swipe on scroll', () => {

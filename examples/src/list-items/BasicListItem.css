@@ -1,0 +1,10 @@
+.basic-swipeable-list__item {
+  border-bottom: 1px solid #c4c4c4;
+  height: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  user-select: none;
+  cursor: pointer;
+}

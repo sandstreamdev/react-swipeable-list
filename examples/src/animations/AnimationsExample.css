@@ -1,0 +1,36 @@
+.animations-swipeable-list__container {
+  width: 100%;
+  margin: 24px 0;
+  outline-color: gray;
+  outline-style: solid;
+  outline-width: 1px 0;
+}
+
+.animations__switcher {
+  align-self: auto;
+}
+
+.animations__switcher-row {
+  padding-top: 8px;
+}
+
+.my-node-exit {
+  opacity: 1;
+}
+
+.my-node-exit-active {
+  opacity: 0;
+  max-height: 0;
+  transition: max-height 1000ms, opacity 1500ms;
+}
+
+.my-node-enter {
+  opacity: 0;
+  max-height: 0;
+}
+
+.my-node-enter-active {
+  opacity: 1;
+  max-height: 1000px;
+  transition: max-height 4000ms, opacity 1500ms;
+}

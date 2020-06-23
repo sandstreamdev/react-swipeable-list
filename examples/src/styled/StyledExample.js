@@ -8,16 +8,12 @@ import '@sandstreamdev/react-swipeable-list/dist/styles.css';
 import { classNames } from '@sandstreamdev/std/web';
 import { noOp } from '@sandstreamdev/std/function';
 
-import styles from '../app.module.css';
-import customStyles from './custom.module.css';
+import BasicListItem from '../list-items/BasicListItem';
+import BasicSwipeContent from '../list-items/BasicSwipeContent';
 
-const itemContent = name => (
-  <div className={styles.listItem}>
-    <span>{name}</span>
-  </div>
-);
+import './StyledExample.css';
 
-const StyledList = () => {
+const StyledExample = () => {
   const items = [
     { id: uuidv4(), text: 'Item 1' },
     { id: uuidv4(), text: 'Item 2' },
@@ -26,30 +22,22 @@ const StyledList = () => {
   ];
 
   const swipeRightOptions = () => ({
-    content: (
-      <div className={styles.contentLeft}>
-        <span>Delete</span>
-      </div>
-    ),
+    content: <BasicSwipeContent label="Delete" position="left" />,
     action: noOp
   });
 
   const swipeLeftOptions = () => ({
-    content: (
-      <div className={styles.contentRight}>
-        <span>Delete</span>
-      </div>
-    ),
+    content: <BasicSwipeContent label="Delete" position="right" />,
     action: noOp
   });
 
   return (
     <>
-      <span className={styles.actionInfo}>Custom styled list wrapper</span>
-      <div className={styles.listContainer}>
+      <span className="page__action--title">Custom styled list wrapper</span>
+      <div className="styled-swipeable-list__container">
         <SwipeableList>
           {({ className, ...rest }) => (
-            <div className={classNames(className, customStyles.customList)}>
+            <div className={classNames(className, 'styled-swipeable-list')}>
               {items.map(({ id, text }) => (
                 <SwipeableListItem
                   key={id}
@@ -57,7 +45,7 @@ const StyledList = () => {
                   swipeRight={swipeRightOptions(id)}
                   {...rest}
                 >
-                  {itemContent(text)}
+                  <BasicListItem label={text} />
                 </SwipeableListItem>
               ))}
             </div>
@@ -68,4 +56,4 @@ const StyledList = () => {
   );
 };
 
-export default StyledList;
+export default StyledExample;
