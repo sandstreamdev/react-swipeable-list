@@ -14,7 +14,8 @@ module.exports = {
     watchOptions: {
       ignored: /node_modules/
     },
-    historyApiFallback: true
+    historyApiFallback: true,
+    disableHostCheck: true
   },
   module: {
     rules: [
