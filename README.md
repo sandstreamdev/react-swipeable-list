@@ -16,7 +16,7 @@
 [![Actions Status](https://github.com/sandstreamdev/react-swipeable-list/workflows/Node%20CI/badge.svg)](https://github.com/sandstreamdev/react-swipeable-list/actions)
 [![codecov](https://codecov.io/gh/sandstreamdev/react-swipeable-list/branch/master/graph/badge.svg)](https://codecov.io/gh/sandstreamdev/react-swipeable-list)
 ![GitHub Release Date](https://img.shields.io/github/release-date/sandstreamdev/react-swipeable-list)
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors-)
 
 ## React Swipeable List component
 
@@ -223,6 +223,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/akshar07"><img src="https://avatars2.githubusercontent.com/u/11475137?v=4" width="100px;" alt=""/><br /><sub><b>Akshar Takle</b></sub></a><br /><a href="#ideas-akshar07" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="http://mohammedfaragallah.herokuapp.com"><img src="https://avatars0.githubusercontent.com/u/14910456?v=4" width="100px;" alt=""/><br /><sub><b>Mohammed Faragallah</b></sub></a><br /><a href="#ideas-MohammedFaragallah" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://davidreact.github.io/portfolio/"><img src="https://avatars3.githubusercontent.com/u/17351751?v=4" width="100px;" alt=""/><br /><sub><b>David</b></sub></a><br /><a href="#ideas-davidreact" title="Ideas, Planning, & Feedback">🤔</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ziabskiK"><img src="https://avatars0.githubusercontent.com/u/33325556?v=4" width="100px;" alt=""/><br /><sub><b>Karol Ziąbski</b></sub></a><br /><a href="https://github.com/sandstreamdev/react-swipeable-list/issues?q=author%3AziabskiK" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
