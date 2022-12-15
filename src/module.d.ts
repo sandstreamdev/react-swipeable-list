@@ -1,4 +1,4 @@
-import { FunctionComponent, PureComponent, ReactNode } from 'react';
+import { FunctionComponent, PropsWithChildren, PureComponent, ReactNode } from 'react';
 
 export enum ActionAnimations {
   /**
@@ -136,7 +136,7 @@ interface ISwipeableListProps extends IBaseSwipeableListProps {
   children?: SwipeableListChildren;
 }
 
-export class SwipeableListItem extends PureComponent<ISwipeableListItemProps> {}
+export class SwipeableListItem extends PureComponent<PropsWithChildren<ISwipeableListItemProps>> {}
 
 /**
  * NOTE: A function child can be used instead of a SwipeableListItem elements.
