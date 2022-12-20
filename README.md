@@ -117,6 +117,12 @@ Type: `boolean` (optional, default: `false`)
 
 If set to `true` all defined swipe actions are blocked.
 
+#### children
+
+Type: `Anything that can be rendered` (required)
+
+Content that is visible by default and swipeable to reveal the left and right views.
+
 ### swipeLeft
 
 Type: `Object` (optional)

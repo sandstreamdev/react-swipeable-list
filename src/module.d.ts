@@ -39,6 +39,10 @@ interface ISwipeableListItemProps {
    * If set to `true` all defined swipe actions are blocked.
    */
   blockSwipe?: boolean;
+   /**
+   * Content that is visible by default and swipeable to reveal the left and right views.
+   */
+  children: ReactNode;
   /**
    * Data for defining left swipe action and rendering content after item is swiped.
    */
