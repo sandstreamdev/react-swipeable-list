@@ -267,57 +267,55 @@ class SwipeableListItem extends PureComponent {
   };
 
   setDragDirection = (x, y) => {
-    if (this.dragDirection === DragDirection.UNKNOWN) {
-      const { x: startX, y: startY } = this.dragStartPoint;
-      const horizontalDistance = Math.abs(x - startX);
-      const verticalDistance = Math.abs(y - startY);
+    const { x: startX, y: startY } = this.dragStartPoint;
+    const horizontalDistance = Math.abs(x - startX);
+    const verticalDistance = Math.abs(y - startY);
 
-      if (
-        horizontalDistance <= this.dragHorizontalDirectionThreshold &&
-        verticalDistance <= this.dragVerticalDirectionThreshold
-      ) {
-        return;
-      }
+    if (
+      horizontalDistance <= this.dragHorizontalDirectionThreshold &&
+      verticalDistance <= this.dragVerticalDirectionThreshold
+    ) {
+      return;
+    }
 
-      const angle = Math.atan2(y - startY, x - startX);
-      const octant = Math.round((8 * angle) / (2 * Math.PI) + 8) % 8;
+    const angle = Math.atan2(y - startY, x - startX);
+    const octant = Math.round((8 * angle) / (2 * Math.PI) + 8) % 8;
 
-      switch (octant) {
-        case 0:
-          if (
-            this.contentRight !== null &&
-            horizontalDistance > this.dragHorizontalDirectionThreshold
-          ) {
-            this.dragDirection = DragDirection.RIGHT;
-          }
-          break;
-        case 1:
-        case 2:
-        case 3:
-          if (verticalDistance > this.dragVerticalDirectionThreshold) {
-            this.dragDirection = DragDirection.DOWN;
-          }
-          break;
-        case 4:
-          if (
-            this.contentLeft !== null &&
-            horizontalDistance > this.dragHorizontalDirectionThreshold
-          ) {
-            this.dragDirection = DragDirection.LEFT;
-          }
-          break;
-        case 5:
-        case 6:
-        case 7:
-          if (verticalDistance > this.dragVerticalDirectionThreshold) {
-            this.dragDirection = DragDirection.UP;
-          }
-          break;
-      }
+    switch (octant) {
+      case 0:
+        if (
+          this.contentRight !== null &&
+          horizontalDistance > this.dragHorizontalDirectionThreshold
+        ) {
+          this.dragDirection = DragDirection.RIGHT;
+        }
+        break;
+      case 1:
+      case 2:
+      case 3:
+        if (verticalDistance > this.dragVerticalDirectionThreshold) {
+          this.dragDirection = DragDirection.DOWN;
+        }
+        break;
+      case 4:
+        if (
+          this.contentLeft !== null &&
+          horizontalDistance > this.dragHorizontalDirectionThreshold
+        ) {
+          this.dragDirection = DragDirection.LEFT;
+        }
+        break;
+      case 5:
+      case 6:
+      case 7:
+        if (verticalDistance > this.dragVerticalDirectionThreshold) {
+          this.dragDirection = DragDirection.UP;
+        }
+        break;
+    }
 
-      if (this.props.onSwipeStart && this.isSwiping()) {
-        this.props.onSwipeStart();
-      }
+    if (this.props.onSwipeStart && this.isSwiping()) {
+      this.props.onSwipeStart();
     }
   };
 
