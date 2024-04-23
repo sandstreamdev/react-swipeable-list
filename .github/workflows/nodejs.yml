@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [10.x, 12.x, 20.x]
 
     steps:
       - uses: actions/checkout@v1
@@ -23,8 +23,4 @@ jobs:
           npm test
         env:
           CI: true
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1.0.2
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          file: ./coverage/clover.xml
+
