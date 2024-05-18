@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 import './SwipeableListItem.css';
 
@@ -438,13 +439,16 @@ class SwipeableListItem extends PureComponent {
   bindWrapper = ref => (this.wrapper = ref);
 
   render() {
-    const { children, swipeLeft, swipeRight } = this.props;
+    const { children, swipeLeft, swipeRight, classes } = this.props;
 
     return (
       <div className="swipeable-list-item" ref={this.bindWrapper}>
         {swipeLeft && (
           <div
-            className="swipeable-list-item__content-left"
+            className={clsx(
+              'swipeable-list-item__content-left',
+              classes?.leftContent
+            )}
             data-testid="swipe-left-content"
             ref={this.bindContentLeft}
           >
@@ -453,7 +457,10 @@ class SwipeableListItem extends PureComponent {
         )}
         {swipeRight && (
           <div
-            className="swipeable-list-item__content-right"
+            className={clsx(
+              'swipeable-list-item__content-right',
+              classes?.rightContent
+            )}
             data-testid="swipe-right-content"
             ref={this.bindContentRight}
           >
@@ -461,7 +468,7 @@ class SwipeableListItem extends PureComponent {
           </div>
         )}
         <div
-          className="swipeable-list-item__content"
+          className={clsx('swipeable-list-item__content', classes?.content)}
           data-testid="content"
           ref={this.bindListElement}
         >
@@ -483,7 +490,13 @@ SwipeableListItem.propTypes = {
 
   onSwipeEnd: PropTypes.func,
   onSwipeProgress: PropTypes.func,
-  onSwipeStart: PropTypes.func
+  onSwipeStart: PropTypes.func,
+
+  classes: PropTypes.shape({
+    content: PropTypes.string,
+    leftContent: PropTypes.string,
+    rightContent: PropTypes.string
+  })
 };
 
 export default SwipeableListItem;
