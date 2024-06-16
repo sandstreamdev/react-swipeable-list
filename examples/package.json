@@ -54,9 +54,9 @@
     "stylelint": "13.7.0",
     "stylelint-config-standard": "20.0.0",
     "url-loader": "4.1.0",
-    "webpack": "4.44.1",
-    "webpack-cli": "3.3.12",
-    "webpack-dev-server": "3.11.0"
+    "webpack": "5.92.0",
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "5.0.4"
   },
   "dependencies": {
     "@sandstreamdev/react-swipeable-list": "1.0.0",
